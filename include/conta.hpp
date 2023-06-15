@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 
+using namespace std;
+
 /*
  definicao da classe conta, bem como seus metodos
  */
@@ -24,6 +26,7 @@ public:
     bool verificarSenha(const std::string& senha) const;
     void adicionarProdutoComprado(const std::string& produto);
     void exibirProdutosComprados() const;
+    void registrar(std::string usuario, std::string senha);
 };
 
 #endif
