@@ -4,6 +4,30 @@
 #include <vector>
 #include "conta.hpp"
 
+using namespace std;
+
+void Conta::registrar(string usuario, string senha) {
+    // Estabelecer conexão com o banco de dados
+    sqlite3* db;
+    int rc = sqlite3_open("DATABASE.sqlite", &db);
+    if (rc != SQLITE_OK) {
+        std::cerr << "Erro ao abrir o banco de dados: " << sqlite3_errmsg(db) << std::endl;
+        return 1;
+    }
+
+    // Inserir um usuário no banco de dados
+    std::string sql = "INSERT INTO usuarios (usuario, senha) VALUES ('" + usuario + "', '" + senha + "')";
+
+    rc = sqlite3_exec(db, sql.c_str(), nullptr, nullptr, nullptr);
+    if (rc != SQLITE_OK) {
+        std::cerr << "Erro ao inserir usuário no banco de dados: " << sqlite3_errmsg(db) << std::endl;
+    } else {
+        std::cout << "Usuário inserido com sucesso!" << std::endl;
+    }
+
+    // Fechar a conexão com o banco de dados
+    sqlite3_close(db);
+}
 
 // Função de callback para recuperar os produtos comprados do banco de dados
 int callbackProdutos(void* data, int argc, char** argv, char** /* azColName */) {
@@ -59,7 +83,7 @@ void Conta::adicionarProdutoComprado(const std::string& produto) {
 
     // Atualizar o banco de dados com o novo produto comprado
     sqlite3* db;
-    int rc = sqlite3_open("meu_banco_de_dados.sqlite", &db);
+    int rc = sqlite3_open("DATABASE.sqlite", &db);
     if (rc != SQLITE_OK) {
         std::cerr << "Erro ao abrir o banco de dados: " << sqlite3_errmsg(db) << std::endl;
         // Lidar com o erro adequadamente
@@ -83,7 +107,6 @@ void Conta::exibirProdutosComprados() const {
     }
     
 }
-
 
 
 
