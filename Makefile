@@ -15,11 +15,8 @@ all: $(PROJ_NAME)
 $(PROJ_NAME): $(OBJ_FILES)
 	$(CXX) $^ -o $@
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | obj
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 	$(CXX) $(CXXFLAGS) $< -o $@
-
-obj:
-	mkdir $(OBJ_DIR)
 
 clean:
 	rm -f $(OBJ_DIR)/*.o $(PROJ_NAME)
