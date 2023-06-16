@@ -1,23 +1,27 @@
-CC=g++
-CFLAGS=-std=c++17 -Wall
+CXX = g++
+SRC_DIR = src
+OBJ_DIR = build
+PROJ_NAME = main
+CXXFLAGS = -c        \
+           -Wall     \
+           -Wextra   \
+           -I include
 
-all: main
+SRC_FILES = $(wildcard $(SRC_DIR)/*.cpp)
+OBJ_FILES = $(patsubst $(SRC_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(SRC_FILES))
 
-pessoa.o: include/pessoa.h src/pessoa.cpp
-	${CC} ${CFLAGS} -c src/pessoa.cpp -o build/pessoa.o
+all: $(PROJ_NAME)
 
-funcionario.o: pessoa.o include/funcionario.h src/funcionario.cpp
-	${CC} ${CFLAGS} -c src/funcionario.cpp -o build/funcionario.o
+$(PROJ_NAME): $(OBJ_FILES)
+	$(CXX) $^ -o $@
 
-professor.o: funcionario.o include/professor.h src/professor.cpp
-	${CC} ${CFLAGS} -c src/professor.cpp -o build/professor.o
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | obj
+	$(CXX) $(CXXFLAGS) $< -o $@
 
-main.o: funcionario.o src/main.cpp
-	${CC} ${CFLAGS} -c src/main.cpp -o build/main.o
-
-main: main.o pessoa.o funcionario.o professor.o
-	${CC} ${CFLAGS} build/main.o build/pessoa.o build/funcionario.o 
-	build/professor.o -o vpl_execution
+obj:
+	mkdir $(OBJ_DIR)
 
 clean:
-	rm -f vpl_execution *.o
+	rm -f $(OBJ_DIR)/*.o $(PROJ_NAME)
+
+.PHONY: all clean
