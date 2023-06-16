@@ -5,6 +5,7 @@
 #include "conta.hpp"
 #include "admin.hpp"
 
+#include <cstdlib>
 #include <exception>
 
 class senha_invalida_e{};
