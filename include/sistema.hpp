@@ -43,7 +43,7 @@ public:
   void verificarSenhaCadastro(const string& senha, const string& senha_novamente);
 
   // Administrador
-  bool verificaAdmin(const string& senha);
+  bool verificarAdmin(const string& senha);
 
   // Paginas
   void paginaInicial();
