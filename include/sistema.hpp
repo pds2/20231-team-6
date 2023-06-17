@@ -5,13 +5,18 @@
 #include "conta.hpp"
 #include "admin.hpp"
 
-#include <cstdlib>
 #include <exception>
+#include <cstdlib>
+#include <iostream>
+#include <unistd.h>
 
 class senha_invalida_e{};
 class usuario_invalido_e{};
 class erro_no_login_e{};
 class idade_invalida_e{};
+class usuario_ja_existe_e{};
+class senhas_diferentes_e{};
+class senha_incorreta_e{};
 
 class Sistema{
 private:
@@ -34,9 +39,11 @@ public:
   // Usuario
   Conta* encontrarUsuario(const string& usuario, const string& senha);
   void logarUsuario(const string& usuario, const string& senha);
+  void verificarUsuario(const string& senha);
+  void verificarSenhaCadastro(const string& senha, const string& senha_novamente);
 
   // Administrador
-  bool verificarAdmin(const string& senha);
+  bool verificaAdmin(const string& senha);
 
   // Paginas
   void paginaInicial();
