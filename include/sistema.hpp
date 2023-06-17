@@ -9,6 +9,8 @@
 #include <cstdlib>
 #include <iostream>
 #include <unistd.h>
+#include <limits>
+#include <stdexcept>
 
 class senha_invalida_e{};
 class usuario_invalido_e{};
@@ -26,28 +28,81 @@ private:
   Admin* _admin_logado = nullptr;
 
 public:
-  // Sempre que o programa comecar a rodar, o mercado e os usuarios devem ser puxados
-  // do banco de dados e inicializados no sistema
+ /*
+  * Inicializa o sistema: puxa as todas as informações dos usuários e do
+  * mercado, que estão armazenadas no banco de dados, e carrega localmente.
+  */
   Sistema();
 
-  // Facilitadores
+  // FACILITADORES
+
+ /*
+  * @brief Limpa a tela do console.
+  */
   void limparTela();
-  string mostrarOpcoes(vector<string> opcoes);
+
+ /*
+  * @brief Printa na tela todas as opções disponíveis para escolha do usuário,
+  * bem como um título para a página (opcional). Retorna a opção escolhida.
+  * @throws Lança uma exceção caso o usuário escolha uma opção inválida.
+  */
+  string mostrarOpcoes(string titulo, vector<string> opcoes);
+
+  /*
+  * @brief Printa na tela o que o usuário deve preencher e retorna a informação preenchida.
+  */
   string preencherString(string campo);
 
 
-  // Usuario
+  // USUARIO
+
+ /*
+  * @brief Recebe um usuário e uma senha e retorna a conta correspondente.
+  * @throws Lança uma exceção caso o usuário não exista ou caso a senha esteja incorreta.
+  */
   Conta* encontrarUsuario(const string& usuario, const string& senha);
+
+ /*
+  * @brief Recebe um usuário e uma senha e loga a devida conta no sistema.
+  * @throws Lança uma exceção caso haja algum erro no login.
+  */
   void logarUsuario(const string& usuario, const string& senha);
+
+ /*
+  * @brief Verifica se um nome de usuário é valido.
+  * @throws Lança uma exceção caso o nome de usuário já esteja sendo utilizado
+  * ou caso o nome seja "admin".
+  */
   void verificarUsuario(const string& senha);
+
+ /*
+  * @brief Verifica se uma senha é valida na hora do cadastro.
+  * @throws Lança uma exceção caso a senha possua espaços, a sequência
+  * "12345" em qualquer parte, menos de 5 caracteres ou mais de 50.
+  * @throws Lança uma exceção caso a primeira senha digitada seja diferente da segunda.
+  */
   void verificarSenhaCadastro(const string& senha, const string& senha_novamente);
 
-  // Administrador
-  bool verificarAdmin(const string& senha);
+  // ADMINISTRADOR
 
-  // Paginas
+ /*
+  * @brief Verifica se a senha digitada é a senha correta para administradores.
+  */
+  bool verificaAdmin(const string& senha);
+
+  // PAGINAS
+
+ /*
+  * @brief Corresponde ao ambiente da página inicial: permite o usuário escolher entre
+  * fazer login (como usuário ou como administrador), fazer um cadastro no sistema
+  * ou fechar o programa.
+  */
   void paginaInicial();
+
+  // Documentar após implementação
+  void paginaAdmin();
+  void paginaLogado();
 
 };
 
-#endif
+#endif // SISTEMA_HPP
