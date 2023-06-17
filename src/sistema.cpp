@@ -1,6 +1,6 @@
 #include "../include/sistema.hpp"
 
-#include <iostream>
+Sistema::Sistema(){};
 
 string Sistema::mostrarOpcoes(vector<string> opcoes)
 {
@@ -40,7 +40,7 @@ void Sistema::paginaInicial()
           opcao = "Voltar";
         }
         catch (erro_no_login_e &e){
-          opcao = mostrarOpcoes({"Tentar Novamente, Voltar"});
+          opcao = mostrarOpcoes({"Tentar Novamente", "Voltar"});
         }
       } while (opcao != "Voltar");
     }
@@ -50,12 +50,12 @@ void Sistema::paginaInicial()
         limparTela();
         cout << "\tAREA DE LOGIN PARA ADMINISTRADORES" << endl;
         string senha = preencherString("Senha");
-        if (verificarAdmin(senha) == true){
+        if (verificaAdmin(senha) == true){
           // Chamar uma tela para administradores
         }
         else{
           cout << "Senha invalida!" << endl;
-          opcao = mostrarOpcoes({"Tentar Novamente, Voltar"});
+          opcao = mostrarOpcoes({"Tentar Novamente", "Voltar"});
         }
       } while (opcao != "Voltar");
     }
@@ -63,7 +63,34 @@ void Sistema::paginaInicial()
     if (opcao == "Cadastrar"){
       do{
         limparTela();
-        // Implementar o cadastro
+        string usuario = preencherString("Usuario");
+        try{
+          verificarUsuario(usuario);
+          try{
+            string senha = preencherString("Senha");
+            string senha2 = preencherString("Digite a Senha Novamente");
+            verificarSenhaCadastro(senha, senha2);
+            
+            cout << "Cadastro feito com sucesso! Bem vindo " << usuario << "!" << endl;
+            sleep(2);
+            opcao = "Voltar";
+            Conta* u1 = new Conta(usuario, senha);
+            _usuarios.push_back(u1);
+            logarUsuario(usuario, senha);
+          }
+          catch (senha_invalida_e &e){
+            cout << "Essa senha e invalida!" << endl;
+            opcao = mostrarOpcoes({"Tentar Novamente", "Voltar"});
+          }
+          catch (senhas_diferentes_e &e){
+            cout << "As senhas nao coincidem!" << endl;
+            opcao = mostrarOpcoes({"Tentar Novamente", "Voltar"});
+          }
+        }
+        catch (usuario_ja_existe_e &e){
+          cout << "Usuario ja existe!" << endl;
+          opcao = mostrarOpcoes({"Tentar Novamente", "Voltar"});
+        }
       } while(opcao != "Voltar");
     }
     if (opcao == "Fechar Programa"){
@@ -93,7 +120,7 @@ void Sistema::logarUsuario(const string& usuario, const string& senha){
     cout << "Usuario nao encontrado!" << endl;
     throw erro_no_login_e();
   }
-  catch (senha_invalida_e &e){
+  catch (senha_incorreta_e &e){
     cout << "Senha invalida!" << endl;
     throw erro_no_login_e();
   }
@@ -106,17 +133,31 @@ Conta* Sistema::encontrarUsuario(const string& usuario, const string& senha){
       if (c->verificarSenha(senha) == true){
         return c;
       }
-      throw senha_invalida_e();
+      throw senha_incorreta_e();
     }
   }
   throw usuario_invalido_e();
 }
 
-bool verificarAdmin(const string& senha){
+bool Sistema::verificaAdmin(const string& senha){
   if (senha == "admin"){ // Podemos colocar uma senha no banco de dados tambem
     return true;
   }
   return false;
+}
+
+void Sistema::verificarUsuario(const string& usuario){
+  for (Conta* c: _usuarios){
+    if (c->getUsuario() == usuario) throw usuario_ja_existe_e();
+  }
+}
+
+void Sistema::verificarSenhaCadastro(const string& senha, const string& senha_novamente){
+  bool certa = (senha.find("12345") == string::npos) && (senha.find(" ") == string::npos) && \
+  (senha.size() >= 5 && senha.size() <= 50);
+
+  if (!certa) throw senha_invalida_e();
+  if (senha != senha_novamente) throw senhas_diferentes_e();
 }
 
 // Pronto
