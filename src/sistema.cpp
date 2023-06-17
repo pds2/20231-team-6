@@ -79,7 +79,7 @@ void Sistema::paginaInicial()
             logarUsuario(usuario, senha);
           }
           catch (senha_invalida_e &e){
-            cout << "Essa senha e invalida!" << endl;
+            cout << "Senha invalida!" << endl;
             opcao = mostrarOpcoes({"Tentar Novamente", "Voltar"});
           }
           catch (senhas_diferentes_e &e){
