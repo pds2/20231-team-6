@@ -50,7 +50,7 @@ void Sistema::paginaInicial()
         limparTela();
         cout << "\tAREA DE LOGIN PARA ADMINISTRADORES" << endl;
         string senha = preencherString("Senha");
-        if (verificaAdmin(senha) == true){
+        if (verificarAdmin(senha) == true){
           // Chamar uma tela para administradores
         }
         else{
