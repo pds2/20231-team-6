@@ -4,13 +4,14 @@
 
 unsigned int Produto::_proximoId = 0;
 
-Produto::Produto(const std::string &nome, int quantidade, int preco)
+Produto::Produto(const std::string &nome, unsigned int quantidade, double preco)
     : _id(_proximoId++), _nome(nome), 
       _quantidade(quantidade), _precoBase(preco), 
       _precoComDesconto(preco), _desconto(0) {
 }
 
 void Produto::imprimir_informacoes() {
+    std::cout << "----------------------------" << std::endl;
     std::cout << "\nNome: " << _nome << std::endl;
     std::cout << "ID: " << _id << std::endl;
 
@@ -24,6 +25,8 @@ void Produto::imprimir_informacoes() {
         std::cout << "Preço: R$" << _precoBase << std::endl;
     }
     std::cout << "Quantidade em estoque: " << _quantidade << std::endl;
+    std::cout << "----------------------------" << std::endl;
+
 }
 
 void Produto::aplicar_desconto(double desconto) {

@@ -19,7 +19,7 @@ class Produto {
      * Construtor. Inicializa _precoComDesconto igual ao _precoBase
      * e o _desconto igual a 0
      */
-    Produto(const std::string &nome, int quantidade, int preco);
+    Produto(const std::string &nome, unsigned int quantidade, double preco);
 
     /*
      * Imprime as informações do produto.
