@@ -5,22 +5,45 @@
 
 class Produto {
   private:
-    static int _proximoId;
-    int _id;
+    static unsigned int _proximoId;
+    
+    unsigned int _id;
     std::string _nome;
-    int _quantidade;
-    double _preco;
-    double _desconto = 0;
+    unsigned int _quantidade;
+    double _precoBase;
+    double _precoComDesconto;
+    double _desconto;
 
   public:
+    /* 
+     * Construtor. Inicializa _precoComDesconto igual ao _precoBase
+     * e o _desconto igual a 0
+     */
     Produto(const std::string &nome, int quantidade, int preco);
+
+    /*
+     * Imprime as informações do produto.
+     * Se o produto tiver desconto, imprime o preço anterior e o preço com desconto.
+     */
     virtual void imprimir_informacoes();
+
+    // Aplica um desconto ao produto alterando apenas preço com desconto.
     void aplicar_desconto(double desconto);
-    int get_id();
-    std::string get_nome();
-    double get_desconto();
-    double get_preco();
-    int get_quantidade();
+
+    // Seta _desconto para 0 e _precoComDesconto para _precoBase.
+    void remover_desconto();
+
+    int get_id() const;
+
+    std::string get_nome() const;
+
+    int get_quantidade() const;
+
+    double get_preco() const;
+
+    double get_preco_com_desconto() const;
+
+    double get_desconto() const;
 };
 
 #endif // PRODUTO_HPP
