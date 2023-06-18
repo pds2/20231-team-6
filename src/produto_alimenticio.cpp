@@ -2,11 +2,10 @@
 
 #include <iostream>
 
-ProdutoAlimenticio::ProdutoAlimenticio(const std::string &nome, double preco, int quantidade, bool vegano, double peso,
-                                       const std::string &dataDeValidade)
+ProdutoAlimenticio::ProdutoAlimenticio(const std::string &nome, double preco, int quantidade,
+                                       bool vegano, double peso, const std::string &dataDeValidade)
     : Produto(nome, preco, quantidade), _vegano(vegano), _peso(peso), _dataDeValidade(dataDeValidade) {
 }
-
 
 void ProdutoAlimenticio::imprimir_informacoes() {
     Produto::imprimir_informacoes();

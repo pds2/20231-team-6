@@ -9,8 +9,8 @@ class Produto {
     
     unsigned int _id;
     std::string _nome;
-    unsigned int _quantidade;
     double _precoBase;
+    unsigned int _quantidade;
     double _precoComDesconto;
     double _desconto;
 
@@ -19,7 +19,7 @@ class Produto {
      * Construtor. Inicializa _precoComDesconto igual ao _precoBase
      * e o _desconto igual a 0
      */
-    Produto(const std::string &nome, unsigned int quantidade, double preco);
+    Produto(const std::string &nome, double preco, unsigned int quantidade);
 
     /*
      * Imprime as informações do produto.
@@ -34,15 +34,10 @@ class Produto {
     void remover_desconto();
 
     int get_id() const;
-
     std::string get_nome() const;
-
     int get_quantidade() const;
-
     double get_preco() const;
-
     double get_preco_com_desconto() const;
-
     double get_desconto() const;
 };
 

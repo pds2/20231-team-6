@@ -13,8 +13,8 @@ class ProdutoAlimenticio : public Produto {
   public:
     
     // Construtor
-    ProdutoAlimenticio(const std::string &nome, double preco, int quantidade, bool vegano, double peso,
-                       const std::string &dataValidade);
+    ProdutoAlimenticio(const std::string &nome, double preco, int quantidade, bool vegano,
+                       double peso, const std::string &dataValidade);
 
     /*
      * Imprime as informações do produto alimentício através da função imprimir_informacoes.
