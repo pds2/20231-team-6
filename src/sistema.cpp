@@ -7,7 +7,8 @@ string Sistema::mostrarOpcoes(string titulo, vector<string> opcoes){
   bool flag = true;
 
   while (flag){
-    if (titulo == "\tUSUARIO LOGADO: ") cout << titulo << _usuario_logado->getUsuario() << endl;
+    if (titulo == "\tUSUARIO LOGADO: ") cout << titulo << _consumidor_logado->getUsuario() << endl;
+    else if (titulo == "\tADMINISTRADOR LOGADO: ") cout << titulo << _admin_logado->getUsuario() << endl; 
     else if (titulo != "\n") cout << titulo << endl;
 
     for (unsigned int i = 0; i < opcoes.size(); i++){
@@ -46,10 +47,11 @@ void Sistema::paginaInicial()
         string usuario = preencherString("Usuario");
         string senha = preencherString("Senha");
         try{
-          logarUsuario(usuario, senha);
+          logarConsumidor(usuario, senha);
           opcao = "Voltar";
         }
-        catch (erro_no_login_e &e){
+        catch (invalid_argument &e){
+          cout << e.what() << endl;
           opcao = mostrarOpcoes("\n", {"Tentar Novamente", "Voltar"});
         }
       } while (opcao != "Voltar");
@@ -59,14 +61,14 @@ void Sistema::paginaInicial()
       do{
         limparTela();
         cout << "\tAREA DE LOGIN PARA ADMINISTRADORES" << endl;
+        string usuario = preencherString("Usuario");
         string senha = preencherString("Senha");
-        if (verificaAdmin(senha) == true){
-          _admin_logado = new Admin();
-          paginaAdmin();
+        try{
+          logarAdminstrador(usuario, senha);
           opcao = "Voltar";
         }
-        else{
-          cout << "Senha invalida!" << endl;
+        catch (invalid_argument &e){
+          cout << e.what() << endl;
           opcao = mostrarOpcoes("\n", {"Tentar Novamente", "Voltar"});
         }
       } while (opcao != "Voltar");
@@ -86,17 +88,13 @@ void Sistema::paginaInicial()
             
             cout << "Cadastro feito com sucesso! Bem vindo " << usuario << "!" << endl;
             sleep(2);
-            Conta* u1 = new Conta(usuario, senha);
+            Consumidor* u1 = new Consumidor(usuario, senha);
             _usuarios.push_back(u1);
-            logarUsuario(usuario, senha);
+            logarConsumidor(usuario, senha);
             opcao = "Voltar";
           }
-          catch (senha_invalida_e &e){
-            cout << "Senha invalida!" << endl;
-            opcao = mostrarOpcoes("\n", {"Tentar Novamente", "Voltar"});
-          }
-          catch (senhas_diferentes_e &e){
-            cout << "As senhas nao coincidem!" << endl;
+          catch (invalid_argument &e){
+            cout << e.what() << endl;
             opcao = mostrarOpcoes("\n", {"Tentar Novamente", "Voltar"});
           }
         }
@@ -115,24 +113,23 @@ void Sistema::paginaInicial()
 }
 
 // Criar um ambiente pos login
-void Sistema::paginaLogado(){
+void Sistema::paginaConsumidor(){
   limparTela();
   string opcao = mostrarOpcoes("\tUSUARIO LOGADO: ", {"Procurar Produto", "Listar Categorias", "Ver Carrinho", "Finalizar Compras", \
    "Ver Compras Passadas", "Trocar Senha", "Deslogar"});
   while (opcao != "Deslogar"){
 
   }
-  _usuario_logado = nullptr;
+  _consumidor_logado = nullptr;
 }
 
 // Cirar um ambiente para administradores
 void Sistema::paginaAdmin(){
   limparTela();
-  string opcao = mostrarOpcoes("\tADMINISTRADOR LOGADO", {"Editar Produtos", "Edtiar Corredores", "Editar Usuarios", "Deslogar"});
+  string opcao = mostrarOpcoes("\tADMINISTRADOR LOGADO: ", {"Editar Produtos", "Edtiar Corredores", "Editar Usuarios", "Criar Conta Admin", "Deslogar"});
   while (opcao != "Deslogar"){
 
   }
-  delete _admin_logado;
   _admin_logado = nullptr;
 }
 
@@ -143,27 +140,52 @@ string Sistema::preencherString(string campo){
   return entrada;
 }
 
-void Sistema::logarUsuario(const string& usuario, const string& senha){
+void Sistema::logarAdminstrador(const string& usuario, const string& senha){
   try{
-    Conta* u1 = encontrarUsuario(usuario,senha);
-    _usuario_logado = u1;
-    paginaLogado();
+    pair <Conta*, bool> pair = encontrarUsuario(usuario,senha);
+    if (pair.second == 1) throw invalid_argument("Erro no login!");
+
+    _admin_logado = dynamic_cast<Admin*>(pair.first);
+    paginaAdmin();
   }
   catch (usuario_invalido_e &e){
-    cout << "Usuario nao encontrado!" << endl;
-    throw erro_no_login_e();
+    throw invalid_argument("Usuario nao encontrado!");
   }
   catch (senha_incorreta_e &e){
-    cout << "Senha invalida!" << endl;
-    throw erro_no_login_e();
+    throw invalid_argument("Senha invalida!");
   }
 }
 
-Conta* Sistema::encontrarUsuario(const string& usuario, const string& senha){
+void Sistema::logarConsumidor(const string& usuario, const string& senha){
+  try{
+    pair <Conta*, bool> pair = encontrarUsuario(usuario,senha);
+    if (pair.second == 0) throw invalid_argument("Erro no login!");
+
+    _consumidor_logado = dynamic_cast<Consumidor*>(pair.first);
+    paginaConsumidor();
+  }
+  catch (usuario_invalido_e &e){
+    throw invalid_argument("Usuario nao encontrado!");
+  }
+  catch (senha_incorreta_e &e){
+    throw invalid_argument("Senha invalida!");
+  }
+}
+
+pair<Conta*, bool> Sistema::encontrarUsuario(const string& usuario, const string& senha){
+  bool e_consumidor;
   for (Conta* c: _usuarios){
     if (c->getUsuario() == usuario){
       if (c->verificarSenha(senha) == true){
-        return c;
+        try{
+          Consumidor c1 = dynamic_cast<Consumidor&>((*c));
+          e_consumidor = 1;
+        }
+        catch(bad_cast &e){
+          e_consumidor = 0;
+        }
+        pair <Conta*,bool> retorno (c,e_consumidor);
+        return retorno;
       }
       throw senha_incorreta_e();
     }
@@ -171,16 +193,10 @@ Conta* Sistema::encontrarUsuario(const string& usuario, const string& senha){
   throw usuario_invalido_e();
 }
 
-bool Sistema::verificaAdmin(const string& senha){
-  if (senha == "admin"){ // Podemos colocar uma senha no banco de dados tambem
-    return true;
-  }
-  return false;
-}
 
 void Sistema::verificarUsuario(const string& usuario){
   for (Conta* c: _usuarios){
-    if (c->getUsuario() == usuario || usuario == "admin") throw usuario_ja_existe_e();
+    if (c->getUsuario() == usuario) throw usuario_ja_existe_e();
   }
 }
 
@@ -188,8 +204,8 @@ void Sistema::verificarSenhaCadastro(const string& senha, const string& senha_no
   bool certa = (senha.find("12345") == string::npos) && (senha.find(" ") == string::npos) && \
   (senha.size() >= 5 && senha.size() <= 50);
 
-  if (!certa) throw senha_invalida_e();
-  if (senha != senha_novamente) throw senhas_diferentes_e();
+  if (!certa) throw invalid_argument("Senha invalida!");
+  if (senha != senha_novamente) throw invalid_argument("As senhas nao coincidem!");
 }
 
 void Sistema::limparTela(){
