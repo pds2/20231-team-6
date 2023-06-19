@@ -2,8 +2,8 @@
 #define SISTEMA_HPP
 
 #include "mercado.hpp"
-#include "conta.hpp"
-#include "admin.hpp"
+#include "conta_admin.hpp"
+#include "conta_consumidor.hpp"
 
 #include <exception>
 #include <cstdlib>
@@ -11,20 +11,18 @@
 #include <unistd.h>
 #include <limits>
 #include <stdexcept>
+#include <vector>
+#include <typeinfo>
 
-class senha_invalida_e{};
 class usuario_invalido_e{};
-class erro_no_login_e{};
-class idade_invalida_e{};
 class usuario_ja_existe_e{};
-class senhas_diferentes_e{};
 class senha_incorreta_e{};
 
 class Sistema{
 private:
   Mercado _mercado;
   vector<Conta*> _usuarios;
-  Conta* _usuario_logado = nullptr;
+  Consumidor* _consumidor_logado = nullptr;
   Admin* _admin_logado = nullptr;
 
 public:
@@ -54,19 +52,20 @@ public:
   string preencherString(string campo);
 
 
-  // USUARIO
+  // CONSUMIDOR
 
  /*
-  * @brief Recebe um usuário e uma senha e retorna a conta correspondente.
+  * @brief Recebe um usuário e uma senha e retorna a conta correspondente, além da informação se a
+  * conta é um consumidor ou um administrador.
   * @throws Lança uma exceção caso o usuário não exista ou caso a senha esteja incorreta.
   */
-  Conta* encontrarUsuario(const string& usuario, const string& senha);
+  pair<Conta*, bool> encontrarUsuario(const string& usuario, const string& senha);
 
  /*
-  * @brief Recebe um usuário e uma senha e loga a devida conta no sistema.
+  * @brief Recebe um usuário e uma senha e loga o consumidor no sistema.
   * @throws Lança uma exceção caso haja algum erro no login.
   */
-  void logarUsuario(const string& usuario, const string& senha);
+  void logarConsumidor(const string& usuario, const string& senha);
 
  /*
   * @brief Verifica se um nome de usuário é valido.
@@ -86,9 +85,10 @@ public:
   // ADMINISTRADOR
 
  /*
-  * @brief Verifica se a senha digitada é a senha correta para administradores.
+  * @brief Recebe um usuário e uma senha e loga o administrador no sistema.
+  * @throws Lança uma exceção caso haja algum erro no login.
   */
-  bool verificaAdmin(const string& senha);
+  void logarAdminstrador(const string& usuario, const string& senha);
 
   // PAGINAS
 
@@ -101,7 +101,7 @@ public:
 
   // Documentar após implementação
   void paginaAdmin();
-  void paginaLogado();
+  void paginaConsumidor();
 
 };
 
