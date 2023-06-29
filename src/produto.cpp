@@ -10,8 +10,9 @@ Produto::Produto(const std::string &nome, double preco, unsigned int quantidade)
 }
 
 void Produto::imprimir_informacoes() {
+    std::cout << "----------------------------" << std::endl;
     std::cout << "Nome: " << _nome << std::endl;
-    std::cout << "ID: " << _id << std::endl;
+    //std::cout << "ID: " << _id << std::endl;
 
     if (_desconto > 0) {
         std::cout << "----------------------------" << std::endl;
@@ -23,6 +24,7 @@ void Produto::imprimir_informacoes() {
         std::cout << "Preço: R$" << _precoBase << std::endl;
     }
     std::cout << "Quantidade em estoque: " << _quantidade << std::endl;
+    std::cout << "----------------------------" << std::endl;
 }
 
 void Produto::aplicar_desconto(double desconto) {
