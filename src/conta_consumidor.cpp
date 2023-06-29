@@ -78,11 +78,13 @@ void Consumidor::exibirCarrinho(){
   if (_carrinho.size() == 0) throw invalid_argument("Carrinho Vazio!");
   cout << "PRODUTOS NO CARRINHO" << endl;
   for (auto it = _carrinho.begin(); it != _carrinho.end(); ++it){
-    cout << "Produto: "<< it->first->get_nome();
-    cout << " ----- Quantidade: " << it->second;
+    cout << "----------------------------" << endl;
+    cout << "Produto: "<< it->first->get_nome() << endl;
+    cout << "Quantidade: " << it->second << endl;
     double preco = it->first->get_preco() * it->second;
-    cout << " ----- Preco: R$" << preco << endl;
+    cout << "Preco: R$" << preco << endl;
     precoTotal += preco;
   }
+  cout << "----------------------------" << endl;
   cout << "Preco Total: R$" << precoTotal << endl;
 }
