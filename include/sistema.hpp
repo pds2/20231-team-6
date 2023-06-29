@@ -51,6 +51,8 @@ public:
   */
   string preencherString(string campo);
 
+  string stringPesquisa(string entrada);
+
 
   // CONSUMIDOR
 
