@@ -1,4 +1,5 @@
 #include "../include/sistema.hpp"
+#include <cctype>
 #include <stdexcept>
 
 Sistema::Sistema(){};// Carrega todas as informacoes DO banco de dados
@@ -125,6 +126,7 @@ void Sistema::paginaConsumidor(){
         limparTela();
         cout << "PAGINA PARA PROCURA DE PRODUTOS" << endl;
         string nomeproduto = preencherString("Digite o Nome do Produto que Deseja Procurar");
+        nomeproduto = stringPesquisa(nomeproduto);
         try{
           detalhesProduto(nomeproduto);
           opcao = "Voltar";
@@ -155,6 +157,7 @@ void Sistema::paginaConsumidor(){
         catch (invalid_argument &e){
           cout << e.what() << endl;
         }
+        cout << "----------------------------" << endl;
         opcao = mostrarOpcoes("\n", {"Finalizar Compra", "Remover Produto", "Voltar"});
         if (opcao == "Finalizar Compra"){
           paginaCheckout();
@@ -229,6 +232,18 @@ string Sistema::preencherString(string campo){
   cout << campo << ": ";
   string entrada;
   getline(cin, entrada);
+  return entrada;
+}
+
+string Sistema::stringPesquisa(string entrada){
+  entrada[0] = toupper(entrada[0]);
+  for (unsigned int i = 1 ; i < entrada.size(); i++){
+    entrada[i] = tolower(entrada[i]);
+    if (entrada[i] == ' '){
+      entrada[i+1] = toupper(entrada[i+1]);
+      i++;
+    }
+  }
   return entrada;
 }
 
