@@ -10,6 +10,9 @@ private:
   string _categoria;
 
 public:
+  Corredor(string categoria);
+  void adicionarProduto(Produto* p);
+
   string getCategoria();
   Produto* getProduto(string nome);
   vector<string> getNomeProdutos();

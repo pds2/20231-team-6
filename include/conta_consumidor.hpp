@@ -2,12 +2,16 @@
 #define CONSUMIDOR_HPP
 
 #include "conta.hpp"
+#include "produto.hpp"
 
 #include <string>
 #include <vector>
 #include <map>
+#include <set>
 
 using namespace std;
+
+class quantidade_invalida_e{};
 
 /*
     @brief Definição da classe consumidor (derivada de Conta) e seus métodos.
@@ -15,22 +19,33 @@ using namespace std;
 class Consumidor : public Conta {
 private:
     
-  std::vector<std::string> _produtosComprados;
-  map<Produto*, int> _carrinho;
-  int _saldo;
-  int _pontos;
+    std::set<std::string> _produtosComprados;
+    map<Produto*, unsigned int> _carrinho;
+    int _saldo;
+    int _pontos;
 
 public:
-  //Construtor de uma conta específica para um consumidor.
-  Consumidor(const std::string& usuario, const std::string& senha);
-  
-  void adicionarProdutoComprado(const std::string& produto);
+    //Construtor de uma conta específica para um consumidor.
+    Consumidor(const std::string& usuario, const std::string& senha);
 
-  void exibirProdutosComprados() const;
+    //~Consumidor() override;
+    
+    void adicionarProdutoComprado(const std::string& produto);
 
-  void adicionaProdutoCarrinho(Produto* p, unsigned int quantidade);
+    double getSaldo() const;
 
-  void exibirCarrinho();
+    void adicionarSaldo(double valor);
+    void removerSaldo(double valor);
+
+    double getPrecoTotalCarrinho() const;
+
+    void exibirProdutosComprados() const;
+
+    void adicionaProdutoCarrinho(Produto* p, unsigned int quantidade);
+    void removerProdutoCarrinho(Produto* p, unsigned int quantidade);
+
+    void exibirCarrinho();
+    void limparCarrinho();
 };
 
 #endif

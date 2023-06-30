@@ -28,3 +28,7 @@ Produto* Mercado::getProduto(string nome){
   }
   throw (invalid_argument("Produto nao Encontrado!"));
 }
+
+void Mercado::adicionarCorredor (Corredor* c){
+  _corredores.push_back(c);
+}

@@ -1,24 +1,22 @@
-CXX = g++
-SRC_DIR = src
-OBJ_DIR = build
-PROJ_NAME = main
-CXXFLAGS = -c        \
-           -Wall     \
-           -Wextra   \
-           -I include
+CC := g++
+SRCDIR := src
+BUILDDIR := build
+TARGET := main
 
-SRC_FILES = $(wildcard $(SRC_DIR)/*.cpp)
-OBJ_FILES = $(patsubst $(SRC_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(SRC_FILES))
+SRCEXT := cpp
+SOURCES := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
+OBJECTS := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.$(SRCEXT)=.o))
+CFLAGS := -g -Wall -O3 -std=c++20
+INC := -I include/ 
 
-all: $(PROJ_NAME)
+$(TARGET): $(OBJECTS)
+	$(CC) $^ -o $(TARGET)
 
-$(PROJ_NAME): $(OBJ_FILES)
-	$(CXX) $^ -o $@
-
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
-	$(CXX) $(CXXFLAGS) $< -o $@
+$(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
+	@mkdir -p $(@D)
+	$(CC) $(CFLAGS) $(INC) -c -o $@ $<
 
 clean:
-	rm -f $(OBJ_DIR)/*.o $(PROJ_NAME)
+	$(RM) -r $(BUILDDIR)/* $(TARGET)
 
-.PHONY: all clean
+.PHONY: clean

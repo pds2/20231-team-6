@@ -1,5 +1,6 @@
 #include "../include/corredor.hpp"
 
+
 string Corredor::getCategoria(){
   return _categoria;
 }
@@ -25,4 +26,12 @@ Produto* Corredor::getProduto(string nome){
 
 vector<Produto*> Corredor::getTodosProdutos(){
   return _produtos;
+}
+
+void Corredor::adicionarProduto(Produto* p){
+  _produtos.push_back(p);
+}
+
+Corredor::Corredor(string categoria){
+  _categoria = categoria;
 }

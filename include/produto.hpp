@@ -35,6 +35,8 @@ class Produto {
     // Seta _desconto para 0 e _precoComDesconto para _precoBase.
     void remover_desconto();
 
+    void removerEstoque(unsigned int valor);
+
     int get_id() const;
     std::string get_nome() const;
     unsigned int get_quantidade() const;

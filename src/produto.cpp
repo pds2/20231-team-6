@@ -37,6 +37,10 @@ void Produto::remover_desconto() {
     _precoComDesconto = _precoBase;
 }
 
+void Produto::removerEstoque(unsigned int valor){
+  _quantidade -= valor;
+}
+
 int Produto::get_id() const {
     return _id;
 }

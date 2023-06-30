@@ -10,8 +10,10 @@ private:
   vector<Corredor*> _corredores;
 
 public:
+  void adicionarCorredor (Corredor* c);
+
   vector<string> listarCategorias();
-  Corredor* getCorredor(string categoria);
+  Corredor* getCorredor(string tipo);
   Produto* getProduto(string nome);
 };
 

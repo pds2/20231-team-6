@@ -4,109 +4,23 @@
 
 Sistema::Sistema(){};// Carrega todas as informacoes DO banco de dados
 
-string Sistema::mostrarOpcoes(string titulo, vector<string> opcoes){
-  unsigned int escolha;
-  bool flag = true;
-
-  while (flag){
-    if (titulo == "\tUSUARIO LOGADO: ") cout << titulo << _consumidor_logado->getUsuario() << endl;
-    else if (titulo == "\tADMINISTRADOR LOGADO: ") cout << titulo << _admin_logado->getUsuario() << endl; 
-    else if (titulo != "\n") cout << titulo << endl;
-
-    for (unsigned int i = 0; i < opcoes.size(); i++){
-    cout << i+1 << ". " << opcoes[i] << endl;
-    }
-
-    cin >> escolha;
-    try{
-      if (escolha > opcoes.size() || escolha == 0){
-        cin.clear();
-        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');        
-        throw invalid_argument("Escolha invalida!");
-      }
-      flag = false;
-    }
-    catch (invalid_argument &e){
-      cout << e.what() << endl;
-      sleep(1);
-      if (opcoes[0] != "Adicionar ao Carrinho"){
-        limparTela();
-      }
-    }
-  }
-  cin.ignore(1000, '\n');
-  return opcoes[escolha-1];
-}
-
 void Sistema::paginaInicial(){
   while (true){
     limparTela();
-    string opcao = mostrarOpcoes("\tPAGINA INICIAL", {"Fazer Login como Usuario", "Fazer Login como Administrador", "Cadastrar", "Fechar Programa"});
+    string opcao = mostrarOpcoes("\tPAGINA INICIAL", {"Fazer Login como Usuario", "Fazer Login como Administrador", "Cadastrar", "Fechar Programa"}, 1);
 
     if (opcao == "Fazer Login como Usuario"){
-      do{
-        limparTela();
-        cout << "\tAREA DE LOGIN PARA USUARIOS" << endl;
-        string usuario = preencherString("Usuario");
-        string senha = preencherString("Senha");
-        try{
-          logarConsumidor(usuario, senha);
-          opcao = "Voltar";
-        }
-        catch (invalid_argument &e){
-          cout << e.what() << endl;
-          opcao = mostrarOpcoes("\n", {"Tentar Novamente", "Voltar"});
-        }
-      } while (opcao != "Voltar");
+      paginaInicialLoginConsumidor();
     }
-
+    
     if (opcao == "Fazer Login como Administrador"){
-      do{
-        limparTela();
-        cout << "\tAREA DE LOGIN PARA ADMINISTRADORES" << endl;
-        string usuario = preencherString("Usuario");
-        string senha = preencherString("Senha");
-        try{
-          logarAdminstrador(usuario, senha);
-          opcao = "Voltar";
-        }
-        catch (invalid_argument &e){
-          cout << e.what() << endl;
-          opcao = mostrarOpcoes("\n", {"Tentar Novamente", "Voltar"});
-        }
-      } while (opcao != "Voltar");
+      paginaInicialLoginAdministrador();
     }
 
     if (opcao == "Cadastrar"){
-      do{
-        limparTela();
-        cout << "\tAREA DE CADASTRO PARA USUARIOS" << endl;
-        string usuario = preencherString("Usuario");
-        try{
-          verificarUsuario(usuario);
-          try{
-            string senha = preencherString("Senha");
-            string senha2 = preencherString("Digite a Senha Novamente");
-            verificarSenhaCadastro(senha, senha2);
-            
-            cout << "Cadastro feito com sucesso! Bem vindo " << usuario << "!" << endl;
-            sleep(2);
-            Consumidor* u1 = new Consumidor(usuario, senha);
-            _usuarios.push_back(u1);
-            logarConsumidor(usuario, senha);
-            opcao = "Voltar";
-          }
-          catch (invalid_argument &e){
-            cout << e.what() << endl;
-            opcao = mostrarOpcoes("\n", {"Tentar Novamente", "Voltar"});
-          }
-        }
-        catch (usuario_ja_existe_e &e){
-          cout << "Usuario ja existe!" << endl;
-          opcao = mostrarOpcoes("\n", {"Tentar Novamente", "Voltar"});
-        }
-      } while(opcao != "Voltar");
+      paginaInicialCadastroConsumidor();
     }
+
     if (opcao == "Fechar Programa"){
       // Chamar uma funcao para carregar todas as informacoes NO banco de dados
       cout << "Programa finalizado com sucesso. Obrigado!" << endl;
@@ -115,63 +29,205 @@ void Sistema::paginaInicial(){
   }
 }
 
-// Criar um ambiente pos login
+void Sistema::paginaInicialLoginConsumidor(){
+  string opcao;
+  do{
+    limparTela();
+    cout << "\tAREA DE LOGIN PARA USUARIOS" << endl;
+    string usuario = preencherString("Usuario");
+    string senha = preencherString("Senha");
+    try{
+      logarConsumidor(usuario, senha);
+      opcao = "Voltar";
+    }
+    catch (invalid_argument &e){
+      cout << e.what() << endl;
+      opcao = mostrarOpcoes("\n", {"Tentar Novamente", "Voltar"}, 0);
+    }
+  } while (opcao != "Voltar");  
+}
+
+void Sistema::paginaInicialLoginAdministrador(){
+  string opcao;
+  do{
+    limparTela();
+    cout << "\tAREA DE LOGIN PARA ADMINISTRADORES" << endl;
+    string usuario = preencherString("Usuario");
+    string senha = preencherString("Senha");
+    try{
+      logarAdminstrador(usuario, senha);
+      opcao = "Voltar";
+    }
+    catch (invalid_argument &e){
+      cout << e.what() << endl;
+      opcao = mostrarOpcoes("\n", {"Tentar Novamente", "Voltar"}, 0);
+    }
+  } while (opcao != "Voltar");  
+}
+
+void Sistema::paginaInicialCadastroConsumidor(){
+  string opcao;
+  do{
+    limparTela();
+    cout << "\tAREA DE CADASTRO PARA USUARIOS" << endl;
+    string usuario = preencherString("Usuario");
+    try{
+      verificarUsuario(usuario);
+      try{
+        string senha = preencherString("Senha");
+        string senha2 = preencherString("Digite a Senha Novamente");
+        verificarSenhaCadastro(senha, senha2);
+        
+        cout << "Cadastro feito com sucesso! Bem vindo " << usuario << "!" << endl;
+        sleep(2);
+        Consumidor* u1 = new Consumidor(usuario, senha);
+        _usuarios.push_back(u1);
+        logarConsumidor(usuario, senha);
+        opcao = "Voltar";
+      }
+      catch (invalid_argument &e){
+        cout << e.what() << endl;
+        opcao = mostrarOpcoes("\n", {"Tentar Novamente", "Voltar"}, 0);
+      }
+    }
+    catch (usuario_ja_existe_e &e){
+      cout << "Usuario ja existe!" << endl;
+      opcao = mostrarOpcoes("\n", {"Tentar Novamente", "Voltar"}, 0);
+    }
+  } while(opcao != "Voltar");
+}
+
 void Sistema::paginaConsumidor(){
   while (true){
     limparTela();
     string opcao = mostrarOpcoes("\tUSUARIO LOGADO: ", {"Procurar Produto", "Listar Categorias", "Ver Carrinho", \
-    "Ver Compras Passadas", "Trocar Senha", "Deslogar"});
+    "Ver Compras Passadas", "Trocar Senha", "Deslogar"}, 1);
+
     if (opcao == "Procurar Produto"){
-      do{
-        limparTela();
-        cout << "PAGINA PARA PROCURA DE PRODUTOS" << endl;
-        string nomeproduto = preencherString("Digite o Nome do Produto que Deseja Procurar");
-        nomeproduto = stringPesquisa(nomeproduto);
-        try{
-          detalhesProduto(nomeproduto);
-          opcao = "Voltar";
-        }
-        catch(invalid_argument &e){
-          cout << e.what() << endl;
-          opcao = mostrarOpcoes("\n", {"Tentar Novamente", "Voltar"});
-        }
-      } while (opcao != "Voltar");
+      paginaConsumidorProcurarProduto();
     }
+
     if (opcao == "Listar Categorias"){
-      do{
-        vector<string> categorias = _mercado.listarCategorias();
-        categorias.push_back("Voltar");
-        limparTela();
-        opcao = mostrarOpcoes("ESCOLHA A CAREGORIA DESEJADA", categorias);
-        if (opcao != "Voltar"){
-          paginaProdutos(opcao);
-        }
-      } while (opcao != "Voltar");
+      paginaConsumidorListarCategorias();
     }
+
     if (opcao == "Ver Carrinho"){
-      do{
-        limparTela();
-        try {
-          _consumidor_logado->exibirCarrinho();
-        }
-        catch (invalid_argument &e){
-          cout << e.what() << endl;
-        }
-        cout << "----------------------------" << endl;
-        opcao = mostrarOpcoes("\n", {"Finalizar Compra", "Remover Produto", "Voltar"});
-        if (opcao == "Finalizar Compra"){
-          paginaCheckout();
-        }
-        if (opcao == "Remover Produto"){
-          // Opcao de remover um produto do carrinho
-        }
-      }while (opcao != "Voltar");
+      paginaConsumidorVerCarrinho();
     }
+
+    if (opcao == "Ver Compras Passadas"){
+      paginaConsumidorVerComprasPassadas();
+    }
+
+    if (opcao == "Trocar Senha"){
+      paginaConsumidorTrocarSenha();
+    }
+
     if (opcao == "Deslogar"){
       _consumidor_logado = nullptr;
       break;
     }
   }
+}
+
+void Sistema::paginaConsumidorProcurarProduto(){
+  string opcao;
+  do{
+    limparTela();
+    cout << "PAGINA PARA PROCURA DE PRODUTOS" << endl;
+    string nomeproduto = preencherString("Digite o Nome do Produto que Deseja Procurar");
+    nomeproduto = stringPesquisa(nomeproduto);
+    try{
+      detalhesProduto(nomeproduto);
+      opcao = "Voltar";
+    }
+    catch(invalid_argument &e){
+      cout << e.what() << endl;
+      opcao = mostrarOpcoes("\n", {"Tentar Novamente", "Voltar"}, 0);
+    }
+  } while (opcao != "Voltar");
+}
+
+void Sistema::paginaConsumidorListarCategorias(){
+  string opcao;
+  do{
+    vector<string> categorias = _mercado.listarCategorias();
+    categorias.push_back("Voltar");
+    limparTela();
+    opcao = mostrarOpcoes("ESCOLHA A CAREGORIA DESEJADA", categorias, 1);
+    if (opcao != "Voltar"){
+      paginaProdutos(opcao);
+    }
+  } while (opcao != "Voltar");
+}
+
+void Sistema::paginaConsumidorVerCarrinho(){
+  string opcao;
+  do{
+    limparTela();
+    try {
+      cout << "PRODUTOS NO CARRINHO" << endl;
+      cout << "----------------------------" << endl;
+      _consumidor_logado->exibirCarrinho();
+    }
+    catch (invalid_argument &e){
+      cout << e.what() << endl;
+      cout << "----------------------------" << endl;
+      opcao = mostrarOpcoes("\n", {"Voltar"}, 0);
+    }
+    if (opcao != "Voltar"){
+      cout << "----------------------------" << endl;
+      opcao = mostrarOpcoes("\n", {"Finalizar Compra", "Remover Produto", "Voltar"}, 0);
+      if (opcao == "Finalizar Compra"){
+        paginaCheckout();
+      }
+      if (opcao == "Remover Produto"){
+        paginaRemoverProduto();
+      }
+    }
+  } while (opcao != "Voltar");
+}
+
+void Sistema::paginaConsumidorVerComprasPassadas(){
+  string opcao;
+  limparTela();
+  cout << "COMPRAS PASSADAS" << endl;
+  cout << "----------------------------" << endl;
+  try{
+    _consumidor_logado->exibirProdutosComprados();
+  }
+  catch (invalid_argument &e){
+    cout << e.what() << endl;
+  }
+  cout << "----------------------------" << endl;
+  opcao = mostrarOpcoes("\n", {"Voltar"}, 0);
+}
+
+void Sistema::paginaConsumidorTrocarSenha(){
+  string opcao;
+  do{
+    limparTela();
+    string senhaAtual = preencherString("Digite Sua Senha Atual");
+    if (_consumidor_logado->verificarSenha(senhaAtual)){
+      try{
+        string novaSenha1 = preencherString("Nova Senha");
+        string novaSenha2 = preencherString("Digite a Senha Novamente");
+        verificarSenhaCadastro(novaSenha1, novaSenha2);
+        _consumidor_logado->trocarSenha(novaSenha1);
+        cout << "Senha Alterada Com Sucesso!" << endl;
+        sleep (2);
+        opcao = "Voltar";
+      }
+      catch(invalid_argument &e){
+        cout << e.what() << endl;
+        opcao = mostrarOpcoes("\n", {"Tentar Novamente", "Voltar"},0);
+      }
+    }
+    else{
+      cout << "Senha Invalida!" << endl;
+      opcao = mostrarOpcoes("\n", {"Tentar Novamente", "Voltar"}, 0);
+    }
+  } while (opcao != "Voltar");
 }
 
 void Sistema::paginaProdutos(string categoria){
@@ -181,7 +237,7 @@ void Sistema::paginaProdutos(string categoria){
   string opcao;
   do{
     limparTela();
-    opcao = mostrarOpcoes("ESCOLHA O PRODUTO DESEJADO", produtos);
+    opcao = mostrarOpcoes("ESCOLHA O PRODUTO DESEJADO", produtos, 1);
     if (opcao != "Voltar"){
       detalhesProduto(opcao);
     }
@@ -192,7 +248,7 @@ void Sistema::detalhesProduto(string nome){
   Produto* escolha = _mercado.getProduto(nome);
   limparTela();
   escolha->imprimir_informacoes();
-  string opcao = mostrarOpcoes("\n", {"Adicionar ao Carrinho", "Voltar"});
+  string opcao = mostrarOpcoes("\n", {"Adicionar ao Carrinho", "Voltar"}, 0);
   while (opcao != "Voltar"){
     cout << "Digite a Quantidade que Deseja Comprar: ";
     unsigned int quantidade;
@@ -203,7 +259,7 @@ void Sistema::detalhesProduto(string nome){
     }
     if (quantidade > escolha->get_quantidade()){
       cout << "Nao ha Estoque Suficiente!" << endl;
-      opcao = mostrarOpcoes("\n", {"Tentar Novamente", "Voltar"});
+      opcao = mostrarOpcoes("\n", {"Tentar Novamente", "Voltar"}, 0);
     }
     else {
       _consumidor_logado->adicionaProdutoCarrinho(escolha, quantidade);
@@ -214,14 +270,69 @@ void Sistema::detalhesProduto(string nome){
   }
 }
 
+// Criar uma pagina para o checkout
 void Sistema::paginaCheckout(){
+  while(true){
+    cout << "Tem Certeza que Deseja Finalizar a Compra (Sim/Nao): ";
+    string confirmacao;
+    cin >> confirmacao;
+    for (auto &letra : confirmacao) letra = toupper(letra);
+    if (confirmacao == "SIM"){
+      if (_consumidor_logado->getSaldo() < _consumidor_logado->getPrecoTotalCarrinho()){
+        cout << "Saldo Insuficiente!" << endl;
+        sleep(2);
+        break;
+      }
+      else {
+        cout << "Compra Finalizada Com Sucesso! Obrigado." << endl;
+        sleep(2);
+        _consumidor_logado->removerSaldo(_consumidor_logado->getPrecoTotalCarrinho());
+        _consumidor_logado->limparCarrinho();
+        break;
+      }
+    }
+    if (confirmacao == "NAO"){
+      sleep(1);
+      break;
+    }
+    cout << "Escolha Invalida!" << endl;
+    sleep(1);
+  }
+}
 
+void Sistema::paginaRemoverProduto(){
+  string opcao;
+  do{
+    string produtoRemovido = preencherString("Digite Qual Produto Deseja Remover");
+    produtoRemovido = stringPesquisa(produtoRemovido);
+    unsigned int quantidade;
+    cout << "Quantos Voce Deseja Remover: ";
+    try{
+      if(!(cin >> quantidade)) throw (quantidade_invalida_e());
+      _consumidor_logado->removerProdutoCarrinho(_mercado.getProduto(produtoRemovido), quantidade);
+      cout << "Produto Removido Com Sucesso!" << endl;
+      sleep(2);
+      break;
+    }
+    catch (invalid_argument &e){
+      cout << e.what() << endl;
+      opcao = mostrarOpcoes("\n", {"Tentar Novamente", "Voltar"}, 0);
+      if (opcao == "Voltar") break;
+    }
+    catch (quantidade_invalida_e &e){
+      cout << "Quantidade Invalida! Por Favor Tente Novamente!" << endl;
+      cin.clear();
+      cin.ignore(numeric_limits<streamsize>::max(), '\n');
+      opcao = mostrarOpcoes("\n", {"Tentar Novamente", "Voltar"}, 0);
+      if (opcao == "Voltar") break;
+    }
+  }while (opcao != "Voltar");
 }
 
 // Cirar um ambiente para administradores
 void Sistema::paginaAdmin(){
   limparTela();
-  string opcao = mostrarOpcoes("\tADMINISTRADOR LOGADO: ", {"Editar Produtos", "Edtiar Corredores", "Editar Usuarios", "Criar Conta Admin", "Deslogar"});
+  string opcao = mostrarOpcoes("\tADMINISTRADOR LOGADO: ", {"Editar Produtos", "Edtiar Corredores", "Editar Usuarios", "Criar Conta Admin", "Deslogar"}, 1);
   while (opcao != "Deslogar"){
 
   }
@@ -321,4 +432,49 @@ void Sistema::limparTela(){
   #else
     system("clear");
   #endif
+}
+
+void Sistema::adicionarMercado(Mercado m){
+  _mercado = m;
+}
+
+string Sistema::mostrarOpcoes(string titulo, vector<string> opcoes, bool limpar){
+  unsigned int escolha;
+  bool flag = true;
+
+  while (flag){
+    if (titulo == "\tUSUARIO LOGADO: ") {
+      cout << titulo << _consumidor_logado->getUsuario();
+      cout << "\t\tSaldo: R$" << _consumidor_logado->getSaldo() << endl;
+    }
+    else if (titulo == "\tADMINISTRADOR LOGADO: ") cout << titulo << _admin_logado->getUsuario() << endl; 
+    else if (titulo != "\n") cout << titulo << endl;
+
+    for (unsigned int i = 0; i < opcoes.size(); i++){
+    cout << i+1 << ". " << opcoes[i] << endl;
+    }
+
+    cin >> escolha;
+    try{
+      if (escolha > opcoes.size() || escolha == 0){
+        cin.clear();
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');        
+        throw invalid_argument("Escolha invalida!");
+      }
+      flag = false;
+    }
+    catch (invalid_argument &e){
+      cout << e.what() << endl;
+      sleep(1);
+      if (limpar){
+        limparTela();
+      }
+    }
+  }
+  cin.ignore(1000, '\n');
+  return opcoes[escolha-1];
+}
+
+void Sistema::adicionarConsumidor(Consumidor* c){
+  _usuarios.push_back(c);
 }
