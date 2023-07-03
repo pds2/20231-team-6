@@ -490,44 +490,40 @@ void Sistema::adicionarProduto(){
     std::vector<std::string> todasCategorias = _mercado.getTodasCategorias();
     todasCategorias.push_back("Voltar");
     categoria = mostrarOpcoes("\tESCOLHA A CATEGORIA DO PRODUTO", todasCategorias, 1);
-    limparTela();
     if(categoria == "Voltar") break;
-    std::cout << std::endl;
-    std::cout << "Os produtos em estoque da categoria" << categoria << " são: " << std::endl;
+    std::cout << "Os produtos em estoque da categoria" << categoria << "são:" << std::endl;
     Corredor* corredorEscolhido = _mercado.getCorredor(categoria);
     std::vector<std::string> produtos = corredorEscolhido->getNomeProdutos();
     for(auto produto : produtos){
       cout << produto << "." << std::endl;
     }
+    delete corredorEscolhido;
     std::cout << std::endl;
-    std::string opcao = mostrarOpcoes("\tDESEJA ADICIONAR UM NOVO PRODUTO AO ESTOQUE OU ADICIONAR À UM JA EXISTENTE?", {"Novo", "Ja Existente", "Voltar"}, 1);
+    string opcao = mostrarOpcoes("\tDESEJA ADICIONAR UM NOVO PRODUTO AO ESTOQUE OU ADICIONAR À UM JA EXISTENTE?", {"Novo", "Ja Existente", "Voltar"}, 1);
     if(opcao == "Novo"){
       limparTela();
-      try{
       Produto* produtoNovo = criarProduto();
+      if(produtoNovo != nullptr){
       _mercado.adicionarNovoProduto(categoria, produtoNovo);
       std::cout << "O produto foi adicionado com Sucesso!" << std::endl;
-      sleep(1);
-      } catch(voltar_e &e){
-        std::cout << "Procedimento Cancelado." << std::endl;
-        sleep(1);
-      }
-    } 
-
+      } else std::cout << "Procedimento Cancelado." << std::endl;
+    }
     else if(opcao == "Ja Existente"){
       unsigned int quantidade;
       std::string confirmacao;
-      limparTela();
-      std::string produtoNovo = paginaProdutosAdmin(categoria);
-      if(produtoNovo == "Voltar") break;
-      quantidade = preencherInt("Qual a quantidade a ser adicionada");
-      std::cout << std::endl;
-      std::cout << "Você está adicionando " << quantidade << " unidades ao produto " << produtoNovo << "." << std::endl;
-      confirmacao = mostrarOpcoesA("Deseja Confirmar A Adição?", {"Sim", "Cancelar"}, 0);
-      if(confirmacao == "Sim"){
+      do{
+        limparTela();
+        std::string produtoNovo = paginaProdutosAdmin(categoria);
+        do{
+          quantidade = preencherInt("Qual a quantidade a ser adicionada");
+          std::cout << "Você está adicionando" << quantidade << "unidades ao produto" << produtoNovo << "." << std::endl;
+        confirmacao = mostrarOpcoesA("Deseja Confirmar A Adição?", {"Sim", "Mudar Quantidade", "Escolher Outro Poduto", "Voltar"}, 0);
+        if(confirmacao == "Sim"){
         _mercado.adicionarProdutoJaExistente(categoria, produtoNovo, quantidade);
         std::cout << "O produto foi adicionado com Sucesso!" << std::endl;
-      } 
+        } 
+        }while(confirmacao == "Mudar Quantidade.");
+      }while(confirmacao == "Escolher Outro Produto.");
     }
   }while(categoria != "Voltar");
 }
@@ -535,47 +531,44 @@ void Sistema::adicionarProduto(){
 Produto* Sistema::criarProduto(){
   Produto* novoProduto;
   std::string confirmacao;
-  do{
-    std::string tipo = escolherTipo();
-    if(tipo != "Voltar"){
-      do{
-        if(confirmacao == "Refazer"){
-          delete novoProduto;
-          limparTela();
-        } 
-        if(tipo == "Produto Genérico"){
-          novoProduto = Produto::criarProdutoGenerico();
-          confirmacao = novoProduto->confirmarComposicao();
-        }
-        else if(tipo == "Produto Alimentício"){
-          novoProduto = ProdutoAlimenticio::criarProdutoAlimenticio();
-          confirmacao = novoProduto->confirmarComposicao();
-        }
-        else if(tipo == "Produto de Limpeza"){
-          novoProduto = ProdutoLimpeza::criarProdutoLimpeza();
-          confirmacao = novoProduto->confirmarComposicao();
-        }
-        else if(tipo == "Produto Infantil"){
-          novoProduto = ProdutoInfantil::criarProdutoInfantil();
-          confirmacao = novoProduto->confirmarComposicao();
-        }
-      } while(confirmacao == "Refazer");
-      
-      if(confirmacao == "Sim"){
-        return novoProduto;
-      } else if(confirmacao == "Cancelar"){
-        delete novoProduto;
+  std::string tipo = escolherTipo();
+  if(tipo != "Voltar"){
+    do{
+      if(confirmacao == "Refazer") delete novoProduto;
+      if(tipo == "Produto Genérico"){
+        novoProduto = Produto::criarProdutoGenerico();
+        novoProduto->confirmarComposicao();
       }
+      else if(tipo == "Produto Alimentício"){
+        novoProduto = ProdutoAlimenticio::criarProdutoAlimenticio();
+        novoProduto->confirmarComposicao();
+      }
+      else if(tipo == "Produto de Limpeza"){
+        novoProduto = ProdutoLimpeza::criarProdutoLimpeza();
+        novoProduto->confirmarComposicao();
+      }
+      else if(tipo == "Produto Infantil"){
+        novoProduto = ProdutoInfantil::criarProdutoInfantil();
+        novoProduto->confirmarComposicao();
+      }
+    } while(confirmacao == "Refazer");
+    
+    if(confirmacao == "Sim"){
+      return novoProduto;
+    } else if(confirmacao == "Cancelar"){
+      delete novoProduto;
     }
-  }while(confirmacao == "Refazer");
-  throw(voltar_e());
+  }
 }
 
 std::string Sistema::paginaProdutosAdmin(string categoria){
   Corredor* c = _mercado.getCorredor(categoria);
   vector<string> produtos = c->getNomeProdutos();
   produtos.push_back("Voltar");
+  string opcao;
   limparTela();
-  std::string opcao = mostrarOpcoes("ESCOLHA O PRODUTO DESEJADO", produtos, 1);
-  return opcao;
+  opcao = mostrarOpcoes("ESCOLHA O PRODUTO DESEJADO", produtos, 1);
+  if (opcao != "Voltar"){
+    return opcao;
+  }
 }
