@@ -18,6 +18,7 @@
 class usuario_invalido_e{};
 class usuario_ja_existe_e{};
 class senha_incorreta_e{};
+class voltar_e{};
 
 class Sistema{
 private:
