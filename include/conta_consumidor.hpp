@@ -11,8 +11,6 @@
 
 using namespace std;
 
-class quantidade_invalida_e{};
-
 /*
     @brief Definição da classe consumidor (derivada de Conta) e seus métodos.
  */
