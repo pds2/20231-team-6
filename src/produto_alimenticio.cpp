@@ -3,7 +3,7 @@
 #include <iostream>
 
 ProdutoAlimenticio::ProdutoAlimenticio(const std::string &nome, double preco, int quantidade,
-                                       bool vegano, double peso, const std::string &dataDeValidade)
+                                       bool vegano, int peso, const std::string &dataDeValidade)
     : Produto(nome, preco, quantidade), _vegano(vegano), _peso(peso), _dataDeValidade(dataDeValidade) {
     if (peso <= 0) {
         throw peso_invalido_e();
