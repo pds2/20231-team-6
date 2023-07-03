@@ -1,7 +1,7 @@
 #include "../include/mercado.hpp"
 #include <stdexcept>
 
-std::vector<std::string> Mercado::listarCategorias(){
+std::vector<std::string> Mercado::getTodasCategorias(){
   std::vector<std::string> categorias;
   for (Corredor* c : _corredores){
     categorias.push_back(c->getCategoria());
