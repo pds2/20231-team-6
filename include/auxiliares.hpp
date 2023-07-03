@@ -13,7 +13,7 @@
 /*
 * @brief Limpa a tela do console.
 */
-void limparTelaA();
+void limparTela();
 
 /*
 * @brief Printa na tela todas as opções disponíveis para escolha do usuário,
@@ -25,23 +25,23 @@ std::string mostrarOpcoesA(std::string titulo, std::vector<std::string> opcoes, 
 /*
 * @brief Printa na tela o que o usuário deve preencher e retorna a informação preenchida.
 */
-std::string preencherStringA(std::string campo);
+std::string preencherString(std::string campo);
 
 /*
 * @brief Printa na tela o que o usuário deve preencher e retorna a informação preenchida.
 */
-int preencherIntA(std::string campo);
+int preencherInt(std::string campo);
 
 /*
 * @brief Printa na tela o que o usuário deve preencher e retorna a informação preenchida.
 */
-double preencherDoubleA(std::string campo);
+double preencherDouble(std::string campo);
 
 /*
 * @brief Recebe uma string, que deve ser formatada de acordo com o padrão de pesquisa:
 * todas as palavras sempre começam com letra maiúscula.
 */
-std::string stringPesquisaA(std::string entrada);
+std::string stringPesquisa(std::string entrada);
 
 //Vetor auxiliar com strings com o nome das subclasses.
 std::vector <std::string> _tipos_de_produtoA = {"Produto Genérico", "Produto Alimentício", "Produto de Limpeza", \

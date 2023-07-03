@@ -1,6 +1,6 @@
 #include "auxiliares.hpp"
 
-void limparTelaA(){
+void limparTela(){
   #ifdef _WIN32
     system("cls");
   #else
@@ -30,7 +30,7 @@ std::string mostrarOpcoesA(std::string titulo, std::vector<std::string> opcoes, 
       std::cout << e.what() << std::endl;
       sleep(1);
       if (limpar){
-        limparTelaA();
+        limparTela();
       }
     }
   }
@@ -38,14 +38,14 @@ std::string mostrarOpcoesA(std::string titulo, std::vector<std::string> opcoes, 
   return opcoes[escolha-1];
 }
 
-std::string preencherStringA(std::string campo){
+std::string preencherString(std::string campo){
   std::cout << campo << ": ";
   std::string entrada;
   getline(std::cin, entrada);
   return entrada;
 }
 
-int preencherIntA(std::string campo){
+int preencherInt(std::string campo){
   int entrada = -1;
   while (true) {
     std::cout << campo << ": ";
@@ -66,7 +66,7 @@ int preencherIntA(std::string campo){
   return entrada;
 }
 
-double preencherDoubleA(std::string campo) {
+double preencherDouble(std::string campo) {
     double entrada = -1.0;
     while (true) {
         std::cout << campo << ": ";
@@ -87,7 +87,7 @@ double preencherDoubleA(std::string campo) {
     return entrada;
 }
 
-std::string stringPesquisaA(std::string entrada){
+std::string stringPesquisa(std::string entrada){
   entrada[0] = toupper(entrada[0]);
   for (unsigned int i = 1 ; i < entrada.size(); i++){
     entrada[i] = tolower(entrada[i]);
