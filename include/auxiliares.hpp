@@ -43,8 +43,5 @@ double preencherDouble(std::string campo);
 */
 std::string stringPesquisa(std::string entrada);
 
-//Vetor auxiliar com strings com o nome das subclasses.
-std::vector <std::string> _tipos_de_produtoA = {"Produto Genérico", "Produto Alimentício", "Produto de Limpeza", \
-"Produto Infantil", "Voltar"};
 
 #endif
