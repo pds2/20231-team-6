@@ -87,7 +87,7 @@ Produto* Produto::criarProdutoGenerico(){
     return novoProduto;
 }
 
-std::vector <std::string> const _tipos_de_produto = {"Produto Genérico", "Produto Alimentício", "Produto de Limpeza", \
+std::vector <std::string> const Produto::_tipos_de_produto = {"Produto Genérico", "Produto Alimentício", "Produto de Limpeza", \
 "Produto Infantil", "Voltar"};
 
 std::string Produto::confirmarComposicao(){
