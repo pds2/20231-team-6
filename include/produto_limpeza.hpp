@@ -4,6 +4,8 @@
 #include "produto.hpp"
 #include <string>
 
+struct volume_invalido_e {};
+
 class ProdutoLimpeza : public Produto {
   private:
     std::string _aroma;
@@ -19,10 +21,8 @@ class ProdutoLimpeza : public Produto {
      * Além disso, imprime o aroma do produto e o volume.
      */
     void imprimir_informacoes() override;
-
-    std::string getAroma() const;
-
-    unsigned int getVolume() const;
+    std::string get_aroma() const;
+    unsigned int get_volume() const;
 };
 
 #endif // PRODUTO_LIMPEZA_HPP

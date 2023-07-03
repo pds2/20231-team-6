@@ -1,8 +1,7 @@
 #ifndef CONTA_HPP
 #define CONTA_HPP
 
-#include "produto.hpp"
-#include "sistema.hpp"
+//#include "produto.hpp"
 
 #include <string>
 #include <vector>
@@ -19,11 +18,11 @@ class Conta {
 
     private:
         
-        std::string usuario;
-        std::string senha;
+        std::string _usuario;
+        std::string _senha;
 
     public:
-
+        virtual ~Conta();
         //Retorna o usuário
         std::string getUsuario() const;
 
@@ -32,6 +31,8 @@ class Conta {
         
         //Registra uma nova conta.
         void registrar(std::string usuario, std::string senha);
+
+        void trocarSenha(string const &senha);
 };
 
 #endif

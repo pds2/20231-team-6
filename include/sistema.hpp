@@ -21,7 +21,7 @@ class senha_incorreta_e{};
 class Sistema{
 private:
   Mercado _mercado;
-  vector<Conta*> _usuarios;
+  vector <Conta*> _usuarios;
   Consumidor* _consumidor_logado = nullptr;
   Admin* _admin_logado = nullptr;
 
@@ -44,12 +44,18 @@ public:
   * bem como um título para a página (opcional). Retorna a opção escolhida.
   * @throws Lança uma exceção caso o usuário escolha uma opção inválida.
   */
-  string mostrarOpcoes(string titulo, vector<string> opcoes);
+  string mostrarOpcoes(string titulo, vector<string> opcoes, bool limpar);
 
-  /*
+ /*
   * @brief Printa na tela o que o usuário deve preencher e retorna a informação preenchida.
   */
   string preencherString(string campo);
+
+ /*
+  * @brief Recebe uma string, que deve ser formatada de acordo com o padrão de pesquisa:
+  * todas as palavras sempre começam com letra maiúscula.
+  */
+  string stringPesquisa(string entrada);
 
 
   // CONSUMIDOR
@@ -98,10 +104,53 @@ public:
   * ou fechar o programa.
   */
   void paginaInicial();
+  void paginaInicialLoginConsumidor();
+  void paginaInicialLoginAdministrador();
+  void paginaInicialCadastroConsumidor();
 
-  // Documentar após implementação
-  void paginaAdmin();
+ /* @brief Corresponde ao ambiente da página do consumidor: permite ele a escolher entre
+  * procurar um produto por nome, ver uma lista de todas as categorias de produtos, bem como
+  * os produtos dentro de cada categoria. Além disso, pode ver seu carrinho (onde poderá finalizar
+  * a compra ou editá-lo) ou ver suas compras passadas. Por fim, também há a opção de trocar a senha
+  * da conta ou deslogar do sistema.
+  */
   void paginaConsumidor();
+  void paginaConsumidorProcurarProduto();
+  void paginaConsumidorListarCategorias();
+  void paginaConsumidorVerCarrinho();
+  void paginaConsumidorVerComprasPassadas();
+  void paginaConsumidorTrocarSenha();
+
+ /*
+  * @brief São subpáginas da área verCarrinho: a primeira corresponde a um ambiente para o usuário
+  * finalizar a compra. A segunda é a área onde o usuário pode remover produtos que não deseja mais
+  * de seu carrinho.
+  * @throws Lança uma excessão caso o produto que o usuário deseja remover não esteja em seu carrinho
+  * ou caso ele tente remover uma quantidade inválida.
+  */
+  void paginaCheckout();  
+  void paginaRemoverProduto();
+
+
+  void paginaAdmin();
+
+  // OUTROS
+
+ /*
+  * @brief Lista todos os produtos de uma determinada categoria. O usuário pode escolher
+  * o produto que quiser e entrar na página detalhada dele.
+  */
+  void paginaProdutos(string opcao);
+
+ /*
+  * @brief É a página de um determinado produto, onde é listado seu nome, preço, desconto atual,
+  * quantidade em estoque, entre outros.
+  */
+  void detalhesProduto(string nome);
+
+  // Coloquei pra testar o main
+  void adicionarConsumidor(Consumidor* c);
+  void adicionarMercado(Mercado m);
 
 };
 

@@ -16,6 +16,8 @@ public:
     //Construtor de uma conta específica para um admin.
     Admin(const std::string& usuario, const std::string& senha);
 
+    //~Admin() override;
+
     //Adiciona um ou mais produto(s) ao sistema.
     void adicionarProdutos();
 
@@ -28,6 +30,6 @@ public:
     //Cria novo desconto em uma categoria/corredor de produtos.
     void addDescontoCategoria();
 
-}
+};
 
 #endif

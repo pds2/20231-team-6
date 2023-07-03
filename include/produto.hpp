@@ -3,6 +3,10 @@
 
 #include <string>
 
+struct quantidade_invalida_e {};
+struct preco_invalido_e {};
+struct desconto_invalido_e {};
+
 class Produto {
   private:
     static unsigned int _proximoId;
@@ -32,10 +36,10 @@ class Produto {
 
     // Seta _desconto para 0 e _precoComDesconto para _precoBase.
     void remover_desconto();
-
+    void remover_estoque(unsigned int valor);
     int get_id() const;
     std::string get_nome() const;
-    int get_quantidade() const;
+    unsigned int get_quantidade() const;
     double get_preco() const;
     double get_preco_com_desconto() const;
     double get_desconto() const;
