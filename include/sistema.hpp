@@ -26,7 +26,7 @@ private:
   Admin* _admin_logado = nullptr;
 
   //Vetor auxiliar com strings com o nome das subclasses.
-  std::vector <std::string> _tipos_de_produto = {"Produto Genérico, Produto Alimentício, Produto de Limpeza",
+  std::vector <std::string> _tipos_de_produto = {"Produto Genérico", "Produto Alimentício", "Produto de Limpeza", \
   "Produto Infantil", "Voltar"};
 
 public:
@@ -153,7 +153,7 @@ public:
   void detalhesProduto(string nome);
 
   // Coloquei pra testar o main
-  void adicionarConsumidor(Consumidor* c);
+  void adicionarConta(Conta* c);
   void adicionarMercado(Mercado m);
 
  /*
