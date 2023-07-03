@@ -14,6 +14,7 @@ void ProdutoAlimenticio::imprimir_informacoes() {
     }
     std::cout << "Peso: " << _peso << "g" << std::endl;
     std::cout << "Data de validade: " << _dataDeValidade << std::endl;
+    std::cout << "----------------------------" << std::endl;
 }
 
 bool ProdutoAlimenticio::getVegano() const {

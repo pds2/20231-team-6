@@ -11,6 +11,7 @@ void ProdutoInfantil::imprimir_informacoes() {
     Produto::imprimir_informacoes();
     std::cout << "Genero: " << _genero << std::endl;
     std::cout << "Idade recomendada: " << _idadeRecomendada << std::endl;
+    std::cout << "----------------------------" << std::endl;
 }
 
 std::string ProdutoInfantil::getGenero() const {

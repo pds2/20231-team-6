@@ -7,7 +7,7 @@
 class ProdutoAlimenticio : public Produto {
   private:
     bool _vegano;
-    double _peso; // em gramas
+    int _peso; // em gramas
     std::string _dataDeValidade;
 
   public:
@@ -21,11 +21,8 @@ class ProdutoAlimenticio : public Produto {
      * Além disso, imprime se o produto é vegano, o peso e a data de validade.
      */
     void imprimir_informacoes() override;
-
     bool getVegano() const;
-    
     double getPeso() const;
-    
     std::string getDataValidade() const;
 };
 

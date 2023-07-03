@@ -11,6 +11,7 @@ void ProdutoLimpeza::imprimir_informacoes() {
     Produto::imprimir_informacoes();
     std::cout << "Aroma: " << _aroma << std::endl;
     std::cout << "Volume: " << _volume << " ml" << std::endl;
+    std::cout << "----------------------------" << std::endl;
 }
 
 std::string ProdutoLimpeza::getAroma() const {

@@ -1,6 +1,7 @@
-#include "../include/produto.hpp"
-
+#include <iomanip>
 #include <iostream>
+
+#include "../include/produto.hpp"
 
 unsigned int Produto::_proximoId = 0;
 
@@ -18,13 +19,12 @@ void Produto::imprimir_informacoes() {
         std::cout << "----------------------------" << std::endl;
         std::cout << "Produto com desconto de: " << _desconto << "%" << std::endl;
         std::cout << "----------------------------" << std::endl;
-        std::cout << "Preço anterior: R$" << _precoBase << std::endl;
-        std::cout << "Preço com desconto: R$" << _precoComDesconto << std::endl;
+        std::cout << "Preço anterior: R$" << std::fixed << std::setprecision(2) <<_precoBase << std::endl;
+        std::cout << "Preço com desconto: R$" << std::fixed << std::setprecision(2) << _precoComDesconto << std::endl;
     } else {
-        std::cout << "Preço: R$" << _precoBase << std::endl;
+        std::cout << "Preço: R$" << std::fixed << std::setprecision(2) << _precoBase << std::endl;
     }
     std::cout << "Quantidade em estoque: " << _quantidade << std::endl;
-    std::cout << "----------------------------" << std::endl;
 }
 
 void Produto::aplicar_desconto(double desconto) {
