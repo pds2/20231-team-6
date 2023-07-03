@@ -48,18 +48,18 @@ public:
   * bem como um título para a página (opcional). Retorna a opção escolhida.
   * @throws Lança uma exceção caso o usuário escolha uma opção inválida.
   */
-  string mostrarOpcoes(string titulo, vector<string> opcoes, bool limpar);
+  std::string mostrarOpcoes(std::string titulo, std::vector<string> opcoes, bool limpar);
 
  /*
   * @brief Printa na tela o que o usuário deve preencher e retorna a informação preenchida.
   */
-  string preencherString(string campo);
+  std::string preencherString(std::string campo);
 
  /*
   * @brief Recebe uma string, que deve ser formatada de acordo com o padrão de pesquisa:
   * todas as palavras sempre começam com letra maiúscula.
   */
-  string stringPesquisa(string entrada);
+  std::string stringPesquisa(std::string entrada);
 
 
   // CONSUMIDOR
@@ -69,20 +69,20 @@ public:
   * conta é um consumidor ou um administrador.
   * @throws Lança uma exceção caso o usuário não exista ou caso a senha esteja incorreta.
   */
-  pair<Conta*, bool> encontrarUsuario(const string& usuario, const string& senha);
+  pair<Conta*, bool> encontrarUsuario(const std::string& usuario, const std::string& senha);
 
  /*
   * @brief Recebe um usuário e uma senha e loga o consumidor no sistema.
   * @throws Lança uma exceção caso haja algum erro no login.
   */
-  void logarConsumidor(const string& usuario, const string& senha);
+  void logarConsumidor(const std::string& usuario, const std::string& senha);
 
  /*
   * @brief Verifica se um nome de usuário é valido.
   * @throws Lança uma exceção caso o nome de usuário já esteja sendo utilizado
   * ou caso o nome seja "admin".
   */
-  void verificarUsuario(const string& senha);
+  void verificarUsuario(const std::string& senha);
 
  /*
   * @brief Verifica se uma senha é valida na hora do cadastro.
@@ -90,7 +90,7 @@ public:
   * "12345" em qualquer parte, menos de 5 caracteres ou mais de 50.
   * @throws Lança uma exceção caso a primeira senha digitada seja diferente da segunda.
   */
-  void verificarSenhaCadastro(const string& senha, const string& senha_novamente);
+  void verificarSenhaCadastro(const std::string& senha, const std::string& senha_novamente);
 
   // ADMINISTRADOR
 
@@ -98,7 +98,7 @@ public:
   * @brief Recebe um usuário e uma senha e loga o administrador no sistema.
   * @throws Lança uma exceção caso haja algum erro no login.
   */
-  void logarAdminstrador(const string& usuario, const string& senha);
+  void logarAdminstrador(const std::string& usuario, const std::string& senha);
 
   // PAGINAS
 
@@ -144,13 +144,13 @@ public:
   * @brief Lista todos os produtos de uma determinada categoria. O usuário pode escolher
   * o produto que quiser e entrar na página detalhada dele.
   */
-  void paginaProdutosConsumidor(string categoria);
+  void paginaProdutosConsumidor(std::string categoria);
 
  /*
   * @brief É a página de um determinado produto, onde é listado seu nome, preço, desconto atual,
   * quantidade em estoque, entre outros.
   */
-  void detalhesProduto(string nome);
+  void detalhesProduto(std::string nome);
 
   // Coloquei pra testar o main
   void adicionarConta(Conta* c);
@@ -175,7 +175,7 @@ public:
 
   Produto* criarProduto();
 
-  std::string paginaProdutosAdmin(string opcao);
+  std::string paginaProdutosAdmin(std::string opcao);
 };
 
 #endif // SISTEMA_HPP
