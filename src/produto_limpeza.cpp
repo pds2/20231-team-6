@@ -5,6 +5,9 @@
 ProdutoLimpeza::ProdutoLimpeza(const std::string &nome, double preco, int quantidade,
                                const std::string &aroma, unsigned int volume)
     : Produto(nome, preco, quantidade), _aroma(aroma), _volume(volume) {
+    if (volume <= 0){
+        throw volume_invalido_e();
+    }
 }
 
 void ProdutoLimpeza::imprimir_informacoes() {
@@ -14,10 +17,10 @@ void ProdutoLimpeza::imprimir_informacoes() {
     std::cout << "----------------------------" << std::endl;
 }
 
-std::string ProdutoLimpeza::getAroma() const {
+std::string ProdutoLimpeza::get_aroma() const {
     return _aroma;
 }
 
-unsigned int ProdutoLimpeza::getVolume() const {
+unsigned int ProdutoLimpeza::get_volume() const {
     return _volume;
 }

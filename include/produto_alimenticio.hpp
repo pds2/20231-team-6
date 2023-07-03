@@ -4,6 +4,8 @@
 #include "produto.hpp"
 #include <string>
 
+struct peso_invalido_e {};
+
 class ProdutoAlimenticio : public Produto {
   private:
     bool _vegano;
@@ -21,9 +23,9 @@ class ProdutoAlimenticio : public Produto {
      * Além disso, imprime se o produto é vegano, o peso e a data de validade.
      */
     void imprimir_informacoes() override;
-    bool getVegano() const;
-    double getPeso() const;
-    std::string getDataValidade() const;
+    bool get_vegano() const;
+    double get_peso() const;
+    std::string get_data_validade() const;
 };
 
 #endif // PRODUTO_ALIMENTICIO_HPP

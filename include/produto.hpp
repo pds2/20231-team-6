@@ -3,7 +3,9 @@
 
 #include <string>
 
-using namespace std;
+struct quantidade_invalida_e {};
+struct preco_invalido_e {};
+struct desconto_invalido_e {};
 
 class Produto {
   private:
@@ -34,9 +36,7 @@ class Produto {
 
     // Seta _desconto para 0 e _precoComDesconto para _precoBase.
     void remover_desconto();
-
-    void removerEstoque(unsigned int valor);
-
+    void remover_estoque(unsigned int valor);
     int get_id() const;
     std::string get_nome() const;
     unsigned int get_quantidade() const;

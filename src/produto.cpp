@@ -8,6 +8,13 @@ unsigned int Produto::_proximoId = 0;
 Produto::Produto(const std::string &nome, double preco, unsigned int quantidade)
     : _id(_proximoId++), _nome(nome), _precoBase(preco), _quantidade(quantidade),
       _precoComDesconto(preco), _desconto(0) {
+    if (quantidade <= 0){
+        throw quantidade_invalida_e();
+    }
+
+    if (preco <= 0){
+        throw preco_invalido_e();
+    }
 }
 
 void Produto::imprimir_informacoes() {
@@ -28,6 +35,9 @@ void Produto::imprimir_informacoes() {
 }
 
 void Produto::aplicar_desconto(double desconto) {
+    if (desconto <= 0 || desconto > 100){
+        throw desconto_invalido_e();
+    }
     _desconto = desconto;
     _precoComDesconto = _precoBase * (1 - _desconto / 100);
 }
@@ -37,7 +47,7 @@ void Produto::remover_desconto() {
     _precoComDesconto = _precoBase;
 }
 
-void Produto::removerEstoque(unsigned int valor){
+void Produto::remover_estoque(unsigned int valor){
   _quantidade -= valor;
 }
 

@@ -4,6 +4,8 @@
 #include "produto.hpp"
 #include <string>
 
+struct idade_invalida_e {};
+
 class ProdutoInfantil : public Produto {
   private:
     std::string _genero;
@@ -19,10 +21,8 @@ class ProdutoInfantil : public Produto {
      * Além disso, imprime o genero do produto e a idade recomendada.
      */
     void imprimir_informacoes() override;
-
-    std::string getGenero() const;
-
-    unsigned int getIdade() const;
+    std::string get_genero() const;
+    unsigned int get_idade() const;
 };
 
 #endif // PRODUTO_INFANTIL_HPP
