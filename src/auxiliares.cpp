@@ -11,8 +11,7 @@ void limparTela(){
 std::string mostrarOpcoesA(std::string titulo, std::vector<std::string> opcoes, bool limpar){
   unsigned int escolha;
   bool flag = true;
-  
-  std::cout << titulo << std::endl;
+
   while (flag){
     for (unsigned int i = 0; i < opcoes.size(); i++){
     std::cout << i+1 << ". " << opcoes[i] << std::endl;
