@@ -27,11 +27,13 @@ int main(){
   m.adicionarCorredor(vestimentas);
   m.adicionarCorredor(alimentos);
 
-  Consumidor* Arthur = new Consumidor("Arthur", "diniz");
+  Consumidor* Arthur = new Consumidor("Arthur1", "diniz");
   Consumidor* Pedro = new Consumidor("Pedro", "diniz");
+  Admin* adm = new Admin("Arthur", "diniz");
 
-  s.adicionarConsumidor(Arthur);
-  s.adicionarConsumidor(Pedro);
+  s.adicionarConta(Arthur);
+  s.adicionarConta(Pedro);
+  s.adicionarConta(adm);
 
   Arthur->adicionarSaldo(150.0);
 
