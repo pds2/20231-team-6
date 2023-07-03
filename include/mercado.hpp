@@ -15,7 +15,7 @@ public:
   void adicionarNovoProduto (std::string categoria, Produto* produto);
   void adicionarProdutoJaExistente (std::string categoria, std::string nome_produto, unsigned int qtd);
 
-  std::vector<std::string> listarCategorias();
+  std::vector<std::string> getTodasCategorias();
   Corredor* getCorredor(std::string tipo);
   Produto* getProduto(std::string nome);
   std::vector<Corredor*> getCorredores();
