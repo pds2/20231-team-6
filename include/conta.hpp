@@ -1,32 +1,38 @@
 #ifndef CONTA_HPP
 #define CONTA_HPP
 
+//#include "produto.hpp"
+
 #include <string>
 #include <vector>
 
 using namespace std;
 
 /*
- definicao da classe conta, bem como seus metodos
+    @brief Definição da classe conta e seus métodos.
  */
-
 class Conta {
-private:
-    
-    std::string usuario;
-    std::string senha;
-    std::vector<std::string> produtosComprados;
-
-public:
-    //construtor
+    protected:
+        //Construtor base de uma conta.
     Conta(const std::string& usuario, const std::string& senha);
-    //retorna o usuario
-    std::string getUsuario() const;
-    //
-    bool verificarSenha(const std::string& senha) const;
-    void adicionarProdutoComprado(const std::string& produto);
-    void exibirProdutosComprados() const;
-    void registrar(std::string usuario, std::string senha);
+
+    private:
+        
+        std::string _usuario;
+        std::string _senha;
+
+    public:
+        virtual ~Conta();
+        //Retorna o usuário
+        std::string getUsuario() const;
+
+        //Verifica se a senha é válida.
+        bool verificarSenha(const std::string& senha) const;
+        
+        //Registra uma nova conta.
+        void registrar(std::string usuario, std::string senha);
+
+        void trocarSenha(string const &senha);
 };
 
 #endif

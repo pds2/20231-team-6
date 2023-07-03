@@ -1,23 +1,22 @@
-CC=g++
-CFLAGS=-std=c++17 -Wall
+CC := g++
+SRCDIR := src
+BUILDDIR := build
+TARGET := main
 
-all: main
+SRCEXT := cpp
+SOURCES := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
+OBJECTS := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.$(SRCEXT)=.o))
+CFLAGS := -g -Wall -O3 -std=c++20
+INC := -I include/ 
 
-pessoa.o: include/pessoa.h src/pessoa.cpp
-	${CC} ${CFLAGS} -c src/pessoa.cpp -o build/pessoa.o
+$(TARGET): $(OBJECTS)
+	$(CC) $^ -o $(TARGET)
 
-funcionario.o: pessoa.o include/funcionario.h src/funcionario.cpp
-	${CC} ${CFLAGS} -c src/funcionario.cpp -o build/funcionario.o
-
-professor.o: funcionario.o include/professor.h src/professor.cpp
-	${CC} ${CFLAGS} -c src/professor.cpp -o build/professor.o
-
-main.o: funcionario.o src/main.cpp
-	${CC} ${CFLAGS} -c src/main.cpp -o build/main.o
-
-main: main.o pessoa.o funcionario.o professor.o
-	${CC} ${CFLAGS} build/main.o build/pessoa.o build/funcionario.o 
-	build/professor.o -o vpl_execution
+$(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
+	@mkdir -p $(@D)
+	$(CC) $(CFLAGS) $(INC) -c -o $@ $<
 
 clean:
-	rm -f vpl_execution *.o
+	$(RM) -r $(BUILDDIR)/* $(TARGET)
+
+.PHONY: clean
