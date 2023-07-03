@@ -482,7 +482,7 @@ string Sistema::mostrarOpcoes(string titulo, vector<string> opcoes, bool limpar)
   return opcoes[escolha-1];
 }
 
-void Sistema::adicionarConsumidor(Consumidor* c){
+void Sistema::adicionarConta(Conta* c){
   _usuarios.push_back(c);
 }
 
