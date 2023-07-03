@@ -3,16 +3,18 @@
 
 #include <string>
 #include <vector>
+#include <map>
 
-class DatabaseManager {
+class Database {
 private:
     sqlite3* db;
 
 public:
-    DatabaseManager(const std::string& dbPath);
-    ~DatabaseManager();
+    Database(const std::string& nome_db);
+    ~Database();
 
-    std::vector<std::string> buscarProdutos();
+    std::vector<std::string> buscar_produtos();
+    
 };
 
 #endif  // DATABASE_HPP
