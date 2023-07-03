@@ -535,14 +535,21 @@ Produto* Sistema::criarProduto(){
       Produto* novoProduto = new Produto(nome, preco, quantidade);
     }
     else if(tipo == "Produto Alimentício"){
-      
-      ProdutoAlimenticio* novoProduto = new ProdutoAlimenticio();
+      bool vegano;
+      int peso;
+      std::string data_de_validade;
+      mostrarOpcoes("O produto é vegano?", {"Sim", "Não"}, 0);
+      std::cout << "Peso: " << std::endl;
+      std::cin >> peso;
+      std::cout << "Data de Validade: " << std::endl;
+      std::cin >> data_de_validade;
+      ProdutoAlimenticio* novoProduto = new ProdutoAlimenticio(nome, preco, quantidade, vegano, peso);
     }
     else if(tipo == "Produto de Limpeza"){
-      Produto* novoProduto = new Produto();
+      Produto* novoProduto = new Produto(nome, preco, quantidade);
     }
     else if(tipo == "Produto Infantil"){
-      Produto* novoProduto = new Produto();
+      Produto* novoProduto = new Produto(nome, preco, quantidade);
     }
     return novoProduto;
   }
