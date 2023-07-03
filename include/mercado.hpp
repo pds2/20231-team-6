@@ -7,14 +7,14 @@
 
 class Mercado{
 private:
-  vector<Corredor*> _corredores;
+  std::vector<Corredor*> _corredores;
 
 public:
   void adicionarCorredor (Corredor* c);
 
-  vector<string> listarCategorias();
-  Corredor* getCorredor(string tipo);
-  Produto* getProduto(string nome);
+  std::vector<std::string> listarCategorias();
+  Corredor* getCorredor(std::string tipo);
+  Produto* getProduto(std::string nome);
 };
 
 

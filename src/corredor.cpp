@@ -1,19 +1,19 @@
 #include "../include/corredor.hpp"
 
 
-string Corredor::getCategoria(){
+std::string Corredor::getCategoria(){
   return _categoria;
 }
 
-vector<string> Corredor::getNomeProdutos(){
-  vector<string> produtos;
+std::vector<std::string> Corredor::getNomeProdutos(){
+  std::vector<std::string> produtos;
   for (Produto* c : _produtos){
     produtos.push_back(c->get_nome());
   }
   return produtos;
 }
 
-Produto* Corredor::getProduto(string nome){
+Produto* Corredor::getProduto(std::string nome){
   Produto* escolha;
   for (Produto* p : _produtos){
     if (p->get_nome() == nome){
@@ -24,7 +24,7 @@ Produto* Corredor::getProduto(string nome){
   return escolha;
 }
 
-vector<Produto*> Corredor::getTodosProdutos(){
+std::vector<Produto*> Corredor::getTodosProdutos(){
   return _produtos;
 }
 
@@ -32,6 +32,6 @@ void Corredor::adicionarProduto(Produto* p){
   _produtos.push_back(p);
 }
 
-Corredor::Corredor(string categoria){
+Corredor::Corredor(std::string categoria){
   _categoria = categoria;
 }

@@ -42,7 +42,7 @@ void Consumidor::exibirCarrinho(){
 void Consumidor::limparCarrinho(){
    for (auto it = _carrinho.begin();; ++it){
     if (it == _carrinho.end()) break;
-    it->first->removerEstoque(it->second);
+    it->first->remover_estoque(it->second);
     _produtosComprados.insert(it->first->get_nome());
    }
    _carrinho.clear();

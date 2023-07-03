@@ -1,22 +1,26 @@
 #ifndef CORREDOR_HPP
 #define CORREDOR_HPP
 
-#include "produto.hpp"
 #include <vector>
+
+#include "produto.hpp"
+#include "produto_alimenticio.hpp"
+#include "produto_infantil.hpp"
+#include "produto_limpeza.hpp"
 
 class Corredor{
 private:
-  vector <Produto*> _produtos;
-  string _categoria;
+  std::vector <Produto*> _produtos;
+  std::string _categoria;
 
 public:
-  Corredor(string categoria);
+  Corredor(std::string categoria);
   void adicionarProduto(Produto* p);
 
-  string getCategoria();
-  Produto* getProduto(string nome);
-  vector<string> getNomeProdutos();
-  vector<Produto*> getTodosProdutos();
+  std::string getCategoria();
+  Produto* getProduto(std::string nome);
+  std::vector<std::string> getNomeProdutos();
+  std::vector<Produto*> getTodosProdutos();
 };
 
 #endif // CORREDOR_HPP
