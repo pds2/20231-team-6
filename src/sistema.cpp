@@ -533,25 +533,34 @@ Produto* Sistema::criarProduto(){
     std::cin >> quantidade;
     if(tipo == "Produto Genérico"){
       Produto* novoProduto = new Produto(nome, preco, quantidade);
+      return novoProduto;
     }
     else if(tipo == "Produto Alimentício"){
       bool vegano;
       int peso;
-      std::string data_de_validade;
+      std::string data_de_validade = preencherString("Data de Validade");
       mostrarOpcoes("O produto é vegano?", {"Sim", "Não"}, 0);
       std::cout << "Peso: " << std::endl;
       std::cin >> peso;
-      std::cout << "Data de Validade: " << std::endl;
-      std::cin >> data_de_validade;
-      ProdutoAlimenticio* novoProduto = new ProdutoAlimenticio(nome, preco, quantidade, vegano, peso);
+      ProdutoAlimenticio* novoProduto = new ProdutoAlimenticio(nome, preco, quantidade, vegano, peso, data_de_validade);
+      return novoProduto;
     }
     else if(tipo == "Produto de Limpeza"){
-      Produto* novoProduto = new Produto(nome, preco, quantidade);
+      std::string aroma = preencherString("Aroma");
+      int volume;
+      std::cout << "Volume: " << std::endl;
+      std::cin >> volume;
+      Produto* novoProduto = new ProdutoLimpeza(nome, preco, quantidade, aroma, volume);
+      return novoProduto;
     }
     else if(tipo == "Produto Infantil"){
-      Produto* novoProduto = new Produto(nome, preco, quantidade);
+      std::string genero = preencherString("Genero");
+      int idade;
+      std::cout << "Idade: " << std::endl;
+      std::cin >> idade;
+      Produto* novoProduto = new ProdutoInfantil(nome, preco, quantidade, genero, idade);
+      return novoProduto;
     }
-    return novoProduto;
   }
 }
 
