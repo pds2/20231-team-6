@@ -43,6 +43,8 @@ class Produto {
     double get_preco() const;
     double get_preco_com_desconto() const;
     double get_desconto() const;
+
+    void adicionarEstoque(unsigned int qtd_adicionada);
 };
 
 #endif // PRODUTO_HPP

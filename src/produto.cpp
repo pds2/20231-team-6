@@ -74,3 +74,7 @@ double Produto::get_preco_com_desconto() const {
 double Produto::get_desconto() const {
     return _desconto;
 }
+
+void Produto::adicionarEstoque(unsigned int qtd_adicionada){
+    _quantidade = _quantidade + qtd_adicionada;
+}
