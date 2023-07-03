@@ -1,6 +1,7 @@
 #ifndef PRODUTO_HPP
 #define PRODUTO_HPP
 
+#include <auxiliares.hpp>
 #include <string>
 
 struct quantidade_invalida_e {};
@@ -45,6 +46,12 @@ class Produto {
     double get_desconto() const;
 
     void adicionarEstoque(unsigned int qtd_adicionada);
+
+    static Produto* criarProdutoGenerico();
+
+    static std::vector <std::string> const _tipos_de_produto;
+
+    std::string confirmarComposicao();
 };
 
 #endif // PRODUTO_HPP
