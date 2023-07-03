@@ -346,24 +346,6 @@ void Sistema::paginaAdmin(){
   }
 }
 
-// string Sistema::preencherString(string campo){
-//   std::cout << campo << ": ";
-//   string entrada;
-//   getline(std::cin, entrada);
-//   return entrada;
-// }
-
-// string Sistema::stringPesquisa(string entrada){
-//   entrada[0] = toupper(entrada[0]);
-//   for (unsigned int i = 1 ; i < entrada.size(); i++){
-//     entrada[i] = tolower(entrada[i]);
-//     if (entrada[i] == ' '){
-//       entrada[i+1] = toupper(entrada[i+1]);
-//       i++;
-//     }
-//   }
-//   return entrada;
-// }
 
 void Sistema::logarAdminstrador(const string& usuario, const string& senha){
   try{
@@ -432,14 +414,6 @@ void Sistema::verificarSenhaCadastro(const string& senha, const string& senha_no
   if (!certa) throw invalid_argument("Senha invalida!");
   if (senha != senha_novamente) throw invalid_argument("As senhas nao coincidem!");
 }
-
-// void Sistema::limparTela(){
-//   #ifdef _WIN32
-//     system("cls");
-//   #else
-//     system("clear");
-//   #endif
-// }
 
 void Sistema::adicionarMercado(Mercado m){
   _mercado = m;
