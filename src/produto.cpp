@@ -92,5 +92,7 @@ std::vector <std::string> const Produto::_tipos_de_produto = {"Produto Genérico
 
 std::string Produto::confirmarComposicao(){
     imprimir_informacoes();
-    mostrarOpcoesA("Deseja Confirmar A Adição do Novo Produto?", {"Sim", "Refazer","Cancelar"}, 1);
+    std::cout << std::endl;
+    std::string opcoes = mostrarOpcoesA("Deseja Confirmar A Adição do Novo Produto?", {"Sim", "Refazer","Cancelar"}, 1);
+    return opcoes;
 }
