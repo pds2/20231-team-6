@@ -47,11 +47,11 @@ std::vector<std::string> Database::buscar_produtos() {
 }
 
 
-std::map<std::string, float> get_produtos_preco_from_db(sqlite3* db) {
+std::map<std::string, float> get_produtos_precos(sqlite3* db) {
     std::map<std::string, float> produtos_preco;
     std::string sql = "SELECT nome, preco FROM produtos";
 
-    int rc = sqlite3_exec(db, sql.c_str(), callback_produtos_preco, &produtos_preco, nullptr);
+    int rc = sqlite3_exec(db, sql.c_str(), callback_precos, &produtos_preco, nullptr);
     if (rc != SQLITE_OK) {
         std::cerr << "Erro ao executar a consulta SQL: " << sqlite3_errmsg(db) << std::endl;
     }

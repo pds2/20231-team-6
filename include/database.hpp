@@ -1,6 +1,8 @@
 #ifndef DATABASE_HPP
 #define DATABASE_HPP
 
+#include <iostream>
+#include <sqlite3.h>
 #include <string>
 #include <vector>
 #include <map>

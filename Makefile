@@ -7,10 +7,12 @@ SRCEXT := cpp
 SOURCES := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
 OBJECTS := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.$(SRCEXT)=.o))
 CFLAGS := -g -Wall -O3 -std=c++20
-INC := -I include/ 
+INC := -I include/ -I third_party/
+LDFLAGS := -L$(CURDIR)/third_party -lsqlite3
+
 
 $(TARGET): $(OBJECTS)
-	$(CC) $^ -o $(TARGET)
+	$(CC) $^ -o $(TARGET) $(LDFLAGS)
 
 $(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
 	@mkdir -p $(@D)
