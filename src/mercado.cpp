@@ -33,7 +33,7 @@ void Mercado::adicionarCorredor (Corredor* c){
   _corredores.push_back(c);
 }
 
-vector<Corredor*> Mercado::getCorredores(){
+std::vector<Corredor*> Mercado::getCorredores(){
  return _corredores;
 }
 

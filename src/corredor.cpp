@@ -41,6 +41,6 @@ void Corredor::adicionarProdutoJaExistente(std::string nome_produto, unsigned in
     }
 }
 
-Corredor::Corredor(string categoria){
+Corredor::Corredor(std::string categoria){
   _categoria = categoria;
 }

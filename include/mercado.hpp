@@ -15,10 +15,10 @@ public:
   void adicionarNovoProduto (std::string categoria, Produto* produto);
   void adicionarProdutoJaExistente (std::string categoria, std::string nome_produto, unsigned int qtd);
 
-  vector<string> listarCategorias();
-  Corredor* getCorredor(string tipo);
-  Produto* getProduto(string nome);
-  vector<Corredor*> getCorredores();
+  std::vector<std::string> listarCategorias();
+  Corredor* getCorredor(std::string tipo);
+  Produto* getProduto(std::string nome);
+  std::vector<Corredor*> getCorredores();
 };
 
 

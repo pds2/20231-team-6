@@ -535,6 +535,7 @@ Produto* Sistema::criarProduto(){
       Produto* novoProduto = new Produto(nome, preco, quantidade);
     }
     else if(tipo == "Produto Alimentício"){
+      
       ProdutoAlimenticio* novoProduto = new ProdutoAlimenticio();
     }
     else if(tipo == "Produto de Limpeza"){
