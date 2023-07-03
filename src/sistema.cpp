@@ -151,7 +151,7 @@ void Sistema::paginaConsumidorProcurarProduto(){
 void Sistema::paginaConsumidorListarCategorias(){
   string opcao;
   do{
-    vector<string> categorias = _mercado.listarCategorias();
+    vector<string> categorias = _mercado.getTodasCategorias();
     categorias.push_back("Voltar");
     limparTela();
     opcao = mostrarOpcoes("ESCOLHA A CAREGORIA DESEJADA", categorias, 1);
@@ -331,12 +331,19 @@ void Sistema::paginaRemoverProduto(){
 
 // Cirar um ambiente para administradores
 void Sistema::paginaAdmin(){
-  limparTela();
-  string opcao = mostrarOpcoes("\tADMINISTRADOR LOGADO: ", {"Editar Produtos", "Edtiar Corredores", "Editar Usuarios", "Criar Conta Admin", "Deslogar"}, 1);
-  while (opcao != "Deslogar"){
+  while (true){
+    limparTela();
+    string opcao = mostrarOpcoes("\tADMINISTRADOR LOGADO: ", {"Editar Produtos", "Edtiar Corredores", "Editar Usuarios", "Criar Conta Admin", "Deslogar"}, 1);
+    
+    if (opcao == "Editar Produtos"){
+      adicionarProduto();
+    }
 
+    if (opcao == "Deslogar"){
+      _admin_logado = nullptr;
+      break;
+    }
   }
-  _admin_logado = nullptr;
 }
 
 string Sistema::preencherString(string campo){
@@ -487,7 +494,7 @@ std::string Sistema::escolherTipo(){
       }
 }
 
-std::string Sistema::escolherCorredor(){
+/*std::string Sistema::escolherCorredor(){
     limparTela();
     std::string voltar = "Voltar";
     vector<std::string> corredores;
@@ -500,14 +507,19 @@ std::string Sistema::escolherCorredor(){
       if(opcao != voltar){
       return opcao;
     }
-}
+}*/
 
 void Sistema::adicionarProduto(){
-    std::string categoria = escolherCorredor();
-    //imprimir os produtos presentes no corredor em questao
+  limparTela();
+  std::vector<std::string> todasCategorias = _mercado.getTodasCategorias();
+  todasCategorias.push_back("Voltar");
+  std::string categoria = mostrarOpcoes("\tESCOLHA A CATEGORIA DO PRODUTO", todasCategorias, 1);
+  //imprimir os produtos presentes no corredor em questao
+  limparTela();
+  if (categoria != "Voltar"){
     string opcao = mostrarOpcoes("\tDESEJA ADICIONAR UM NOVO PRODUTO AO ESTOQUE OU ADICIONAR À UM JA EXISTENTE?", {"Novo", "Ja Existente", "Voltar"}, 1);
     if(opcao == "Novo"){
-      Produto* produtoNovo;
+      Produto* produtoNovo = criarProduto();
       _mercado.adicionarNovoProduto(categoria, produtoNovo);
     }
     else if(opcao == "Ja Existente"){
@@ -516,9 +528,8 @@ void Sistema::adicionarProduto(){
       std::cout << "Qual a quantidade a ser adicionada?" << std::endl;
       std::cin >> quantidade;
       _mercado.adicionarProdutoJaExistente(categoria, produto, quantidade);
-
     }
-    else{};
+  }
 }
 
 Produto* Sistema::criarProduto(){
