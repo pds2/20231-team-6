@@ -12,9 +12,13 @@ private:
 public:
   void adicionarCorredor (Corredor* c);
 
-  std::vector<std::string> listarCategorias();
-  Corredor* getCorredor(std::string tipo);
-  Produto* getProduto(std::string nome);
+  void adicionarNovoProduto (std::string categoria, Produto* produto);
+  void adicionarProdutoJaExistente (std::string categoria, std::string nome_produto, unsigned int qtd);
+
+  vector<string> listarCategorias();
+  Corredor* getCorredor(string tipo);
+  Produto* getProduto(string nome);
+  vector<Corredor*> getCorredores();
 };
 
 

@@ -32,3 +32,25 @@ Produto* Mercado::getProduto(std::string nome){
 void Mercado::adicionarCorredor (Corredor* c){
   _corredores.push_back(c);
 }
+
+vector<Corredor*> Mercado::getCorredores(){
+ return _corredores;
+}
+
+void Mercado::adicionarNovoProduto (std::string categoria, Produto* produto){
+  for(auto& corredor : _corredores){
+    if(corredor->getCategoria() == categoria){
+      corredor->adicionarNovoProduto(produto);
+      break;
+    }
+  }
+}
+
+void Mercado::adicionarProdutoJaExistente (std::string categoria, std::string nome_produto, unsigned int qtd){
+  for(auto& corredor : _corredores){
+    if(corredor->getCategoria() == categoria){
+      corredor->adicionarProdutoJaExistente(nome_produto, qtd);
+      break;
+    }
+  }
+}
