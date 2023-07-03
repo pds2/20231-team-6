@@ -78,3 +78,19 @@ double Produto::get_desconto() const {
 void Produto::adicionarEstoque(unsigned int qtd_adicionada){
     _quantidade = _quantidade + qtd_adicionada;
 }
+
+Produto* Produto::criarProdutoGenerico(){
+    std::string nome = preencherString("Nome");
+    double preco = preencherDouble("Preço");
+    unsigned int quantidade = preencherInt("Quantidade a ser adicionada no estoque");
+    Produto* novoProduto = new Produto(nome, preco, quantidade);
+    return novoProduto;
+}
+
+std::vector <std::string> const _tipos_de_produto = {"Produto Genérico", "Produto Alimentício", "Produto de Limpeza", \
+"Produto Infantil", "Voltar"};
+
+std::string Produto::confirmarComposicao(){
+    imprimir_informacoes();
+    mostrarOpcoesA("Deseja Confirmar A Adição do Novo Produto?", {"Sim", "Refazer","Cancelar"}, 1);
+}
