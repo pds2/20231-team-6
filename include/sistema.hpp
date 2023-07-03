@@ -26,10 +26,6 @@ private:
   Consumidor* _consumidor_logado = nullptr;
   Admin* _admin_logado = nullptr;
 
-  //Vetor auxiliar com strings com o nome das subclasses.
-  std::vector <std::string> _tipos_de_produto = {"Produto Genérico", "Produto Alimentício", "Produto de Limpeza", \
-  "Produto Infantil", "Voltar"};
-
 public:
  /*
   * Inicializa o sistema: puxa as todas as informações dos usuários e do

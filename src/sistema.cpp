@@ -462,7 +462,7 @@ void Sistema::adicionarConta(Conta* c){
 
 std::string Sistema::escolherTipo(){
     limparTela();
-    string opcao = mostrarOpcoes("\tESCOLHA O TIPO DO PRODUTO", _tipos_de_produto, 1);
+    string opcao = mostrarOpcoes("\tESCOLHA O TIPO DO PRODUTO", Produto::_tipos_de_produto, 1);
       if(opcao != "Voltar"){
         return opcao;
       }
@@ -484,67 +484,79 @@ std::string Sistema::escolherTipo(){
 }*/
 
 void Sistema::adicionarProduto(){
-  limparTela();
-  std::vector<std::string> todasCategorias = _mercado.getTodasCategorias();
-  todasCategorias.push_back("Voltar");
-  std::string categoria = mostrarOpcoes("\tESCOLHA A CATEGORIA DO PRODUTO", todasCategorias, 1);
-  //imprimir os produtos presentes no corredor em questao
-  limparTela();
-  if (categoria != "Voltar"){
+  std::string categoria;
+  do{
+    limparTela();
+    std::vector<std::string> todasCategorias = _mercado.getTodasCategorias();
+    todasCategorias.push_back("Voltar");
+    categoria = mostrarOpcoes("\tESCOLHA A CATEGORIA DO PRODUTO", todasCategorias, 1);
+    if(categoria == "Voltar") break;
+    std::cout << "Os produtos em estoque da categoria" << categoria << "são:" << std::endl;
+    Corredor* corredorEscolhido = _mercado.getCorredor(categoria);
+    std::vector<std::string> produtos = corredorEscolhido->getNomeProdutos();
+    for(auto produto : produtos){
+      cout << produto << "." << std::endl;
+    }
+    delete corredorEscolhido;
+    std::cout << std::endl;
     string opcao = mostrarOpcoes("\tDESEJA ADICIONAR UM NOVO PRODUTO AO ESTOQUE OU ADICIONAR À UM JA EXISTENTE?", {"Novo", "Ja Existente", "Voltar"}, 1);
     if(opcao == "Novo"){
+      limparTela();
       Produto* produtoNovo = criarProduto();
+      if(produtoNovo != nullptr){
       _mercado.adicionarNovoProduto(categoria, produtoNovo);
+      std::cout << "O produto foi adicionado com Sucesso!" << std::endl;
+      } else std::cout << "Procedimento Cancelado." << std::endl;
     }
     else if(opcao == "Ja Existente"){
       unsigned int quantidade;
-      std::string produto = paginaProdutosAdmin(categoria);
-      std::cout << "Qual a quantidade a ser adicionada?" << std::endl;
-      std::cin >> quantidade;
-      _mercado.adicionarProdutoJaExistente(categoria, produto, quantidade);
+      std::string confirmacao;
+      do{
+        limparTela();
+        std::string produtoNovo = paginaProdutosAdmin(categoria);
+        do{
+          quantidade = preencherInt("Qual a quantidade a ser adicionada");
+          std::cout << "Você está adicionando" << quantidade << "unidades ao produto" << produtoNovo << "." << std::endl;
+        confirmacao = mostrarOpcoesA("Deseja Confirmar A Adição?", {"Sim", "Mudar Quantidade", "Escolher Outro Poduto", "Voltar"}, 0);
+        if(confirmacao == "Sim"){
+        _mercado.adicionarProdutoJaExistente(categoria, produtoNovo, quantidade);
+        std::cout << "O produto foi adicionado com Sucesso!" << std::endl;
+        } 
+        }while(confirmacao == "Mudar Quantidade.");
+      }while(confirmacao == "Escolher Outro Produto.");
     }
-  }
+  }while(categoria != "Voltar");
 }
 
 Produto* Sistema::criarProduto(){
+  Produto* novoProduto;
+  std::string confirmacao;
   std::string tipo = escolherTipo();
   if(tipo != "Voltar"){
-    std::string nome = preencherString("Nome");
-    double preco;
-    unsigned int quantidade;
-    std::cout << "Preço: " << std::endl;
-    std::cin >> preco;
-    std::cout << "Quantidade a ser adicionada no estoque: " << std::endl;
-    std::cin >> quantidade;
-    if(tipo == "Produto Genérico"){
-      Produto* novoProduto = new Produto(nome, preco, quantidade);
+    do{
+      if(confirmacao == "Refazer") delete novoProduto;
+      if(tipo == "Produto Genérico"){
+        novoProduto = Produto::criarProdutoGenerico();
+        novoProduto->confirmarComposicao();
+      }
+      else if(tipo == "Produto Alimentício"){
+        novoProduto = ProdutoAlimenticio::criarProdutoAlimenticio();
+        novoProduto->confirmarComposicao();
+      }
+      else if(tipo == "Produto de Limpeza"){
+        novoProduto = ProdutoLimpeza::criarProdutoLimpeza();
+        novoProduto->confirmarComposicao();
+      }
+      else if(tipo == "Produto Infantil"){
+        novoProduto = ProdutoInfantil::criarProdutoInfantil();
+        novoProduto->confirmarComposicao();
+      }
+    } while(confirmacao == "Refazer");
+    
+    if(confirmacao == "Sim"){
       return novoProduto;
-    }
-    else if(tipo == "Produto Alimentício"){
-      bool vegano;
-      int peso;
-      std::string data_de_validade = preencherString("Data de Validade");
-      mostrarOpcoes("O produto é vegano?", {"Sim", "Não"}, 0);
-      std::cout << "Peso: " << std::endl;
-      std::cin >> peso;
-      ProdutoAlimenticio* novoProduto = new ProdutoAlimenticio(nome, preco, quantidade, vegano, peso, data_de_validade);
-      return novoProduto;
-    }
-    else if(tipo == "Produto de Limpeza"){
-      std::string aroma = preencherString("Aroma");
-      int volume;
-      std::cout << "Volume: " << std::endl;
-      std::cin >> volume;
-      Produto* novoProduto = new ProdutoLimpeza(nome, preco, quantidade, aroma, volume);
-      return novoProduto;
-    }
-    else if(tipo == "Produto Infantil"){
-      std::string genero = preencherString("Genero");
-      int idade;
-      std::cout << "Idade: " << std::endl;
-      std::cin >> idade;
-      Produto* novoProduto = new ProdutoInfantil(nome, preco, quantidade, genero, idade);
-      return novoProduto;
+    } else if(confirmacao == "Cancelar"){
+      delete novoProduto;
     }
   }
 }
