@@ -23,7 +23,7 @@ void Sistema::paginaInicial(){
 
     if (opcao == "Fechar Programa"){
       // Chamar uma funcao para carregar todas as informacoes NO banco de dados
-      cout << "Programa finalizado com sucesso. Obrigado!" << endl;
+      std::cout << "Programa finalizado com sucesso. Obrigado!" << std::endl;
       break;
     }
   }
@@ -33,7 +33,7 @@ void Sistema::paginaInicialLoginConsumidor(){
   string opcao;
   do{
     limparTela();
-    cout << "\tAREA DE LOGIN PARA USUARIOS" << endl;
+    std::cout << "\tAREA DE LOGIN PARA USUARIOS" << std::endl;
     string usuario = preencherString("Usuario");
     string senha = preencherString("Senha");
     try{
@@ -41,7 +41,7 @@ void Sistema::paginaInicialLoginConsumidor(){
       opcao = "Voltar";
     }
     catch (invalid_argument &e){
-      cout << e.what() << endl;
+      std::cout << e.what() << std::endl;
       opcao = mostrarOpcoes("\n", {"Tentar Novamente", "Voltar"}, 0);
     }
   } while (opcao != "Voltar");  
@@ -51,7 +51,7 @@ void Sistema::paginaInicialLoginAdministrador(){
   string opcao;
   do{
     limparTela();
-    cout << "\tAREA DE LOGIN PARA ADMINISTRADORES" << endl;
+    std::cout << "\tAREA DE LOGIN PARA ADMINISTRADORES" << std::endl;
     string usuario = preencherString("Usuario");
     string senha = preencherString("Senha");
     try{
@@ -59,7 +59,7 @@ void Sistema::paginaInicialLoginAdministrador(){
       opcao = "Voltar";
     }
     catch (invalid_argument &e){
-      cout << e.what() << endl;
+      std::cout << e.what() << std::endl;
       opcao = mostrarOpcoes("\n", {"Tentar Novamente", "Voltar"}, 0);
     }
   } while (opcao != "Voltar");  
@@ -69,7 +69,7 @@ void Sistema::paginaInicialCadastroConsumidor(){
   string opcao;
   do{
     limparTela();
-    cout << "\tAREA DE CADASTRO PARA USUARIOS" << endl;
+    std::cout << "\tAREA DE CADASTRO PARA USUARIOS" << std::endl;
     string usuario = preencherString("Usuario");
     try{
       verificarUsuario(usuario);
@@ -78,7 +78,7 @@ void Sistema::paginaInicialCadastroConsumidor(){
         string senha2 = preencherString("Digite a Senha Novamente");
         verificarSenhaCadastro(senha, senha2);
         
-        cout << "Cadastro feito com sucesso! Bem vindo " << usuario << "!" << endl;
+        std::cout << "Cadastro feito com sucesso! Bem vindo " << usuario << "!" << std::endl;
         sleep(2);
         Consumidor* u1 = new Consumidor(usuario, senha);
         _usuarios.push_back(u1);
@@ -86,12 +86,12 @@ void Sistema::paginaInicialCadastroConsumidor(){
         opcao = "Voltar";
       }
       catch (invalid_argument &e){
-        cout << e.what() << endl;
+        std::cout << e.what() << std::endl;
         opcao = mostrarOpcoes("\n", {"Tentar Novamente", "Voltar"}, 0);
       }
     }
     catch (usuario_ja_existe_e &e){
-      cout << "Usuario ja existe!" << endl;
+      std::cout << "Usuario ja existe!" << std::endl;
       opcao = mostrarOpcoes("\n", {"Tentar Novamente", "Voltar"}, 0);
     }
   } while(opcao != "Voltar");
@@ -134,7 +134,7 @@ void Sistema::paginaConsumidorProcurarProduto(){
   string opcao;
   do{
     limparTela();
-    cout << "PAGINA PARA PROCURA DE PRODUTOS" << endl;
+    std::cout << "PAGINA PARA PROCURA DE PRODUTOS" << std::endl;
     string nomeproduto = preencherString("Digite o Nome do Produto que Deseja Procurar");
     nomeproduto = stringPesquisa(nomeproduto);
     try{
@@ -142,7 +142,7 @@ void Sistema::paginaConsumidorProcurarProduto(){
       opcao = "Voltar";
     }
     catch(invalid_argument &e){
-      cout << e.what() << endl;
+      std::cout << e.what() << std::endl;
       opcao = mostrarOpcoes("\n", {"Tentar Novamente", "Voltar"}, 0);
     }
   } while (opcao != "Voltar");
@@ -156,7 +156,7 @@ void Sistema::paginaConsumidorListarCategorias(){
     limparTela();
     opcao = mostrarOpcoes("ESCOLHA A CAREGORIA DESEJADA", categorias, 1);
     if (opcao != "Voltar"){
-      paginaProdutos(opcao);
+      paginaProdutosConsumidor(opcao);
     }
   } while (opcao != "Voltar");
 }
@@ -166,17 +166,17 @@ void Sistema::paginaConsumidorVerCarrinho(){
   do{
     limparTela();
     try {
-      cout << "PRODUTOS NO CARRINHO" << endl;
-      cout << "----------------------------" << endl;
+      std::cout << "PRODUTOS NO CARRINHO" << std::endl;
+      std::cout << "----------------------------" << std::endl;
       _consumidor_logado->exibirCarrinho();
     }
     catch (invalid_argument &e){
-      cout << e.what() << endl;
-      cout << "----------------------------" << endl;
+      std::cout << e.what() << std::endl;
+      std::cout << "----------------------------" << std::endl;
       opcao = mostrarOpcoes("\n", {"Voltar"}, 0);
     }
     if (opcao != "Voltar"){
-      cout << "----------------------------" << endl;
+      std::cout << "----------------------------" << std::endl;
       opcao = mostrarOpcoes("\n", {"Finalizar Compra", "Remover Produto", "Voltar"}, 0);
       if (opcao == "Finalizar Compra"){
         paginaCheckout();
@@ -191,15 +191,15 @@ void Sistema::paginaConsumidorVerCarrinho(){
 void Sistema::paginaConsumidorVerComprasPassadas(){
   string opcao;
   limparTela();
-  cout << "COMPRAS PASSADAS" << endl;
-  cout << "----------------------------" << endl;
+  std::cout << "COMPRAS PASSADAS" << std::endl;
+  std::cout << "----------------------------" << std::endl;
   try{
     _consumidor_logado->exibirProdutosComprados();
   }
   catch (invalid_argument &e){
-    cout << e.what() << endl;
+    std::cout << e.what() << std::endl;
   }
-  cout << "----------------------------" << endl;
+  std::cout << "----------------------------" << std::endl;
   opcao = mostrarOpcoes("\n", {"Voltar"}, 0);
 }
 
@@ -214,23 +214,23 @@ void Sistema::paginaConsumidorTrocarSenha(){
         string novaSenha2 = preencherString("Digite a Senha Novamente");
         verificarSenhaCadastro(novaSenha1, novaSenha2);
         _consumidor_logado->trocarSenha(novaSenha1);
-        cout << "Senha Alterada Com Sucesso!" << endl;
+        std::cout << "Senha Alterada Com Sucesso!" << std::endl;
         sleep (2);
         opcao = "Voltar";
       }
       catch(invalid_argument &e){
-        cout << e.what() << endl;
+        std::cout << e.what() << std::endl;
         opcao = mostrarOpcoes("\n", {"Tentar Novamente", "Voltar"},0);
       }
     }
     else{
-      cout << "Senha Invalida!" << endl;
+      std::cout << "Senha Invalida!" << std::endl;
       opcao = mostrarOpcoes("\n", {"Tentar Novamente", "Voltar"}, 0);
     }
   } while (opcao != "Voltar");
 }
 
-void Sistema::paginaProdutos(string categoria){
+void Sistema::paginaProdutosConsumidor(string categoria){
   Corredor* c = _mercado.getCorredor(categoria);
   vector<string> produtos = c->getNomeProdutos();
   produtos.push_back("Voltar");
@@ -250,20 +250,20 @@ void Sistema::detalhesProduto(string nome){
   escolha->imprimir_informacoes();
   string opcao = mostrarOpcoes("\n", {"Adicionar ao Carrinho", "Voltar"}, 0);
   while (opcao != "Voltar"){
-    cout << "Digite a Quantidade que Deseja Comprar: ";
+    std::cout << "Digite a Quantidade que Deseja Comprar: ";
     unsigned int quantidade;
-    while(!(cin>> quantidade)){
-      cout<<"Quantidade Invalida! Por Favor Tente Novamente: ";
-      cin.clear();
-      cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    while(!(std::cin>> quantidade)){
+      std::cout<<"Quantidade Invalida! Por Favor Tente Novamente: ";
+      std::cin.clear();
+      std::cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
     if (quantidade > escolha->get_quantidade()){
-      cout << "Nao ha Estoque Suficiente!" << endl;
+      std::cout << "Nao ha Estoque Suficiente!" << std::endl;
       opcao = mostrarOpcoes("\n", {"Tentar Novamente", "Voltar"}, 0);
     }
     else {
       _consumidor_logado->adicionaProdutoCarrinho(escolha, quantidade);
-      cout << "Produto Adicionado ao Carrinho com Sucesso!" << endl;
+      std::cout << "Produto Adicionado ao Carrinho com Sucesso!" << std::endl;
       sleep(2);
       break;
     }
@@ -273,18 +273,18 @@ void Sistema::detalhesProduto(string nome){
 // Criar uma pagina para o checkout
 void Sistema::paginaCheckout(){
   while(true){
-    cout << "Tem Certeza que Deseja Finalizar a Compra (Sim/Nao): ";
+    std::cout << "Tem Certeza que Deseja Finalizar a Compra (Sim/Nao): ";
     string confirmacao;
-    cin >> confirmacao;
+    std::cin >> confirmacao;
     for (auto &letra : confirmacao) letra = toupper(letra);
     if (confirmacao == "SIM"){
       if (_consumidor_logado->getSaldo() < _consumidor_logado->getPrecoTotalCarrinho()){
-        cout << "Saldo Insuficiente!" << endl;
+        std::cout << "Saldo Insuficiente!" << std::endl;
         sleep(2);
         break;
       }
       else {
-        cout << "Compra Finalizada Com Sucesso! Obrigado." << endl;
+        std::cout << "Compra Finalizada Com Sucesso! Obrigado." << std::endl;
         sleep(2);
         _consumidor_logado->removerSaldo(_consumidor_logado->getPrecoTotalCarrinho());
         _consumidor_logado->limparCarrinho();
@@ -295,7 +295,7 @@ void Sistema::paginaCheckout(){
       sleep(1);
       break;
     }
-    cout << "Escolha Invalida!" << endl;
+    std::cout << "Escolha Invalida!" << std::endl;
     sleep(1);
   }
 }
@@ -306,23 +306,23 @@ void Sistema::paginaRemoverProduto(){
     string produtoRemovido = preencherString("Digite Qual Produto Deseja Remover");
     produtoRemovido = stringPesquisa(produtoRemovido);
     unsigned int quantidade;
-    cout << "Quantos Voce Deseja Remover: ";
+    std::cout << "Quantos Voce Deseja Remover: ";
     try{
-      if(!(cin >> quantidade)) throw (quantidade_invalida_e());
+      if(!(std::cin >> quantidade)) throw (quantidade_invalida_e());
       _consumidor_logado->removerProdutoCarrinho(_mercado.getProduto(produtoRemovido), quantidade);
-      cout << "Produto Removido Com Sucesso!" << endl;
+      std::cout << "Produto Removido Com Sucesso!" << std::endl;
       sleep(2);
       break;
     }
     catch (invalid_argument &e){
-      cout << e.what() << endl;
+      std::cout << e.what() << std::endl;
       opcao = mostrarOpcoes("\n", {"Tentar Novamente", "Voltar"}, 0);
       if (opcao == "Voltar") break;
     }
     catch (quantidade_invalida_e &e){
-      cout << "Quantidade Invalida! Por Favor Tente Novamente!" << endl;
-      cin.clear();
-      cin.ignore(numeric_limits<streamsize>::max(), '\n');
+      std::cout << "Quantidade Invalida! Por Favor Tente Novamente!" << std::endl;
+      std::cin.clear();
+      std::cin.ignore(numeric_limits<streamsize>::max(), '\n');
       opcao = mostrarOpcoes("\n", {"Tentar Novamente", "Voltar"}, 0);
       if (opcao == "Voltar") break;
     }
@@ -340,9 +340,9 @@ void Sistema::paginaAdmin(){
 }
 
 string Sistema::preencherString(string campo){
-  cout << campo << ": ";
+  std::cout << campo << ": ";
   string entrada;
-  getline(cin, entrada);
+  getline(std::cin, entrada);
   return entrada;
 }
 
@@ -444,37 +444,117 @@ string Sistema::mostrarOpcoes(string titulo, vector<string> opcoes, bool limpar)
 
   while (flag){
     if (titulo == "\tUSUARIO LOGADO: ") {
-      cout << titulo << _consumidor_logado->getUsuario();
-      cout << "\t\tSaldo: R$" << _consumidor_logado->getSaldo() << endl;
+      std::cout << titulo << _consumidor_logado->getUsuario();
+      std::cout << "\t\tSaldo: R$" << _consumidor_logado->getSaldo() << std::endl;
     }
-    else if (titulo == "\tADMINISTRADOR LOGADO: ") cout << titulo << _admin_logado->getUsuario() << endl; 
-    else if (titulo != "\n") cout << titulo << endl;
+    else if (titulo == "\tADMINISTRADOR LOGADO: ") std::cout << titulo << _admin_logado->getUsuario() << std::endl; 
+    else if (titulo != "\n") std::cout << titulo << std::endl;
 
     for (unsigned int i = 0; i < opcoes.size(); i++){
-    cout << i+1 << ". " << opcoes[i] << endl;
+    std::cout << i+1 << ". " << opcoes[i] << std::endl;
     }
 
-    cin >> escolha;
+    std::cin >> escolha;
     try{
       if (escolha > opcoes.size() || escolha == 0){
-        cin.clear();
-        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');        
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');        
         throw invalid_argument("Escolha invalida!");
       }
       flag = false;
     }
     catch (invalid_argument &e){
-      cout << e.what() << endl;
+      std::cout << e.what() << std::endl;
       sleep(1);
       if (limpar){
         limparTela();
       }
     }
   }
-  cin.ignore(1000, '\n');
+  std::cin.ignore(1000, '\n');
   return opcoes[escolha-1];
 }
 
 void Sistema::adicionarConsumidor(Consumidor* c){
   _usuarios.push_back(c);
+}
+
+std::string Sistema::escolherTipo(){
+    limparTela();
+    string opcao = mostrarOpcoes("\tESCOLHA O TIPO DO PRODUTO", _tipos_de_produto, 1);
+      if(opcao != "Voltar"){
+        return opcao;
+      }
+}
+
+std::string Sistema::escolherCorredor(){
+    limparTela();
+    std::string voltar = "Voltar";
+    vector<std::string> corredores;
+    for(auto corredor : _mercado.getCorredores()){
+      corredores.push_back(corredor->getCategoria());
+    }
+    corredores.push_back(voltar);
+    
+    string opcao = mostrarOpcoes("\tESCOLHA A CATEGORIA DO PRODUTO", corredores, 1);
+      if(opcao != voltar){
+      return opcao;
+    }
+}
+
+void Sistema::adicionarProduto(){
+    std::string categoria = escolherCorredor();
+    //imprimir os produtos presentes no corredor em questao
+    string opcao = mostrarOpcoes("\tDESEJA ADICIONAR UM NOVO PRODUTO AO ESTOQUE OU ADICIONAR À UM JA EXISTENTE?", {"Novo", "Ja Existente", "Voltar"}, 1);
+    if(opcao == "Novo"){
+      Produto* produtoNovo;
+      _mercado.adicionarNovoProduto(categoria, produtoNovo);
+    }
+    else if(opcao == "Ja Existente"){
+      unsigned int quantidade;
+      std::string produto = paginaProdutosAdmin(categoria);
+      std::cout << "Qual a quantidade a ser adicionada?" << std::endl;
+      std::cin >> quantidade;
+      _mercado.adicionarProdutoJaExistente(categoria, produto, quantidade);
+
+    }
+    else{};
+}
+
+Produto* Sistema::criarProduto(){
+  std::string tipo = escolherTipo();
+  if(tipo != "Voltar"){
+    std::string nome = preencherString("Nome");
+    double preco;
+    unsigned int quantidade;
+    std::cout << "Preço: " << std::endl;
+    std::cin >> preco;
+    std::cout << "Quantidade a ser adicionada no estoque: " << std::endl;
+    std::cin >> quantidade;
+    if(tipo == "Produto Genérico"){
+      Produto* novoProduto = new Produto(nome, preco, quantidade);
+    }
+    else if(tipo == "Produto Alimentício"){
+      ProdutoAlimenticio* novoProduto = new ProdutoAlimenticio();
+    }
+    else if(tipo == "Produto de Limpeza"){
+      Produto* novoProduto = new Produto();
+    }
+    else if(tipo == "Produto Infantil"){
+      Produto* novoProduto = new Produto();
+    }
+    return novoProduto;
+  }
+}
+
+std::string Sistema::paginaProdutosAdmin(string categoria){
+  Corredor* c = _mercado.getCorredor(categoria);
+  vector<string> produtos = c->getNomeProdutos();
+  produtos.push_back("Voltar");
+  string opcao;
+  limparTela();
+  opcao = mostrarOpcoes("ESCOLHA O PRODUTO DESEJADO", produtos, 1);
+  if (opcao != "Voltar"){
+    return opcao;
+  }
 }

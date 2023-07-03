@@ -25,6 +25,10 @@ private:
   Consumidor* _consumidor_logado = nullptr;
   Admin* _admin_logado = nullptr;
 
+  //Vetor auxiliar com strings com o nome das subclasses.
+  std::vector <std::string> _tipos_de_produto = {"Produto Genérico, Produto Alimentício, Produto de Limpeza",
+  "Produto Infantil", "Voltar"};
+
 public:
  /*
   * Inicializa o sistema: puxa as todas as informações dos usuários e do
@@ -140,7 +144,7 @@ public:
   * @brief Lista todos os produtos de uma determinada categoria. O usuário pode escolher
   * o produto que quiser e entrar na página detalhada dele.
   */
-  void paginaProdutos(string opcao);
+  void paginaProdutosConsumidor(string categoria);
 
  /*
   * @brief É a página de um determinado produto, onde é listado seu nome, preço, desconto atual,
@@ -152,6 +156,26 @@ public:
   void adicionarConsumidor(Consumidor* c);
   void adicionarMercado(Mercado m);
 
+ /*
+  * @brief Função que usa do método MostrarOpcoes para escolher se o produto a ser adicionado
+  * será genérico ou de algum tipo específico (classe base -Produto- ou derivada).
+  */
+  std::string escolherTipo();
+
+ /*
+  * @brief Função que usa do método MostrarOpcoes para escolher a qual 
+  * corredor o produto deverá ser adicionado.
+  */
+  std::string escolherCorredor();
+
+ /*
+  * @brief Funcao que adiciona o produto do tipo designado ao corredor designado no sistema.
+  */  
+  void adicionarProduto();
+
+  Produto* criarProduto();
+
+  std::string paginaProdutosAdmin(string opcao);
 };
 
 #endif // SISTEMA_HPP
