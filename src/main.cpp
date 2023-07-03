@@ -15,14 +15,14 @@ int main(){
   Produto* p6 = new Produto("Oculos", 30.0, 5);
   Produto* p7 = new Produto("Short", 60.0, 3);
 
-  alimentos->adicionarProduto(p1);
-  alimentos->adicionarProduto(p2);
-  alimentos->adicionarProduto(p3);
+  alimentos->adicionarNovoProduto(p1);
+  alimentos->adicionarNovoProduto(p2);
+  alimentos->adicionarNovoProduto(p3);
 
-  vestimentas->adicionarProduto(p4);
-  vestimentas->adicionarProduto(p5);
-  vestimentas->adicionarProduto(p6);
-  vestimentas->adicionarProduto(p7);
+  vestimentas->adicionarNovoProduto(p4);
+  vestimentas->adicionarNovoProduto(p5);
+  vestimentas->adicionarNovoProduto(p6);
+  vestimentas->adicionarNovoProduto(p7);
 
   m.adicionarCorredor(vestimentas);
   m.adicionarCorredor(alimentos);
