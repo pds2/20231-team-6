@@ -14,8 +14,9 @@ private:
   std::string _categoria;
 
 public:
-  Corredor(std::string categoria);
-  void adicionarProduto(Produto* p);
+  Corredor(string categoria);
+  void adicionarNovoProduto(Produto* p);
+  void adicionarProdutoJaExistente(std::string produto, unsigned int qtd);
 
   std::string getCategoria();
   Produto* getProduto(std::string nome);

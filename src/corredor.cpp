@@ -28,10 +28,19 @@ std::vector<Produto*> Corredor::getTodosProdutos(){
   return _produtos;
 }
 
-void Corredor::adicionarProduto(Produto* p){
+void Corredor::adicionarNovoProduto(Produto* p){
   _produtos.push_back(p);
 }
 
-Corredor::Corredor(std::string categoria){
+void Corredor::adicionarProdutoJaExistente(std::string nome_produto, unsigned int qtd){
+    for(auto produto : _produtos){
+        if(produto->get_nome() == nome_produto){
+            produto->adicionarEstoque(qtd);
+            break;
+        }
+    }
+}
+
+Corredor::Corredor(string categoria){
   _categoria = categoria;
 }
