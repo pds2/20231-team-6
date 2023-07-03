@@ -24,3 +24,13 @@ std::string ProdutoLimpeza::get_aroma() const {
 unsigned int ProdutoLimpeza::get_volume() const {
     return _volume;
 }
+
+Produto* ProdutoLimpeza::criarProdutoLimpeza(){
+    std::string nome = preencherString("Nome");
+    double preco = preencherDouble("Preço");
+    unsigned int quantidade = preencherInt("Quantidade a ser adicionada no estoque");
+    std::string aroma = preencherString("Aroma");
+    unsigned int volume = preencherInt("Volume");
+    Produto* novoProduto = new ProdutoLimpeza(nome, preco, quantidade, aroma, volume);
+    return novoProduto;
+}

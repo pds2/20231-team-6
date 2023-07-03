@@ -26,6 +26,8 @@ class ProdutoAlimenticio : public Produto {
     bool get_vegano() const;
     double get_peso() const;
     std::string get_data_validade() const;
+
+    static Produto* criarProdutoAlimenticio();
 };
 
 #endif // PRODUTO_ALIMENTICIO_HPP

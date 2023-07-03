@@ -24,3 +24,13 @@ std::string ProdutoInfantil::get_genero() const {
 unsigned int ProdutoInfantil::get_idade() const {
     return _idadeRecomendada;
 }
+
+Produto* ProdutoInfantil::criarProdutoInfantil(){
+    std::string nome = preencherString("Nome");
+    double preco = preencherDouble("Preço");
+    unsigned int quantidade = preencherInt("Quantidade a ser adicionada no estoque");
+    std::string genero = preencherString("Genero");
+    unsigned int idade = preencherInt("Idade Recomendada");
+    Produto* novoProduto = new ProdutoInfantil(nome, preco, quantidade, genero, idade);
+    return novoProduto;
+}

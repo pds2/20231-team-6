@@ -23,6 +23,8 @@ class ProdutoInfantil : public Produto {
     void imprimir_informacoes() override;
     std::string get_genero() const;
     unsigned int get_idade() const;
+
+    static Produto* criarProdutoInfantil();
 };
 
 #endif // PRODUTO_INFANTIL_HPP

@@ -32,3 +32,19 @@ double ProdutoAlimenticio::get_peso() const {
 std::string ProdutoAlimenticio::get_data_validade() const {
     return _dataDeValidade;
 }
+
+Produto* ProdutoAlimenticio::criarProdutoAlimenticio(){
+    std::string nome = preencherString("Nome");
+    double preco = preencherDouble("Preço");
+    unsigned int quantidade = preencherInt("Quantidade a ser adicionada no estoque");
+    int peso = preencherInt("Peso");
+
+    bool vegano;
+    std::string é_vegano = mostrarOpcoesA("O produto é vegano?", {"Sim", "Não"}, 0);
+    if(é_vegano == "Sim") vegano = true;
+    else if(é_vegano == "Não") vegano = false;
+
+    std::string data_de_validade = preencherString("Data de Validade");
+    Produto* novoProduto = new ProdutoAlimenticio(nome, preco, quantidade, vegano, peso, data_de_validade);
+    return novoProduto;
+}

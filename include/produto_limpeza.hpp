@@ -23,6 +23,8 @@ class ProdutoLimpeza : public Produto {
     void imprimir_informacoes() override;
     std::string get_aroma() const;
     unsigned int get_volume() const;
+
+    static Produto* criarProdutoLimpeza();
 };
 
 #endif // PRODUTO_LIMPEZA_HPP
