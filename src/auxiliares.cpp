@@ -1,4 +1,4 @@
-#include "auxiliares.hpp"
+#include "../include/auxiliares.hpp"
 
 void limparTela(){
   #ifdef _WIN32

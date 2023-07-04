@@ -18,6 +18,7 @@ class ProdutoAlimenticio : public Produto {
     ProdutoAlimenticio(const std::string &nome, double preco, int quantidade, bool vegano,
                        int peso, const std::string &dataValidade);
 
+    ~ProdutoAlimenticio();
     /*
      * Imprime as informações do produto alimentício através da função imprimir_informacoes.
      * Além disso, imprime se o produto é vegano, o peso e a data de validade.

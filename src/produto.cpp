@@ -17,6 +17,8 @@ Produto::Produto(const std::string &nome, double preco, unsigned int quantidade)
     }
 }
 
+Produto::~Produto(){}
+
 void Produto::imprimir_informacoes() {
     std::cout << "----------------------------" << std::endl;
     std::cout << "Nome: " << _nome << std::endl;
@@ -81,6 +83,7 @@ void Produto::adicionarEstoque(unsigned int qtd_adicionada){
 
 Produto* Produto::criarProdutoGenerico(){
     std::string nome = preencherString("Nome");
+    nome = stringPesquisa(nome);
     double preco = preencherDouble("Preço");
     unsigned int quantidade = preencherInt("Quantidade a ser adicionada no estoque");
     Produto* novoProduto = new Produto(nome, preco, quantidade);

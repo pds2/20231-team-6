@@ -1,7 +1,7 @@
 #ifndef PRODUTO_HPP
 #define PRODUTO_HPP
 
-#include <auxiliares.hpp>
+#include "auxiliares.hpp"
 #include <string>
 
 struct quantidade_invalida_e {};
@@ -25,6 +25,8 @@ class Produto {
      * e o _desconto igual a 0
      */
     Produto(const std::string &nome, double preco, unsigned int quantidade);
+
+    virtual ~Produto();
 
     /*
      * Imprime as informações do produto.

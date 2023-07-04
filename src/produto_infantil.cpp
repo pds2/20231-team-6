@@ -10,6 +10,8 @@ ProdutoInfantil::ProdutoInfantil(const std::string &nome, double preco, int quan
     }        
 }
 
+ProdutoInfantil::~ProdutoInfantil() {}
+
 void ProdutoInfantil::imprimir_informacoes() {
     Produto::imprimir_informacoes();
     std::cout << "Genero: " << _genero << std::endl;
@@ -27,6 +29,7 @@ unsigned int ProdutoInfantil::get_idade() const {
 
 Produto* ProdutoInfantil::criarProdutoInfantil(){
     std::string nome = preencherString("Nome");
+    nome = stringPesquisa(nome);
     double preco = preencherDouble("Preço");
     unsigned int quantidade = preencherInt("Quantidade a ser adicionada no estoque");
     std::string genero = preencherString("Genero");
