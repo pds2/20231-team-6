@@ -493,7 +493,7 @@ void Sistema::adicionarProduto(){
     limparTela();
     if(categoria == "Voltar") break;
     std::cout << std::endl;
-    std::cout << "Os produtos em estoque da categoria" << categoria << " são: " << std::endl;
+    std::cout << "Os produtos em estoque da categoria " << categoria << " são: " << std::endl;
     Corredor* corredorEscolhido = _mercado.getCorredor(categoria);
     std::vector<std::string> produtos = corredorEscolhido->getNomeProdutos();
     for(auto produto : produtos){
