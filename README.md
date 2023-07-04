@@ -1,20 +1,34 @@
-USER STORIES
+# **Sistema de Mercado**
+O programa **Sistema De Mercado** tem o objetivo de simular uma loja online de um mercado com login, que pode ser acessado por consumidores e administradores.
 
+## **Participantes**
+* Arthur Rodrigues Chagas
+* Arthur Rodrigues Diniz
+* Caio Santana Trigueiro
+* Yan Aquino Amorim
+
+## **User Stories**
 1. [COMO] Cliente,
-   [QUERO] Encontrar produtos de forma fácil e intuitiva,
-   [PARA] Realizar minhas compras 
-1. [COMO] Cliente
-   [QUERO] Receber recomendações de produtos que se assemelham aos que eu já comprei
-   [PARA] Ampliar minha gama de aquisições e melhorar minha qualidade de vida
-1. [COMO] Administrador
-   [QUERO] Ter acesso aos dados de compra de meus clientes
-   [PARA] Recomendar os melhores produtos para futuras compras
-1. [COMO] Usuário
-   [QUERO] Ter acesso a um programa de pontos
-   [PARA] Obter descontos em compras futuras
-1. [COMO] Administrador
-   [QUERO] Ter acesso a uma plataforma dinâmica e que aceite mudanças constantes
-   [PARA] Melhorar o Order Bump e o Upsell das minhas vendas
-1. [COMO] Usuário
-   [QUERO] Acesso aos mercados que mais vendem
-   [PARA] Comprar de fornecedores confiáveis
+   [QUERO] Encontrar produtos de forma direta e fácil,
+   [PARA] Realizar minhas compras.
+2. [COMO] Cliente,
+   [QUERO] Ter acesso aos produtos que eu já comprei anteriormente,
+   [PARA] Organizar minhas compras ou comprá-los novamente.
+3. [COMO] Administrador,
+   [QUERO] Ter a possibilidade de editar a página de produtos com facilidade,
+   [PARA] Sempre manter o meu mercado atualizado.
+4. [COMO] Cliente,
+   [QUERO] Ter acesso a uma página com todos os produtos separados por categorias,
+   [PARA] Encontrar novos produtos.
+5. [COMO] Administrador,
+   [QUERO] Ter acesso direto aos usuários do sistema,
+   [PARA] Remover pessoas indesejadas e alterar manualemente algumas informações dos clientes.
+6. [COMO] Cliente,
+   [QUERO] Ter a possibilidade de trocar de senha com facilidade e segurança,
+   [PARA] Evitar que minha conta seja acessada por pessoas mal intencionadas.
+
+## **Instruções Para Uso**
+1. Clone este repositório localmente (git clone https://github.com/pds2/20231-team-6.git)
+2. Compile o código com o comando _make_
+3. Siga as instruções do programa
+
