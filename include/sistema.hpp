@@ -140,13 +140,13 @@ public:
   * @brief Função que usa do método MostrarOpcoes para escolher se o produto a ser adicionado
   * será genérico ou de algum tipo específico (classe base -Produto- ou derivada).
   */
-  std::string escolherTipo();
+  //std::string escolherTipo();
 
  /*
   * @brief Função que usa do método MostrarOpcoes para escolher a qual 
   * corredor o produto deverá ser adicionado.
   */
-  std::string escolherCorredor();
+  //std::string escolherCorredor();
 
  /*
   * @brief Funcao que adiciona o produto do tipo designado ao corredor designado no sistema.

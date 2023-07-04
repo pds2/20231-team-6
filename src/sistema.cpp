@@ -460,13 +460,13 @@ void Sistema::adicionarConta(Conta* c){
   _usuarios.push_back(c);
 }
 
-std::string Sistema::escolherTipo(){
+/*std::string Sistema::escolherTipo(){
     limparTela();
     string opcao = mostrarOpcoes("\tESCOLHA O TIPO DO PRODUTO", Produto::_tipos_de_produto, 1);
       if(opcao != "Voltar"){
         return opcao;
       }
-}
+}*/
 
 /*std::string Sistema::escolherCorredor(){
     limparTela();
@@ -497,7 +497,7 @@ void Sistema::adicionarProduto(){
     Corredor* corredorEscolhido = _mercado.getCorredor(categoria);
     std::vector<std::string> produtos = corredorEscolhido->getNomeProdutos();
     for(auto produto : produtos){
-      cout << produto << "." << std::endl;
+      cout << "- " << produto << std::endl;
     }
     std::cout << std::endl;
     std::string opcao = mostrarOpcoes("\tDESEJA ADICIONAR UM NOVO PRODUTO AO ESTOQUE OU ADICIONAR À UM JA EXISTENTE?", {"Novo", "Ja Existente", "Voltar"}, 1);
@@ -527,6 +527,7 @@ void Sistema::adicionarProduto(){
       if(confirmacao == "Sim"){
         _mercado.adicionarProdutoJaExistente(categoria, produtoNovo, quantidade);
         std::cout << "O produto foi adicionado com Sucesso!" << std::endl;
+        sleep(1);
       } 
     }
   }while(categoria != "Voltar");
@@ -536,7 +537,7 @@ Produto* Sistema::criarProduto(){
   Produto* novoProduto;
   std::string confirmacao;
   do{
-    std::string tipo = escolherTipo();
+    std::string tipo = mostrarOpcoes("\tESCOLHA O TIPO DO PRODUTO", Produto::_tipos_de_produto, 1);
     if(tipo != "Voltar"){
       do{
         if(confirmacao == "Refazer"){

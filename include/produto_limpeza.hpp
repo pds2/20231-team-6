@@ -16,6 +16,8 @@ class ProdutoLimpeza : public Produto {
     ProdutoLimpeza(const std::string &nome, double preco, int quantidade,
                    const std::string &aroma, unsigned int volume);
 
+    ~ProdutoLimpeza() override;
+
     /*
      * Imprime as informações do produto de limpeza através da função imprimir_informacoes.
      * Além disso, imprime o aroma do produto e o volume.

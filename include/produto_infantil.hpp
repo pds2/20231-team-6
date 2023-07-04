@@ -16,6 +16,8 @@ class ProdutoInfantil : public Produto {
     ProdutoInfantil(const std::string &nome, double preco, int quantidade,
                      const std::string &genero, unsigned int idade);
 
+    ~ProdutoInfantil() override;
+    
     /*
      * Imprime as informações do produto infantil através da função imprimir_informacoes.
      * Além disso, imprime o genero do produto e a idade recomendada.
