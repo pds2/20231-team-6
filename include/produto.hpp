@@ -50,7 +50,7 @@ class Produto {
 
     void adicionarEstoque(unsigned int qtd_adicionada);
 
-    static Produto *criarProdutoGenerico();
+    static Produto *criarProdutoGenerico(std::string nome);
 
     static std::vector<std::string> const _tipos_de_produto;
 

@@ -28,7 +28,7 @@ class ProdutoInfantil : public Produto {
     std::string getGenero() const;
     unsigned int getIdade() const;
 
-    static Produto* criarProdutoInfantil();
+    static Produto* criarProdutoInfantil(std::string nome);
 };
 
 #endif // PRODUTO_INFANTIL_HPP

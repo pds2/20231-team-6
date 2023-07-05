@@ -29,7 +29,7 @@ class ProdutoAlimenticio : public Produto {
     double getPeso() const;
     std::string getDataValidade() const;
 
-    static Produto* criarProdutoAlimenticio();
+    static Produto* criarProdutoAlimenticio(std::string nome);
 };
 
 #endif // PRODUTO_ALIMENTICIO_HPP
