@@ -556,19 +556,20 @@ void Sistema::adicionarProduto() {
             std::string produtoNovo = paginaProdutosAdmin(categoria);
             limparTela();
 
-            if (produtoNovo == "Voltar") break;
+            if (produtoNovo != "Voltar") {
 
-            quantidade = preencherInt("Qual a quantidade a ser adicionada");
-            std::cout << std::endl;
+                quantidade = preencherInt("Qual a quantidade a ser adicionada");
+                std::cout << std::endl;
 
-            std::cout << "Você está adicionando " << quantidade << " unidades ao produto " << produtoNovo << "."
-                      << std::endl;
-            confirmacao = mostrarOpcoesA("Deseja Confirmar A Adição?", {"Sim", "Cancelar"}, 0);
+                std::cout << "Você está adicionando " << quantidade << " unidades ao produto " << produtoNovo << "."
+                        << std::endl;
+                confirmacao = mostrarOpcoesA("Deseja Confirmar A Adição?", {"Sim", "Cancelar"}, 0);
 
-            if (confirmacao == "Sim") {
-                _mercado.adicionarProdutoJaExistente(categoria, produtoNovo, quantidade);
-                std::cout << "O produto foi adicionado com Sucesso!" << std::endl;
-                sleep(1);
+                if (confirmacao == "Sim") {
+                    _mercado.adicionarProdutoJaExistente(categoria, produtoNovo, quantidade);
+                    std::cout << "O produto foi adicionado com Sucesso!" << std::endl;
+                    sleep(1);
+                }
             }
         }
     } while (categoria != "Voltar");
@@ -587,21 +588,29 @@ Produto *Sistema::criarProduto() {
                     delete novoProduto;
                     limparTela();
                 }
+                std::string nome;
+
+                while (true){
+                    nome = preencherString("Nome");
+                    nome = stringPesquisa(nome);
+                    if (nomeValido(nome) == 1) break;
+                    std::cout << "Já existe um produto com esse nome! Por favor, tente novamente." << std::endl;
+                }
                 //não colocar else if aqui
                 if (tipo == "Produto Genérico") {
-                    novoProduto = Produto::criarProdutoGenerico();
+                    novoProduto = Produto::criarProdutoGenerico(nome);
                     confirmacao = novoProduto->confirmarComposicao();
                 }
                 else if (tipo == "Produto Alimentício") {
-                    novoProduto = ProdutoAlimenticio::criarProdutoAlimenticio();
+                    novoProduto = ProdutoAlimenticio::criarProdutoAlimenticio(nome);
                     confirmacao = novoProduto->confirmarComposicao();
                 }
                 else if (tipo == "Produto de Limpeza") {
-                    novoProduto = ProdutoLimpeza::criarProdutoLimpeza();
+                    novoProduto = ProdutoLimpeza::criarProdutoLimpeza(nome);
                     confirmacao = novoProduto->confirmarComposicao();
                 }
                 else if (tipo == "Produto Infantil") {
-                    novoProduto = ProdutoInfantil::criarProdutoInfantil();
+                    novoProduto = ProdutoInfantil::criarProdutoInfantil(nome);
                     confirmacao = novoProduto->confirmarComposicao();
                 }
             } while (confirmacao == "Refazer");
@@ -625,4 +634,18 @@ std::string Sistema::paginaProdutosAdmin(std::string categoria) {
 
     std::string opcao = mostrarOpcoes("ESCOLHA O PRODUTO DESEJADO", produtos, 1);
     return opcao;
+}
+
+bool Sistema::nomeValido(std::string nome){
+    bool valido;
+
+    try{
+        _mercado.getProduto(nome);
+        valido = 0;
+    }
+    catch (std::invalid_argument &e){
+        valido = 1;
+    }
+
+    return valido;
 }

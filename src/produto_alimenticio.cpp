@@ -35,9 +35,9 @@ std::string ProdutoAlimenticio::getDataValidade() const {
     return _dataDeValidade;
 }
 
-Produto* ProdutoAlimenticio::criarProdutoAlimenticio(){
-    std::string nome = preencherString("Nome");
-    nome = stringPesquisa(nome);
+Produto* ProdutoAlimenticio::criarProdutoAlimenticio(std::string nome){
+    //std::string nome = preencherString("Nome");
+    //nome = stringPesquisa(nome);
     double preco = preencherDouble("Preço");
     unsigned int quantidade = preencherInt("Quantidade a ser adicionada no estoque");
     int peso = preencherInt("Peso");

@@ -154,6 +154,8 @@ class Sistema {
     Produto *criarProduto();
 
     std::string paginaProdutosAdmin(std::string opcao);
+
+    bool nomeValido(std::string nome);
 };
 
 #endif // SISTEMA_HPP

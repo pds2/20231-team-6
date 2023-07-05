@@ -81,9 +81,9 @@ void Produto::adicionarEstoque(unsigned int qtd_adicionada){
     _quantidade = _quantidade + qtd_adicionada;
 }
 
-Produto* Produto::criarProdutoGenerico(){
-    std::string nome = preencherString("Nome");
-    nome = stringPesquisa(nome);
+Produto* Produto::criarProdutoGenerico(std::string nome){
+    //std::string nome = preencherString("Nome");
+    //nome = stringPesquisa(nome);
     double preco = preencherDouble("Preço");
     unsigned int quantidade = preencherInt("Quantidade a ser adicionada no estoque");
     Produto* novoProduto = new Produto(nome, preco, quantidade);

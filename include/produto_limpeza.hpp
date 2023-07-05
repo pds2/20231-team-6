@@ -28,7 +28,7 @@ class ProdutoLimpeza : public Produto {
     std::string getAroma() const;
     unsigned int getVolume() const;
 
-    static Produto* criarProdutoLimpeza();
+    static Produto* criarProdutoLimpeza(std::string nome);
 };
 
 #endif // PRODUTO_LIMPEZA_HPP
