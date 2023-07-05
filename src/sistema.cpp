@@ -523,7 +523,7 @@ void Sistema::adicionarProduto() {
 
         if (categoria == "Voltar") break;
 
-        std::cout << std::endl;\
+        std::cout << std::endl;
         std::cout << "Os produtos em estoque da categoria " << categoria << " são: " << std::endl;
         Corredor *corredorEscolhido = _mercado.getCorredor(categoria);
         std::vector<std::string> produtos = corredorEscolhido->getNomeProdutos();
@@ -584,11 +584,11 @@ Produto *Sistema::criarProduto() {
         if (tipo != "Voltar") {
             do {
                 if (confirmacao == "Refazer") {
-                    //ta dando segmentation fault
                     delete novoProduto;
                     limparTela();
                 }
-                else if (tipo == "Produto Genérico") {
+                //não colocar else if aqui
+                if (tipo == "Produto Genérico") {
                     novoProduto = Produto::criarProdutoGenerico();
                     confirmacao = novoProduto->confirmarComposicao();
                 }
