@@ -6,6 +6,7 @@
 #include <iostream>
 #include <limits>
 #include <stdexcept>
+#include <string>
 #include <typeinfo>
 #include <unistd.h>
 #include <vector>
@@ -112,9 +113,10 @@ class Sistema {
      * ou caso ele tente remover uma quantidade inválida.
      */
     void paginaCheckout();
-    void paginaRemoverProduto();
+    void paginaRemoverProdutoCarrinho();
 
     void paginaAdmin();
+    void paginaAdminEditarProdutos();
 
     // OUTROS
 
@@ -150,6 +152,8 @@ class Sistema {
      * @brief Funcao que adiciona o produto do tipo designado ao corredor designado no sistema.
      */
     void adicionarProduto();
+    void removerProduto();
+    void remocaoProdutoFinal(std::string produto, std::string categoria);
 
     Produto *criarProduto();
 

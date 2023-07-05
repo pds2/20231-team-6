@@ -51,8 +51,8 @@ void Consumidor::exibirCarrinho() {
         std::cout << "Preco: R$" << preco << std::endl;
         std::cout << "----------------------------" << std::endl;
     }
-    std::cout << "Seu Saldo: R$" << getSaldo() << std::endl;
     std::cout << "Preco Total: R$" << getPrecoTotalCarrinho() << std::endl;
+    std::cout << "Seu Saldo: R$" << getSaldo() << std::endl;
 }
 
 void Consumidor::limparCarrinho() {

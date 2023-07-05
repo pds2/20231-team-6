@@ -1,4 +1,5 @@
 #include "../include/corredor.hpp"
+#include <stdexcept>
 
 Corredor::Corredor(std::string categoria) {
     _categoria = categoria;
@@ -41,4 +42,17 @@ Produto *Corredor::getProduto(std::string nome) {
 
 std::vector<Produto *> Corredor::getTodosProdutos() {
     return _produtos;
+}
+
+void Corredor::removerProduto(std::string nome){
+    bool produtoExiste = 0;
+    for (auto it = _produtos.begin(); it != _produtos.end(); it++){
+        auto it2 = (*it);
+        if(it2->getNome() == nome){
+            _produtos.erase(it);
+            produtoExiste = 1;
+            break;
+        }
+    }
+    if (produtoExiste == 0) throw std::invalid_argument("Produto Inexistente!");
 }
