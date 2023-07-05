@@ -19,7 +19,7 @@ Produto::Produto(const std::string &nome, double preco, unsigned int quantidade)
 
 Produto::~Produto(){}
 
-void Produto::imprimir_informacoes() {
+void Produto::imprimirInformacoes() {
     std::cout << "----------------------------" << std::endl;
     std::cout << "Nome: " << _nome << std::endl;
     //std::cout << "ID: " << _id << std::endl;
@@ -36,7 +36,7 @@ void Produto::imprimir_informacoes() {
     std::cout << "Quantidade em estoque: " << _quantidade << std::endl;
 }
 
-void Produto::aplicar_desconto(double desconto) {
+void Produto::aplicarDesconto(double desconto) {
     if (desconto <= 0 || desconto > 100){
         throw desconto_invalido_e();
     }
@@ -44,36 +44,36 @@ void Produto::aplicar_desconto(double desconto) {
     _precoComDesconto = _precoBase * (1 - _desconto / 100);
 }
 
-void Produto::remover_desconto() {
+void Produto::removerDesconto() {
     _desconto = 0;
     _precoComDesconto = _precoBase;
 }
 
-void Produto::remover_estoque(unsigned int valor){
+void Produto::removerEstoque(unsigned int valor){
   _quantidade -= valor;
 }
 
-int Produto::get_id() const {
+int Produto::getId() const {
     return _id;
 }
 
-std::string Produto::get_nome() const {
+std::string Produto::getNome() const {
     return _nome;
 }
 
-unsigned int Produto::get_quantidade() const {
+unsigned int Produto::getQuantidade() const {
     return _quantidade;
 }
 
-double Produto::get_preco() const {
+double Produto::getPreco() const {
     return _precoBase;
 }
 
-double Produto::get_preco_com_desconto() const {
+double Produto::getPrecoComDesconto() const {
     return _precoComDesconto;
 }
 
-double Produto::get_desconto() const {
+double Produto::getDesconto() const {
     return _desconto;
 }
 
@@ -90,11 +90,12 @@ Produto* Produto::criarProdutoGenerico(){
     return novoProduto;
 }
 
-std::vector <std::string> const Produto::_tipos_de_produto = {"Produto Genérico", "Produto Alimentício", "Produto de Limpeza", \
-"Produto Infantil", "Voltar"};
+std::vector <std::string> const Produto::_tipos_de_produto = {"Produto Genérico", "Produto Alimentício",
+                                                              "Produto de Limpeza", "Produto Infantil", "Voltar"};
 
 std::string Produto::confirmarComposicao(){
-    imprimir_informacoes();
+    imprimirInformacoes();
+
     std::cout << std::endl;
     std::string opcoes = mostrarOpcoesA("Deseja Confirmar A Adição do Novo Produto?", {"Sim", "Refazer","Cancelar"}, 1);
     return opcoes;

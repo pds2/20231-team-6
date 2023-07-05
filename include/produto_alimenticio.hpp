@@ -23,10 +23,11 @@ class ProdutoAlimenticio : public Produto {
      * Imprime as informações do produto alimentício através da função imprimir_informacoes.
      * Além disso, imprime se o produto é vegano, o peso e a data de validade.
      */
-    void imprimir_informacoes() override;
-    bool get_vegano() const;
-    double get_peso() const;
-    std::string get_data_validade() const;
+    void imprimirInformacoes() override;
+    
+    bool getVegano() const;
+    double getPeso() const;
+    std::string getDataValidade() const;
 
     static Produto* criarProdutoAlimenticio();
 };

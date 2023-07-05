@@ -12,18 +12,18 @@ ProdutoLimpeza::ProdutoLimpeza(const std::string &nome, double preco, int quanti
 
 ProdutoLimpeza::~ProdutoLimpeza(){}
 
-void ProdutoLimpeza::imprimir_informacoes() {
-    Produto::imprimir_informacoes();
+void ProdutoLimpeza::imprimirInformacoes() {
+    Produto::imprimirInformacoes();
     std::cout << "Aroma: " << _aroma << std::endl;
-    std::cout << "Volume: " << _volume << " ml" << std::endl;
+    std::cout << "Volume: " << _volume << "ml" << std::endl;
     std::cout << "----------------------------" << std::endl;
 }
 
-std::string ProdutoLimpeza::get_aroma() const {
+std::string ProdutoLimpeza::getAroma() const {
     return _aroma;
 }
 
-unsigned int ProdutoLimpeza::get_volume() const {
+unsigned int ProdutoLimpeza::getVolume() const {
     return _volume;
 }
 
@@ -34,6 +34,7 @@ Produto* ProdutoLimpeza::criarProdutoLimpeza(){
     unsigned int quantidade = preencherInt("Quantidade a ser adicionada no estoque");
     std::string aroma = preencherString("Aroma");
     unsigned int volume = preencherInt("Volume");
+    
     Produto* novoProduto = new ProdutoLimpeza(nome, preco, quantidade, aroma, volume);
     return novoProduto;
 }

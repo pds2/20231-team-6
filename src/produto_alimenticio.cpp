@@ -12,8 +12,8 @@ ProdutoAlimenticio::ProdutoAlimenticio(const std::string &nome, double preco, in
 
 ProdutoAlimenticio::~ProdutoAlimenticio(){}
 
-void ProdutoAlimenticio::imprimir_informacoes() {
-    Produto::imprimir_informacoes();
+void ProdutoAlimenticio::imprimirInformacoes() {
+    Produto::imprimirInformacoes();
     
     if (_vegano) {
         std::cout << "Produto vegano!" << std::endl;
@@ -23,15 +23,15 @@ void ProdutoAlimenticio::imprimir_informacoes() {
     std::cout << "----------------------------" << std::endl;
 }
 
-bool ProdutoAlimenticio::get_vegano() const {
+bool ProdutoAlimenticio::getVegano() const {
     return _vegano;
 }
 
-double ProdutoAlimenticio::get_peso() const {
+double ProdutoAlimenticio::getPeso() const {
     return _peso;
 }
 
-std::string ProdutoAlimenticio::get_data_validade() const {
+std::string ProdutoAlimenticio::getDataValidade() const {
     return _dataDeValidade;
 }
 
@@ -44,9 +44,11 @@ Produto* ProdutoAlimenticio::criarProdutoAlimenticio(){
 
     bool vegano;
     std::string é_vegano = mostrarOpcoesA("O produto é vegano?", {"Sim", "Não"}, 0);
-    if(é_vegano == "Sim") vegano = true;
-    else if(é_vegano == "Não") vegano = false;
-
+    if (é_vegano == "Sim"){
+        vegano = true;
+    } else {
+        vegano = false;
+    }
     std::string data_de_validade = preencherString("Data de Validade");
     Produto* novoProduto = new ProdutoAlimenticio(nome, preco, quantidade, vegano, peso, data_de_validade);
     return novoProduto;

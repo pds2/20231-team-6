@@ -1,12 +1,8 @@
 #ifndef CONTA_HPP
 #define CONTA_HPP
 
-//#include "produto.hpp"
-
 #include <string>
 #include <vector>
-
-using namespace std;
 
 /*
     @brief Definição da classe conta e seus métodos.
@@ -17,7 +13,6 @@ class Conta {
     Conta(const std::string& usuario, const std::string& senha);
 
     private:
-        
         std::string _usuario;
         std::string _senha;
 
@@ -32,7 +27,7 @@ class Conta {
         //Registra uma nova conta.
         void registrar(std::string usuario, std::string senha);
 
-        void trocarSenha(string const &senha);
+        void trocarSenha(std::string const &senha);
 };
 
-#endif
+#endif // CONTA_HPP
