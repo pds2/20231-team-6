@@ -1,5 +1,6 @@
 #include <cctype>
 #include <stdexcept>
+#include <string>
 
 #include "../include/sistema.hpp"
 
@@ -199,7 +200,7 @@ void Sistema::paginaConsumidorVerCarrinho() {
                 paginaCheckout();
             }
             if (opcao == "Remover Produto") {
-                paginaRemoverProduto();
+                paginaRemoverProdutoCarrinho();
             }
         }
     } while (opcao != "Voltar");
@@ -272,6 +273,7 @@ void Sistema::detalhesProduto(std::string nome) {
 
     limparTela();
     escolha->imprimirInformacoes();
+    std::cout << "----------------------------" << std::endl;
     std::string opcao = mostrarOpcoes("\n", {"Adicionar ao Carrinho", "Voltar"}, 0);
 
     while (opcao != "Voltar") {
@@ -283,7 +285,7 @@ void Sistema::detalhesProduto(std::string nome) {
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         }
-        if (quantidade > escolha->getQuantidade()) {
+        if (quantidade > escolha->getQuantidade() || escolha->getQuantidade() == 0) {
             std::cout << "Nao ha Estoque Suficiente!" << std::endl;
             opcao = mostrarOpcoes("\n", {"Tentar Novamente", "Voltar"}, 0);
         }
@@ -329,7 +331,7 @@ void Sistema::paginaCheckout() {
     }
 }
 
-void Sistema::paginaRemoverProduto() {
+void Sistema::paginaRemoverProdutoCarrinho() {
     std::string opcao;
     
     do {
@@ -370,13 +372,24 @@ void Sistema::paginaAdmin() {
             {"Editar Produtos", "Edtiar Corredores", "Editar Usuarios", "Criar Conta Admin", "Deslogar"}, 1);
 
         if (opcao == "Editar Produtos") {
-            adicionarProduto();
+            paginaAdminEditarProdutos();
         }
 
         if (opcao == "Deslogar") {
             _admin_logado = nullptr;
             break;
         }
+    }
+}
+
+void Sistema::paginaAdminEditarProdutos(){
+    limparTela();
+    std::string opcao = mostrarOpcoes("\tSELECIONE A OPCAO DESEJADA", {"Adicionar", "Remover", "Voltar"} , 1);
+    if (opcao == "Adicionar"){
+        adicionarProduto();
+    }
+    if (opcao == "Remover"){
+        removerProduto();
     }
 }
 
@@ -488,28 +501,51 @@ void Sistema::adicionarConta(Conta *c) {
     _usuarios.push_back(c);
 }
 
-/*string Sistema::escolherTipo(){
-    limparTela();
-    std::string opcao = mostrarOpcoes("\tESCOLHA O TIPO DO PRODUTO", Produto::_tipos_de_produto, 1);
-      if(opcao != "Voltar"){
-        return opcao;
-      }
-}*/
+void Sistema::removerProduto(){
+    std::string categoria;
+    do{
+        limparTela();
+        std::vector<std::string> todasCategorias = _mercado.getTodasCategorias();
+        todasCategorias.push_back("Voltar");
+        categoria = mostrarOpcoes("\tEscolha a categoria do produto que deseja remover", todasCategorias, 1);
 
-/*string Sistema::escolherCorredor(){
-    limparTela();
-    std::string voltar = "Voltar";
-    std::vector<std::string> corredores;
-    for(auto corredor : _mercado.getCorredores()){
-      corredores.push_back(corredor->getCategoria());
-    }
-    corredores.push_back(voltar);
+        std::string produto;
+        if (categoria != "Voltar"){
+            limparTela();
+            std::vector<std::string> produtos = _mercado.getCorredor(categoria)->getNomeProdutos();
+            produtos.push_back("Voltar");
+            produto = mostrarOpcoes("Escolha o produto que deseja alterar", produtos, 1);
+            if (produto != "Voltar") remocaoProdutoFinal(produto, categoria);
+        }
+    } while (categoria != "Voltar");
+}
 
-    std::string opcao = mostrarOpcoes("\tESCOLHA A CATEGORIA DO PRODUTO", corredores, 1);
-      if(opcao != voltar){
-      return opcao;
+void Sistema::remocaoProdutoFinal(std::string produto, std::string categoria){
+    Produto *escolha = _mercado.getProduto(produto);
+    escolha->imprimirInformacoes();
+    std::cout << "----------------------------" << std::endl;
+
+    std::string opcao = mostrarOpcoes("\n", {"Excluir", "Reduzir Estoque", "Voltar"}, 0);
+    if (opcao == "Reduzir Estoque"){
+        int reducao = preencherInt("Quantas unidades deseja reduzir");
+        if (reducao >= escolha->getQuantidade()){
+            reducao = escolha->getQuantidade();
+            escolha->removerEstoque(reducao);
+            std::cout << "Todo o estoque foi removido com sucesso!" << std::endl;
+            sleep(1);
+        }
+        else {
+            escolha->removerEstoque(reducao);
+            std::cout << "Você removeu " << reducao << " unidades do estoque com sucesso!" << std::endl;
+            sleep(1);
+        }
     }
-}*/
+    if (opcao == "Excluir"){
+        _mercado.getCorredor(categoria)->removerProduto(produto);
+        std::cout << "O produto " << produto << " foi excluido(a) com sucesso!" << std::endl;
+        sleep(1);
+    }
+}
 
 void Sistema::adicionarProduto() {
     std::string categoria;
@@ -518,12 +554,12 @@ void Sistema::adicionarProduto() {
         limparTela();
         std::vector<std::string> todasCategorias = _mercado.getTodasCategorias();
         todasCategorias.push_back("Voltar");
-        categoria = mostrarOpcoes("\tESCOLHA A CATEGORIA DO PRODUTO", todasCategorias, 1);
+        categoria = mostrarOpcoes("\tEscolha a categoria do produto que deseja adicionar", todasCategorias, 1);
         limparTela();
 
         if (categoria == "Voltar") break;
 
-        std::cout << std::endl;
+        std::cout << "----------------------------" << std::endl;
         std::cout << "Os produtos em estoque da categoria " << categoria << " são: " << std::endl;
         Corredor *corredorEscolhido = _mercado.getCorredor(categoria);
         std::vector<std::string> produtos = corredorEscolhido->getNomeProdutos();
@@ -531,7 +567,7 @@ void Sistema::adicionarProduto() {
         for (auto produto : produtos) {
             std::cout << "- " << produto << std::endl;
         }
-        std::cout << std::endl;
+        std::cout << "----------------------------" << std::endl;
 
         std::string opcao =
             mostrarOpcoes("\tDESEJA ADICIONAR UM NOVO PRODUTO AO ESTOQUE OU ADICIONAR À UM JA EXISTENTE?",
@@ -638,7 +674,6 @@ std::string Sistema::paginaProdutosAdmin(std::string categoria) {
 
 bool Sistema::nomeValido(std::string nome){
     bool valido;
-
     try{
         _mercado.getProduto(nome);
         valido = 0;
@@ -646,6 +681,5 @@ bool Sistema::nomeValido(std::string nome){
     catch (std::invalid_argument &e){
         valido = 1;
     }
-
     return valido;
 }

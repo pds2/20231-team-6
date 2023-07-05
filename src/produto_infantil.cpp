@@ -16,7 +16,6 @@ void ProdutoInfantil::imprimirInformacoes() {
     Produto::imprimirInformacoes();
     std::cout << "Genero: " << _genero << std::endl;
     std::cout << "Idade recomendada: " << _idadeRecomendada << std::endl;
-    std::cout << "----------------------------" << std::endl;
 }
 
 std::string ProdutoInfantil::getGenero() const {
@@ -32,9 +31,9 @@ Produto* ProdutoInfantil::criarProdutoInfantil(std::string nome){
     //nome = stringPesquisa(nome);
     double preco = preencherDouble("Preço");
     unsigned int quantidade = preencherInt("Quantidade a ser adicionada no estoque");
-    std::string genero = preencherString("Genero");
+    std::string genero = mostrarOpcoesA("O produto é recomendado para qual gênero?", \
+                                        {"Masculino", "Feminino", "Ambos"}, 0);
     unsigned int idade = preencherInt("Idade Recomendada");
-    
     Produto* novoProduto = new ProdutoInfantil(nome, preco, quantidade, genero, idade);
     return novoProduto;
 }

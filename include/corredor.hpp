@@ -16,6 +16,8 @@ class Corredor {
   public:
     Corredor(std::string categoria);
     void adicionarNovoProduto(Produto *produto);
+    void removerProduto(std::string nome);
+
     void adicionarProdutoJaExistente(std::string produto, unsigned int qtd);
 
     std::string getCategoria();
