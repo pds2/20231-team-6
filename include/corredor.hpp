@@ -8,20 +8,20 @@
 #include "produto_infantil.hpp"
 #include "produto_limpeza.hpp"
 
-class Corredor{
-private:
-  std::vector <Produto*> _produtos;
-  std::string _categoria;
+class Corredor {
+  private:
+    std::vector<Produto *> _produtos;
+    std::string _categoria;
 
-public:
-  Corredor(std::string categoria);
-  void adicionarNovoProduto(Produto* p);
-  void adicionarProdutoJaExistente(std::string produto, unsigned int qtd);
+  public:
+    Corredor(std::string categoria);
+    void adicionarNovoProduto(Produto *produto);
+    void adicionarProdutoJaExistente(std::string produto, unsigned int qtd);
 
-  std::string getCategoria();
-  Produto* getProduto(std::string nome);
-  std::vector<std::string> getNomeProdutos();
-  std::vector<Produto*> getTodosProdutos();
+    std::string getCategoria();
+    std::vector<std::string> getNomeProdutos();
+    Produto *getProduto(std::string nome);
+    std::vector<Produto *> getTodosProdutos();
 };
 
 #endif // CORREDOR_HPP

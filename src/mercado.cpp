@@ -1,56 +1,56 @@
-#include "../include/mercado.hpp"
 #include <stdexcept>
 
-std::vector<std::string> Mercado::getTodasCategorias(){
-  std::vector<std::string> categorias;
-  for (Corredor* c : _corredores){
-    categorias.push_back(c->getCategoria());
-  }
-  return (categorias);
-}
+#include "../include/mercado.hpp"
 
-Corredor* Mercado::getCorredor(std::string categoria){
-  Corredor* escolha;
-  for (Corredor* c: _corredores){
-    if (c->getCategoria() == categoria){
-      escolha = c;
-      break;
+std::vector<std::string> Mercado::getTodasCategorias() {
+    std::vector<std::string> categorias;
+
+    for (Corredor *corredor : _corredores) {
+        categorias.push_back(corredor->getCategoria());
     }
-  }
-  return escolha;
+    return (categorias);
 }
 
-Produto* Mercado::getProduto(std::string nome){
-  for (Corredor* c : _corredores){
-    for (Produto* p : c->getTodosProdutos()){
-      if (p->get_nome() == nome) return p; 
+Corredor *Mercado::getCorredor(std::string categoria) {
+    for (Corredor *corredor : _corredores) {
+        if (corredor->getCategoria() == categoria) {
+            return corredor;
+        }
     }
-  }
-  throw (std::invalid_argument("Produto nao Encontrado!"));
+    throw(std::invalid_argument("Corredor nao Encontrado!"));
 }
 
-void Mercado::adicionarCorredor (Corredor* c){
-  _corredores.push_back(c);
-}
-
-std::vector<Corredor*> Mercado::getCorredores(){
- return _corredores;
-}
-
-void Mercado::adicionarNovoProduto (std::string categoria, Produto* produto){
-  for(auto& corredor : _corredores){
-    if(corredor->getCategoria() == categoria){
-      corredor->adicionarNovoProduto(produto);
-      break;
+Produto *Mercado::getProduto(std::string nome) {
+    for (Corredor *corredor : _corredores) {
+        for (Produto *produto : corredor->getTodosProdutos()) {
+            if (produto->getNome() == nome) return produto;
+        }
     }
-  }
+    throw(std::invalid_argument("Produto nao Encontrado!"));
 }
 
-void Mercado::adicionarProdutoJaExistente (std::string categoria, std::string nome_produto, unsigned int qtd){
-  for(auto& corredor : _corredores){
-    if(corredor->getCategoria() == categoria){
-      corredor->adicionarProdutoJaExistente(nome_produto, qtd);
-      break;
+void Mercado::adicionarCorredor(Corredor *corredor) {
+    _corredores.push_back(corredor);
+}
+
+std::vector<Corredor *> Mercado::getCorredores() {
+    return _corredores;
+}
+
+void Mercado::adicionarNovoProduto(std::string categoria, Produto *produto) {
+    for (auto &corredor : _corredores) {
+        if (corredor->getCategoria() == categoria) {
+            corredor->adicionarNovoProduto(produto);
+            break;
+        }
     }
-  }
+}
+
+void Mercado::adicionarProdutoJaExistente(std::string categoria, std::string nome_produto, unsigned int qtd) {
+    for (auto &corredor : _corredores) {
+        if (corredor->getCategoria() == categoria) {
+            corredor->adicionarProdutoJaExistente(nome_produto, qtd);
+            break;
+        }
+    }
 }

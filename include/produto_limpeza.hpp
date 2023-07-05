@@ -1,8 +1,9 @@
 #ifndef PRODUTO_LIMPEZA_HPP
 #define PRODUTO_LIMPEZA_HPP
 
-#include "produto.hpp"
 #include <string>
+
+#include "produto.hpp"
 
 struct volume_invalido_e {};
 
@@ -22,9 +23,10 @@ class ProdutoLimpeza : public Produto {
      * Imprime as informações do produto de limpeza através da função imprimir_informacoes.
      * Além disso, imprime o aroma do produto e o volume.
      */
-    void imprimir_informacoes() override;
-    std::string get_aroma() const;
-    unsigned int get_volume() const;
+    void imprimirInformacoes() override;
+    
+    std::string getAroma() const;
+    unsigned int getVolume() const;
 
     static Produto* criarProdutoLimpeza();
 };

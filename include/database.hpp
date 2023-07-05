@@ -1,21 +1,21 @@
-#ifndef DATABASE_HPP
-#define DATABASE_HPP
+// #ifndef DATABASE_HPP
+// #define DATABASE_HPP
 
-#include <string>
-#include <vector>
-#include <map>
+// #include <string>
+// #include <vector>
+// #include <map>
 
-class Database {
-private:
-    sqlite3* db;
+// class Database {
+// private:
+//     sqlite3* db;
 
-public:
-    Database(const std::string& nome_db);
-    ~Database();
+// public:
+//     Database(const std::string& nome_db);
+//     ~Database();
 
-    std::vector<std::string> buscar_produtos();
+//     std::vector<std::string> buscar_produtos();
     
-};
+// };
 
-#endif  // DATABASE_HPP
+// #endif  // DATABASE_HPP
 
