@@ -54,3 +54,18 @@ void Mercado::adicionarProdutoJaExistente(std::string categoria, std::string nom
         }
     }
 }
+
+void Mercado::removerCorredor(std::string categoria){
+    bool corredorExiste = 0;
+    for (auto it = _corredores.begin(); it != _corredores.end(); ++it){
+        auto it2 = (*it);
+        if (it2->getCategoria() == categoria){
+            if (it2->getTodosProdutos().size() != 0) throw std::invalid_argument\
+            ("O corredor deve estar vazio para ser removido! Por favor, remova todos os seus produtos antes.");
+            _corredores.erase(it);
+            corredorExiste = 1;
+            break;
+        }
+    }
+    if (corredorExiste == 0) throw std::invalid_argument("Corredor Inexistente!");
+}

@@ -44,8 +44,16 @@ std::string mostrarOpcoesA(std::string titulo, std::vector<std::string> opcoes, 
 std::string preencherString(std::string campo) {
     std::string entrada;
 
-    std::cout << campo << ": ";
-    getline(std::cin, entrada);
+    while (true){
+        std::cout << campo << ": ";
+        getline(std::cin, entrada);
+        if (entrada == "" || entrada == " "){
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "Entrada inválida. Por favor, digite um nome válido.\n";      
+        }
+        else break;
+    }
     return entrada;
 }
 
