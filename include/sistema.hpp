@@ -117,6 +117,12 @@ class Sistema {
 
     void paginaAdmin();
     void paginaAdminEditarProdutos();
+    void paginaAdminEditarCorredores();
+    void paginaAdminCriarConta();
+    void paginaAdminEditarUsuarios();
+
+    void adicionarCorredor();
+    void removerCorredor();
 
     // OUTROS
 
@@ -159,7 +165,8 @@ class Sistema {
 
     std::string paginaProdutosAdmin(std::string opcao);
 
-    bool nomeValido(std::string nome);
+    bool produtoValido(std::string nome);
+    bool corredorValido(std::string categoria);
 };
 
 #endif // SISTEMA_HPP

@@ -14,6 +14,7 @@ class Mercado {
 
     void adicionarNovoProduto(std::string categoria, Produto *produto);
     void adicionarProdutoJaExistente(std::string categoria, std::string nome_produto, unsigned int qtd);
+    void removerCorredor(std::string categoria);
 
     Produto *getProduto(std::string nome);
     std::vector<std::string> getTodasCategorias();

@@ -1,6 +1,7 @@
 #include <cctype>
 #include <stdexcept>
 #include <string>
+#include <vector>
 
 #include "../include/sistema.hpp"
 
@@ -90,7 +91,7 @@ void Sistema::paginaInicialCadastroConsumidor() {
                 verificarSenhaCadastro(senha, senha2);
                 std::cout << "Cadastro feito com sucesso! Bem vindo " << usuario << "!" << std::endl;
                 
-                sleep(2);
+                sleep(1);
                 Consumidor *u1 = new Consumidor(usuario, senha);
                 _usuarios.push_back(u1);
                 logarConsumidor(usuario, senha);
@@ -375,6 +376,18 @@ void Sistema::paginaAdmin() {
             paginaAdminEditarProdutos();
         }
 
+        if (opcao == "Edtiar Corredores"){
+            paginaAdminEditarCorredores();
+        }
+
+        if (opcao == "Editar Usuarios"){
+            paginaAdminEditarUsuarios();
+        }
+
+        if (opcao == "Criar Conta Admin"){
+            paginaAdminCriarConta();
+        }
+
         if (opcao == "Deslogar") {
             _admin_logado = nullptr;
             break;
@@ -384,13 +397,113 @@ void Sistema::paginaAdmin() {
 
 void Sistema::paginaAdminEditarProdutos(){
     limparTela();
-    std::string opcao = mostrarOpcoes("\tSELECIONE A OPCAO DESEJADA", {"Adicionar", "Remover", "Voltar"} , 1);
+    std::string opcao = mostrarOpcoes("\tSELECIONE O QUE DESEJA EDITAR NOS PRODUTOS", {"Adicionar", "Remover", "Voltar"} , 1);
     if (opcao == "Adicionar"){
         adicionarProduto();
     }
     if (opcao == "Remover"){
         removerProduto();
     }
+}
+
+void Sistema::paginaAdminEditarCorredores(){
+    limparTela();
+    std::string opcao = mostrarOpcoes("\tSELECIONE O QUE DESEJA EDITAR NOS CORREDORES", {"Adicionar", "Remover", "Voltar"} , 1);
+    if (opcao == "Adicionar"){
+        adicionarCorredor();
+    }
+    if (opcao == "Remover"){
+        removerCorredor();
+    }
+}
+
+void Sistema::paginaAdminCriarConta(){
+    std::string opcao;
+
+    do {
+        limparTela();
+        std::cout << "\tAREA PARA CRIAR NOVOS ADMINISTADORES" << std::endl;
+        std::string usuario = preencherString("Usuario");
+        try {
+            verificarUsuario(usuario);
+            try {
+                std::string senha = preencherString("Senha");
+                std::string senha2 = preencherString("Digite a Senha Novamente");
+                verificarSenhaCadastro(senha, senha2);
+                std::cout << "O cadastro da conta " << usuario << " foi feito com sucesso!" << std::endl;
+               
+                sleep(1);
+                Admin *u1 = new Admin(usuario, senha);
+                _usuarios.push_back(u1);
+                
+                opcao = "Voltar";
+            } catch (std::invalid_argument &e) {
+                std::cout << e.what() << std::endl;
+                opcao = mostrarOpcoes("\n", {"Tentar Novamente", "Voltar"}, 0);
+            }
+        } catch (usuario_ja_existe_e &e) {
+            std::cout << "Usuario ja existe!" << std::endl;
+            opcao = mostrarOpcoes("\n", {"Tentar Novamente", "Voltar"}, 0);
+        }
+    } while (opcao != "Voltar");
+}
+
+void Sistema::adicionarCorredor(){
+    limparTela();
+    std::vector<std::string> corredores = _mercado.getTodasCategorias();
+    std::cout << "\tAS CATEGORIAS JÁ EXISTENTE SÃO" << std::endl;
+    for (std::string s : corredores){
+        std::cout << "- " << s << std::endl;
+    }
+    std::cout << std::endl;
+    std::string novaCategoria;
+    while (true){
+        novaCategoria = preencherString("Qual será a categoria do corredor que deseja criar");
+        novaCategoria = stringPesquisa(novaCategoria);
+        if ((corredorValido(novaCategoria)) == 1) break;
+        std::cout << "A categoria escolhida já existe! Por favor, tente novamente." << std::endl;
+    }
+    std::string confirmacao = mostrarOpcoes("\n", {"Confirmar", "Voltar"}, 0);
+    if (confirmacao == "Confirmar"){
+        Corredor * c = new Corredor(novaCategoria);
+        _mercado.adicionarCorredor(c);
+        std::cout << "O corredor de categoria " << novaCategoria << " foi criado com sucesso!" << std::endl;
+        sleep(1);
+    }
+}
+
+bool Sistema::corredorValido(std::string categoria){
+    bool valido = 1;
+    for (std::string s : _mercado.getTodasCategorias()){
+        if (s == categoria) valido = 0;
+    }
+    return valido;
+}
+
+void Sistema::removerCorredor(){
+    std::string categoria;
+    do{
+        limparTela();
+        std::vector<std::string> corredores = _mercado.getTodasCategorias();
+        corredores.push_back("Voltar");
+        categoria = mostrarOpcoes("\tSELECIONE O CORREDOR QUE DESEJA REMOVER", corredores, 1);
+        if (categoria != "Voltar"){
+            std::cout << "Tem certeza que deseja remover a categoria " << categoria << " ?" << std::endl;
+            std::string confirmacao = mostrarOpcoes("\n", {"Confirmar", "Voltar"}, 0);
+            if (confirmacao == "Confirmar"){
+                try{
+                    _mercado.removerCorredor(categoria);
+                    std::cout << "O corredor de categoria " << categoria << " foi removido com sucesso!" << std::endl;
+                    sleep(1);
+                    categoria = "Voltar";
+                }
+                catch (std::invalid_argument &e){
+                    std::cout << e.what() << std::endl;
+                    categoria = mostrarOpcoes("\n", {"Tentar Novamente", "Voltar"}, 0);
+                }
+            }
+        }
+    } while (categoria != "Voltar");
 }
 
 void Sistema::logarAdminstrador(const std::string &usuario, const std::string &senha) {
@@ -629,7 +742,7 @@ Produto *Sistema::criarProduto() {
                 while (true){
                     nome = preencherString("Nome");
                     nome = stringPesquisa(nome);
-                    if (nomeValido(nome) == 1) break;
+                    if (produtoValido(nome) == 1) break;
                     std::cout << "Já existe um produto com esse nome! Por favor, tente novamente." << std::endl;
                 }
                 //não colocar else if aqui
@@ -672,7 +785,7 @@ std::string Sistema::paginaProdutosAdmin(std::string categoria) {
     return opcao;
 }
 
-bool Sistema::nomeValido(std::string nome){
+bool Sistema::produtoValido(std::string nome){
     bool valido;
     try{
         _mercado.getProduto(nome);
