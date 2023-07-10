@@ -3,7 +3,7 @@ O programa **Sistema De Mercado** tem como objetivo simular um sistema local de 
 ## Sumário
 1. [Participantes](#participantes)
 2. [Funcionalidades do Sistema](#funcionalidades-do-sistema)
-    1. [Funcionalidades para os Usuários](#funcionalidades-para-os-usuários)
+    1. [Funcionalidades para os Clientes](#funcionalidades-para-os-clientes)
     2. [Funcionalidades para os Administradores](#funcionalidades-para-os-administradores)
 3. [User Stories](#user-stories)
     1. [Como cliente](#como-cliente)
@@ -20,7 +20,7 @@ O programa **Sistema De Mercado** tem como objetivo simular um sistema local de 
 ## **Funcionalidades do Sistema**
 O programa **Sistema de Mercado** oferece diversas funcionalidades para consumidores e administradores, visando facilitar o gerenciamento de estoque e as compras.
 
-### Funcionalidades para os Usuários:
+### Funcionalidades para os Clientes:
 * **Busca de produtos:** Os clientes podem buscar produtos de forma direta, através de seu nome, para encontrar os itens desejados.
 * **Categorias de produtos:** Os produtos estão listados e separados em corredores, permitindo que os clientes encontrem novos itens navegando por corredores específicos, como: alimentos, produtos de limpeza, produtos infantis, entre outros.
 * **Carrinho de compras:** Os clientes podem visualizar o seu carrinho, com todos os produtos e o preço total, antes de finalizar sua compra.
