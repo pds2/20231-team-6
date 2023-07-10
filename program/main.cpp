@@ -7,7 +7,7 @@ int main() {
     Corredor *vestimentas = new Corredor("Vestimentas");
     Corredor *alimentos = new Corredor("Alimentos");
     Corredor *limpeza = new Corredor("Produtos de Limpeza e Higiene");
-    Corredor *infantil = new Corredor("")
+    Corredor *infantil = new Corredor("a");
 
     Produto *pA1 = new ProdutoAlimenticio("Arroz", 30.0, 10, 1, 1000, "20/12/2023");
     Produto *pA2 = new ProdutoAlimenticio("Pacote De Feijao", 20.0, 10, 1, 500, "14/11/2023");
