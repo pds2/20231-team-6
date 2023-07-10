@@ -17,10 +17,7 @@ class Produto {
     unsigned int _quantidade;
 
   public:
-    /*
-     * Construtor. Inicializa _precoComDesconto igual ao _precoBase
-     * e o _desconto igual a 0
-     */
+    // Construtor.
     Produto(const std::string &nome, double preco, unsigned int quantidade);
 
     virtual ~Produto();

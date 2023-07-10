@@ -24,10 +24,8 @@ class Conta {
 
         //Verifica se a senha é válida.
         bool verificarSenha(const std::string& senha) const;
-        
-        //Registra uma nova conta.
-        void registrar(std::string usuario, std::string senha);
 
+        //Troca senha do usuario.
         void trocarSenha(std::string const &senha);
 };
 

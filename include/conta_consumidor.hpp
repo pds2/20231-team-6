@@ -14,8 +14,11 @@
  */
 class Consumidor : public Conta {
   private:
+    // Set (entradas únicas) com os produtos comprados anteriormente.
     std::set<std::string> _produtosComprados;
+    // Carrinho de compras.
     std::map<Produto *, unsigned int> _carrinho;
+    // Saldo.
     double _saldo{0};
 
   public:
@@ -24,17 +27,27 @@ class Consumidor : public Conta {
 
     ~Consumidor() override;
 
+    // Funcao para adicionar uma quantidade de um produto ao carrinho do consumidor.
     void adicionaProdutoCarrinho(Produto *produto, unsigned int quantidade);
+    // Funcao para remover uma quantidade de um produto ao carrinho do consumidor.
     void removerProdutoCarrinho(Produto *produto, unsigned int quantidade);
+
+    // Funcao que exibe os produtos no carrinho, suas informacoes e o preco total da compra.
     void exibirCarrinho();
+
+    // Funcao que esvazia o carrinho de compras.
     void limparCarrinho();
+
     double getPrecoTotalCarrinho() const;
 
+    // Funcao que adiciona saldo para o consumidor. 
     void adicionarSaldo(double valor);
+    // Funcao que remove saldo do consumidor.
     void removerSaldo(double valor);
+
     double getSaldo() const;
 
-    void adicionarProdutoComprado(const std::string &produto);
+    // Funcao que lista (imprime) os produtos comprados anteriormente.
     void exibirProdutosComprados() const;
 };
 
