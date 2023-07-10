@@ -738,7 +738,7 @@ void Sistema::remocaoProdutoFinal(std::string produto, std::string categoria){
 
     std::string opcao = mostrarOpcoes("\n", {"Excluir", "Reduzir Estoque", "Voltar"}, 0);
     if (opcao == "Reduzir Estoque"){
-        int reducao = preencherInt("Quantas unidades deseja reduzir");
+        unsigned int reducao = preencherInt("Quantas unidades deseja reduzir");
         if (reducao >= escolha->getQuantidade()){
             reducao = escolha->getQuantidade();
             escolha->removerEstoque(reducao);
