@@ -6,8 +6,8 @@ O programa **Sistema De Mercado** tem como objetivo simular um sistema local de 
     1. [Funcionalidades para os Clientes](#funcionalidades-para-os-clientes)
     2. [Funcionalidades para os Administradores](#funcionalidades-para-os-administradores)
 3. [User Stories](#user-stories)
-    1. [Como cliente](#como-cliente)
-    2. [Como administrador](#como-administrador)
+    1. [Como Cliente](#como-Cliente)
+    2. [Como Administrador](#como-Administrador)
 4. [Pré-requisitos](#pré-requisitos)
 5. [Instruções para Uso](#instruções-para-uso)
 
@@ -37,13 +37,13 @@ O programa **Sistema de Mercado** oferece diversas funcionalidades para consumid
 
 ## **User Stories**
 
-### **Como cliente:**
+### **Como Cliente:**
 * Quero encontrar produtos de forma direta e fácil, para realizar minhas compras.
 * Quero ter acesso a uma página com todos os produtos separados por categorias, para encontrar novos produtos.
 * Quero ter acesso aos produtos que eu já comprei anteriormente, para organizar minhas compras ou comprá-los novamente.
 * Quero ter a possibilidade de trocar de senha com facilidade e segurança, para evitar que minha conta seja acessada por pessoas mal intencionadas.
 
-### **Como administrador:**
+### **Como Administrador:**
 * Quero ter a possibilidade de editar a página de produtos com facilidade, para sempre manter o meu mercado atualizado.
 * Quero ter a possibilidade de criar novas contas administradoras com segurança, para disponibilizá-las para meus novos funcionários.
 * Quero ter acesso direto aos usuários do sistema, para remover pessoas indesejadas e alterar manualmente algumas informações dos clientes.
