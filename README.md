@@ -1,5 +1,15 @@
 # **Sistema de Mercado**
 O programa **Sistema De Mercado** tem como objetivo simular um sistema local de gerenciamento de estoque e vendas para um mercado, permitindo o acesso de consumidores e administradores, por meio de um login e senha.
+## Sumário
+1. [Participantes](#participantes)
+2. [Funcionalidades do Sistema](#funcionalidades-do-sistema)
+    1. [Funcionalidades para os Usuários](#funcionalidades-para-os-usuários)
+    2. [Funcionalidades para os Administradores](#funcionalidades-para-os-administradores)
+3. [User Stories](#user-stories)
+    1. [Como cliente](#como-cliente)
+    2. [Como administrador](#como-administrador)
+4. [Pré-requisitos](#pré-requisitos)
+5. [Instruções para Uso](#instruções-para-uso)
 
 ## **Participantes**
 * [Arthur Rodrigues Chagas](https://github.com/arthurchagas1)
