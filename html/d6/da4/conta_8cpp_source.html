@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.7"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Documentação Sistema de Supermercado: Código-Fonte de src/conta.cpp</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Documentação Sistema de Supermercado<span id="projectnumber">&#160;1.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.7 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('../../',true,false,'search.php','Busca');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrado</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">conta.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d6/da4/conta_8cpp.html">Ir para a documentação desse arquivo.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &quot;../include/conta.hpp&quot;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno"><a class="line" href="../../dc/dee/class_conta.html#adbe8e76055b6cdfca4a41a6d5f9c8925">    3</a></span><a class="code hl_function" href="../../dc/dee/class_conta.html#adbe8e76055b6cdfca4a41a6d5f9c8925">Conta::Conta</a>(<span class="keyword">const</span> std::string&amp; usuario, <span class="keyword">const</span> std::string&amp; senha): _usuario(usuario), _senha(senha){};</div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno"><a class="line" href="../../dc/dee/class_conta.html#aa56e18d2c9eeb373cae18aab560b8261">    5</a></span><a class="code hl_function" href="../../dc/dee/class_conta.html#aa56e18d2c9eeb373cae18aab560b8261">Conta::~Conta</a>(){}</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="../../dc/dee/class_conta.html#a1e9162762cfafb7c8bc6e5a941d51d00">    7</a></span>std::string <a class="code hl_function" href="../../dc/dee/class_conta.html#a1e9162762cfafb7c8bc6e5a941d51d00">Conta::getUsuario</a>()<span class="keyword"> const</span>{</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>  <span class="keywordflow">return</span> <a class="code hl_variable" href="../../dc/dee/class_conta.html#ab7dd62dd0f2b23a3a6b8c9ee81841131">_usuario</a>;</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>}</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="../../dc/dee/class_conta.html#abb4d3a0780c3ffb2c5778df0d44f2a9e">   11</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="../../dc/dee/class_conta.html#abb4d3a0780c3ffb2c5778df0d44f2a9e">Conta::verificarSenha</a>(<span class="keyword">const</span> std::string&amp; senha)<span class="keyword"> const</span>{</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>  <span class="keywordflow">return</span> (<a class="code hl_variable" href="../../dc/dee/class_conta.html#a79a71e0240f901e6bea80b2af6a3fe23">_senha</a> == senha);</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>}</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="../../dc/dee/class_conta.html#a7639758ec9d32fd7171aad43f81b726a">   15</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../dc/dee/class_conta.html#a7639758ec9d32fd7171aad43f81b726a">Conta::trocarSenha</a>(std::string <span class="keyword">const</span> &amp;senha){</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>  <a class="code hl_variable" href="../../dc/dee/class_conta.html#a79a71e0240f901e6bea80b2af6a3fe23">_senha</a> = senha;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>}</div>
+<div class="ttc" id="aclass_conta_html_a1e9162762cfafb7c8bc6e5a941d51d00"><div class="ttname"><a href="../../dc/dee/class_conta.html#a1e9162762cfafb7c8bc6e5a941d51d00">Conta::getUsuario</a></div><div class="ttdeci">std::string getUsuario() const</div><div class="ttdef"><b>Definição</b> <a href="../../d6/da4/conta_8cpp_source.html#l00007">conta.cpp:7</a></div></div>
+<div class="ttc" id="aclass_conta_html_a7639758ec9d32fd7171aad43f81b726a"><div class="ttname"><a href="../../dc/dee/class_conta.html#a7639758ec9d32fd7171aad43f81b726a">Conta::trocarSenha</a></div><div class="ttdeci">void trocarSenha(std::string const &amp;senha)</div><div class="ttdef"><b>Definição</b> <a href="../../d6/da4/conta_8cpp_source.html#l00015">conta.cpp:15</a></div></div>
+<div class="ttc" id="aclass_conta_html_a79a71e0240f901e6bea80b2af6a3fe23"><div class="ttname"><a href="../../dc/dee/class_conta.html#a79a71e0240f901e6bea80b2af6a3fe23">Conta::_senha</a></div><div class="ttdeci">std::string _senha</div><div class="ttdef"><b>Definição</b> <a href="../../dc/db5/conta_8hpp_source.html#l00018">conta.hpp:18</a></div></div>
+<div class="ttc" id="aclass_conta_html_aa56e18d2c9eeb373cae18aab560b8261"><div class="ttname"><a href="../../dc/dee/class_conta.html#aa56e18d2c9eeb373cae18aab560b8261">Conta::~Conta</a></div><div class="ttdeci">virtual ~Conta()</div><div class="ttdef"><b>Definição</b> <a href="../../d6/da4/conta_8cpp_source.html#l00005">conta.cpp:5</a></div></div>
+<div class="ttc" id="aclass_conta_html_ab7dd62dd0f2b23a3a6b8c9ee81841131"><div class="ttname"><a href="../../dc/dee/class_conta.html#ab7dd62dd0f2b23a3a6b8c9ee81841131">Conta::_usuario</a></div><div class="ttdeci">std::string _usuario</div><div class="ttdef"><b>Definição</b> <a href="../../dc/db5/conta_8hpp_source.html#l00017">conta.hpp:17</a></div></div>
+<div class="ttc" id="aclass_conta_html_abb4d3a0780c3ffb2c5778df0d44f2a9e"><div class="ttname"><a href="../../dc/dee/class_conta.html#abb4d3a0780c3ffb2c5778df0d44f2a9e">Conta::verificarSenha</a></div><div class="ttdeci">bool verificarSenha(const std::string &amp;senha) const</div><div class="ttdef"><b>Definição</b> <a href="../../d6/da4/conta_8cpp_source.html#l00011">conta.cpp:11</a></div></div>
+<div class="ttc" id="aclass_conta_html_adbe8e76055b6cdfca4a41a6d5f9c8925"><div class="ttname"><a href="../../dc/dee/class_conta.html#adbe8e76055b6cdfca4a41a6d5f9c8925">Conta::Conta</a></div><div class="ttdeci">Conta(const std::string &amp;usuario, const std::string &amp;senha)</div><div class="ttdef"><b>Definição</b> <a href="../../d6/da4/conta_8cpp_source.html#l00003">conta.cpp:3</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7
+</small></address>
+</body>
+</html>

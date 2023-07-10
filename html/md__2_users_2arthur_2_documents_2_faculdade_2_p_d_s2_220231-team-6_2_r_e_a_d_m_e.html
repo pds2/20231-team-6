@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.7"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Documentação Sistema de Supermercado: &lt;strong&gt;Sistema de Mercado&lt;/strong&gt;</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Documentação Sistema de Supermercado<span id="projectnumber">&#160;1.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.7 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Busca');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrado</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div><div class="header">
+  <div class="headertitle"><div class="title">&lt;strong&gt;Sistema de Mercado&lt;/strong&gt;</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p><a class="anchor" id="autotoc_md0"></a>O programa <b>Sistema De Mercado</b> tem como objetivo simular um sistema local de gerenciamento de estoque e vendas para um mercado, permitindo o acesso de consumidores e administradores, por meio de um login e senha. </p>
+<h1><a class="anchor" id="autotoc_md1"></a>
+Sumário</h1>
+<ol type="1">
+<li>Participantes</li>
+<li>Funcionalidades do Sistema<ol type="a">
+<li>Funcionalidades para os Clientes</li>
+<li>Funcionalidades para os Administradores</li>
+</ol>
+</li>
+<li>User Stories<ol type="a">
+<li>Como Cliente</li>
+<li>Como Administrador</li>
+</ol>
+</li>
+<li>Pré-requisitos</li>
+<li>Instruções para Uso</li>
+</ol>
+<h1><a class="anchor" id="autotoc_md2"></a>
+&lt;strong&gt;Participantes&lt;/strong&gt;</h1>
+<ul>
+<li><a href="https://github.com/arthurchagas1">Arthur Rodrigues Chagas</a></li>
+<li><a href="https://github.com/TutiDiniz">Arthur Rodrigues Diniz</a></li>
+<li><a href="https://github.com/caio-santt">Caio Santana Trigueiro</a></li>
+<li><a href="https://github.com/YanAquinoo">Yan Aquino Amorim</a></li>
+</ul>
+<h1><a class="anchor" id="autotoc_md3"></a>
+&lt;strong&gt;Funcionalidades do Sistema&lt;/strong&gt;</h1>
+<p>O programa <b>Sistema de Mercado</b> oferece diversas funcionalidades para consumidores e administradores, visando facilitar o gerenciamento de estoque e as compras.</p>
+<h2><a class="anchor" id="autotoc_md4"></a>
+Funcionalidades para os Clientes:</h2>
+<ul>
+<li><b>Busca de produtos:</b> Os clientes podem buscar produtos de forma direta, através de seu nome, para encontrar os itens desejados.</li>
+<li><b>Categorias de produtos:</b> Os produtos estão listados e separados em corredores, permitindo que os clientes encontrem novos itens navegando por corredores específicos, como: alimentos, produtos de limpeza, produtos infantis, entre outros.</li>
+<li><b>Carrinho de compras:</b> Os clientes podem visualizar o seu carrinho, com todos os produtos e o preço total, antes de finalizar sua compra.</li>
+<li><b>Histórico de compras:</b> Os clientes têm acesso ao seu histórico de compras, onde podem verificar os produtos adquiridos anteriormente, com a possibilidade de comprá-los novamente.</li>
+<li><b>Cadastro de clientes:</b> Novos clientes podem se cadastrar facilmente no sistema, através de um login exclusivo e uma senha.</li>
+<li><b>Saldo do cliente:</b> Quando se cadastra, o cliente recebe um saldo em dinheiro que pode ser visualizado e utilizado para efetuar compras no sistema.</li>
+<li><b>Troca de senha:</b> Os clientes têm a possibilidade de trocar sua senha com facilidade, caso desejem.</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md5"></a>
+Funcionalidades para os Administradores:</h2>
+<ul>
+<li><b>Adição de novos produtos:</b> Os administradores podem criar e adicionar novos produtos ao estoque, informando dados importantes específicos de cada tipo de produto, como: data de validade, peso, cor, entre outros.</li>
+<li><b>Edição de produtos já existentes:</b> Os administradores podem editar os produtos com facilidade, realizando atualizações nos preços e adicionando e removendo ao estoque, garantindo que o mercado esteja sempre atualizado.</li>
+<li><b>Criação de contas administradoras:</b> Por segurança, apenas os administradores podem criar novas contas administradoras, permitindo que novos funcionários tenham acesso ao sistema com as permissões adequadas.</li>
+<li><b>Gestão de usuários:</b> Os administradores têm acesso direto aos usuários do sistema, podendo remover clientes e alterar manualmente algumas informações deles, garantindo um controle adequado sobre os usuários cadastrados.</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md6"></a>
+&lt;strong&gt;User Stories&lt;/strong&gt;</h1>
+<h2><a class="anchor" id="autotoc_md7"></a>
+&lt;strong&gt;Como Cliente:&lt;/strong&gt;</h2>
+<ul>
+<li>Quero encontrar produtos de forma direta e fácil, para realizar minhas compras.**<ul>
+<li><p class="startli">[CRITERIOS DE ACEITAÇÃO]</p>
+<p class="startli">•O cliente deve estar cadastrado</p>
+<p class="startli">•Os produtos devem ter sido listados por um administrador</p>
+<p class="startli">•O cliente deve ter saldo em conta</p>
+</li>
+</ul>
+</li>
+<li><p class="startli">Quero ter acesso a uma página com todos os produtos separados por categorias, para encontrar novos produtos.</p><ul>
+<li><p class="startli">[CRITERIOS DE ACEITAÇÃO]</p>
+<p class="startli">•O cliente deve estar logado para visualizar o mercado</p>
+<p class="startli">•A página que o cliente procura deve existir</p>
+</li>
+</ul>
+<p class="startli">•Os produtos devem estar cadastrados no mercado</p>
+</li>
+<li>Quero ter acesso aos produtos que eu já comprei anteriormente, para organizar minhas compras ou comprá-los novamente.<ul>
+<li><p class="startli">[CRITERIOS DE ACEITAÇÃO]</p>
+<p class="startli">•O cliente tem que ter comprado algum produto anteriormente</p>
+<p class="startli">•O mercado deve ter o produto em estoque para que uma nova compra seja realizada</p>
+</li>
+</ul>
+</li>
+<li>Quero ter a possibilidade de trocar de senha com facilidade e segurança, para evitar que minha conta seja acessada por pessoas mal intencionadas.<ul>
+<li><p class="startli">[CRITERIOS DE ACEITAÇÃO]</p>
+<p class="startli">•O cliente deve conhecer a senha cadastrada anteriormente</p>
+<p class="startli">•O cliente deve ter sido registrado no passado</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md8"></a>
+&lt;strong&gt;Como Administrador:&lt;/strong&gt;</h2>
+<ul>
+<li>Quero ter a possibilidade de editar a página de produtos com facilidade, para sempre manter o meu mercado atualizado.<ul>
+<li><p class="startli">[CRITERIOS DE ACEITAÇÃO]</p>
+<p class="startli">•Deve existir um administrador com acesso ao mercado</p>
+<p class="startli">•A página de produtos deve ter a opção de receber novos produtos ou de excluir produtos já existentes</p>
+</li>
+</ul>
+</li>
+<li>Quero ter a possibilidade de criar novas contas administradoras com segurança, para disponibilizá-las para meus novos funcionários.<ul>
+<li><p class="startli">[CRITERIOS DE ACEITAÇÃO]</p>
+<p class="startli">•O administrador deve estar logado</p>
+<p class="startli">•O administrador deve ter acesso às contas dos funcionarios</p>
+</li>
+</ul>
+</li>
+<li>Quero ter acesso direto aos usuários do sistema, para remover pessoas indesejadas e alterar manualmente algumas informações dos clientes.<ul>
+<li><p class="startli">[CRITERIOS DE ACEITAÇÃO]</p>
+<p class="startli">•O usuário a ser removido deve ter sido logado anteriormente no sistema</p>
+<p class="startli">•As informações a serem alteradas devem estar presentes na definição do usuário</p>
+</li>
+</ul>
+</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md9"></a>
+&lt;strong&gt;Pré-requisitos&lt;/strong&gt;</h1>
+<ul>
+<li>Sistema operacional Linux</li>
+<li>Compilador g++ (GNU C++ Compiler)</li>
+<li>GNU Make</li>
+<li>Git</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md10"></a>
+&lt;strong&gt;Instruções para Uso&lt;/strong&gt;</h1>
+<ol type="1">
+<li>Clone este repositório localmente: <code>git clone <a href="https://github.com/pds2/20231-team-6.git">https://github.com/pds2/20231-team-6.git</a></code></li>
+<li>Navegue até o diretório raiz do projeto: <code>cd 20231-team-6</code></li>
+<li>Compile o código utilizando o comando <code>make</code></li>
+<li>Execute o programa: <code>./program/main</code></li>
+<li>Siga as instruções fornecidas pelo programa para utilizá-lo. </li>
+</ol>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7
+</small></address>
+</body>
+</html>

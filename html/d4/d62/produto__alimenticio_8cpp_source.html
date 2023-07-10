@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.7"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Documentação Sistema de Supermercado: Código-Fonte de src/produto_alimenticio.cpp</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Documentação Sistema de Supermercado<span id="projectnumber">&#160;1.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.7 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('../../',true,false,'search.php','Busca');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrado</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">produto_alimenticio.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d4/d62/produto__alimenticio_8cpp.html">Ir para a documentação desse arquivo.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &quot;../include/produto_alimenticio.hpp&quot;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno"><a class="line" href="../../d5/d43/class_produto_alimenticio.html#adb7715a4cba7dc87fffbd31937992a5c">    5</a></span><a class="code hl_function" href="../../d5/d43/class_produto_alimenticio.html#adb7715a4cba7dc87fffbd31937992a5c">ProdutoAlimenticio::ProdutoAlimenticio</a>(<span class="keyword">const</span> std::string &amp;nome, <span class="keywordtype">double</span> preco, <span class="keywordtype">int</span> quantidade,</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>                                       <span class="keywordtype">bool</span> vegano, <span class="keywordtype">int</span> peso, <span class="keyword">const</span> std::string &amp;dataDeValidade)</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>    : <a class="code hl_class" href="../../de/db9/class_produto.html">Produto</a>(nome, preco, quantidade), _vegano(vegano), _peso(peso), _dataDeValidade(dataDeValidade) {</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>    <span class="keywordflow">if</span> (peso &lt;= 0) {</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>        <span class="keywordflow">throw</span> <a class="code hl_struct" href="../../d3/d7e/produto__alimenticio_8hpp.html#d9/dee/structpeso__invalido__e">peso_invalido_e</a>();</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    }</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>}</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="../../d5/d43/class_produto_alimenticio.html#a1ffdde8b2be8f633c03018d6ae775157">   13</a></span><a class="code hl_function" href="../../d5/d43/class_produto_alimenticio.html#a1ffdde8b2be8f633c03018d6ae775157">ProdutoAlimenticio::~ProdutoAlimenticio</a>(){}</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="../../d5/d43/class_produto_alimenticio.html#a9d2ff92a8cf32b7b01fb590a9a21bc06">   15</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d5/d43/class_produto_alimenticio.html#a9d2ff92a8cf32b7b01fb590a9a21bc06">ProdutoAlimenticio::imprimirInformacoes</a>() {</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <a class="code hl_function" href="../../de/db9/class_produto.html#a498fe2facfaf80a7c04004b3db36d900">Produto::imprimirInformacoes</a>();</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d5/d43/class_produto_alimenticio.html#a0f43ce28c6f54b9410e905f147c85696">_vegano</a>) {</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;Produto vegano!&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    }</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Peso: &quot;</span> &lt;&lt; <a class="code hl_variable" href="../../d5/d43/class_produto_alimenticio.html#a3f68ad03ee1a9a014ee0e878599d3ecf">_peso</a> &lt;&lt; <span class="stringliteral">&quot;g&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Data de validade: &quot;</span> &lt;&lt; <a class="code hl_variable" href="../../d5/d43/class_produto_alimenticio.html#a7d665084f524a28c778a87c1d0ceacdf">_dataDeValidade</a> &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>}</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="../../d5/d43/class_produto_alimenticio.html#a67042878d6e2c52c0a3efcb9913732f9">   25</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="../../d5/d43/class_produto_alimenticio.html#a67042878d6e2c52c0a3efcb9913732f9">ProdutoAlimenticio::getVegano</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d5/d43/class_produto_alimenticio.html#a0f43ce28c6f54b9410e905f147c85696">_vegano</a>;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>}</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="../../d5/d43/class_produto_alimenticio.html#ab9efcc6df1b20f48e5d5759f24665295">   29</a></span><span class="keywordtype">double</span> <a class="code hl_function" href="../../d5/d43/class_produto_alimenticio.html#ab9efcc6df1b20f48e5d5759f24665295">ProdutoAlimenticio::getPeso</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d5/d43/class_produto_alimenticio.html#a3f68ad03ee1a9a014ee0e878599d3ecf">_peso</a>;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>}</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="../../d5/d43/class_produto_alimenticio.html#aa4b559b6b262ba2cb33da85386780b04">   33</a></span>std::string <a class="code hl_function" href="../../d5/d43/class_produto_alimenticio.html#aa4b559b6b262ba2cb33da85386780b04">ProdutoAlimenticio::getDataValidade</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d5/d43/class_produto_alimenticio.html#a7d665084f524a28c778a87c1d0ceacdf">_dataDeValidade</a>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>}</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="../../d5/d43/class_produto_alimenticio.html#add7449c09dedc05196ee64ac417117ba">   37</a></span><a class="code hl_class" href="../../de/db9/class_produto.html">Produto</a>* <a class="code hl_function" href="../../d5/d43/class_produto_alimenticio.html#add7449c09dedc05196ee64ac417117ba">ProdutoAlimenticio::criarProdutoAlimenticio</a>(std::string nome){</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="comment">//std::string nome = preencherString(&quot;Nome&quot;);</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="comment">//nome = stringPesquisa(nome);</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordtype">double</span> preco = <a class="code hl_function" href="../../d6/d42/auxiliares_8hpp.html#a569ce6209b1067987c3e8b61644b5d88">preencherDouble</a>(<span class="stringliteral">&quot;Preço&quot;</span>);</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> quantidade = <a class="code hl_function" href="../../d6/d42/auxiliares_8hpp.html#a3838b2e6ab2eb3dae2616b50ce90d690">preencherInt</a>(<span class="stringliteral">&quot;Quantidade a ser adicionada no estoque&quot;</span>);</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordtype">int</span> peso = <a class="code hl_function" href="../../d6/d42/auxiliares_8hpp.html#a3838b2e6ab2eb3dae2616b50ce90d690">preencherInt</a>(<span class="stringliteral">&quot;Peso&quot;</span>);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordtype">bool</span> vegano;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    std::string é_vegano = <a class="code hl_function" href="../../d6/d42/auxiliares_8hpp.html#a2783f9249d394d97e23fb44aeedd8244">mostrarOpcoesA</a>(<span class="stringliteral">&quot;O produto é vegano?&quot;</span>, {<span class="stringliteral">&quot;Sim&quot;</span>, <span class="stringliteral">&quot;Não&quot;</span>}, 0);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keywordflow">if</span> (é_vegano == <span class="stringliteral">&quot;Sim&quot;</span>){</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        vegano = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        vegano = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    }</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    std::string data_de_validade = <a class="code hl_function" href="../../d6/d42/auxiliares_8hpp.html#af8ca5d14591bffe8ecf6cd3e3142cfe6">preencherString</a>(<span class="stringliteral">&quot;Data de Validade&quot;</span>);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <a class="code hl_class" href="../../de/db9/class_produto.html">Produto</a>* novoProduto = <span class="keyword">new</span> <a class="code hl_class" href="../../d5/d43/class_produto_alimenticio.html">ProdutoAlimenticio</a>(nome, preco, quantidade, vegano, peso, data_de_validade);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordflow">return</span> novoProduto;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>}</div>
+<div class="ttc" id="aauxiliares_8hpp_html_a2783f9249d394d97e23fb44aeedd8244"><div class="ttname"><a href="../../d6/d42/auxiliares_8hpp.html#a2783f9249d394d97e23fb44aeedd8244">mostrarOpcoesA</a></div><div class="ttdeci">std::string mostrarOpcoesA(std::string titulo, std::vector&lt; std::string &gt; opcoes, bool limpar)</div><div class="ttdef"><b>Definição</b> <a href="../../df/dff/auxiliares_8cpp_source.html#l00011">auxiliares.cpp:11</a></div></div>
+<div class="ttc" id="aauxiliares_8hpp_html_a3838b2e6ab2eb3dae2616b50ce90d690"><div class="ttname"><a href="../../d6/d42/auxiliares_8hpp.html#a3838b2e6ab2eb3dae2616b50ce90d690">preencherInt</a></div><div class="ttdeci">int preencherInt(std::string campo)</div><div class="ttdef"><b>Definição</b> <a href="../../df/dff/auxiliares_8cpp_source.html#l00060">auxiliares.cpp:60</a></div></div>
+<div class="ttc" id="aauxiliares_8hpp_html_a569ce6209b1067987c3e8b61644b5d88"><div class="ttname"><a href="../../d6/d42/auxiliares_8hpp.html#a569ce6209b1067987c3e8b61644b5d88">preencherDouble</a></div><div class="ttdeci">double preencherDouble(std::string campo)</div><div class="ttdef"><b>Definição</b> <a href="../../df/dff/auxiliares_8cpp_source.html#l00083">auxiliares.cpp:83</a></div></div>
+<div class="ttc" id="aauxiliares_8hpp_html_af8ca5d14591bffe8ecf6cd3e3142cfe6"><div class="ttname"><a href="../../d6/d42/auxiliares_8hpp.html#af8ca5d14591bffe8ecf6cd3e3142cfe6">preencherString</a></div><div class="ttdeci">std::string preencherString(std::string campo)</div><div class="ttdef"><b>Definição</b> <a href="../../df/dff/auxiliares_8cpp_source.html#l00044">auxiliares.cpp:44</a></div></div>
+<div class="ttc" id="aclass_produto_alimenticio_html"><div class="ttname"><a href="../../d5/d43/class_produto_alimenticio.html">ProdutoAlimenticio</a></div><div class="ttdef"><b>Definição</b> <a href="../../d3/d7e/produto__alimenticio_8hpp_source.html#l00009">produto_alimenticio.hpp:9</a></div></div>
+<div class="ttc" id="aclass_produto_alimenticio_html_a0f43ce28c6f54b9410e905f147c85696"><div class="ttname"><a href="../../d5/d43/class_produto_alimenticio.html#a0f43ce28c6f54b9410e905f147c85696">ProdutoAlimenticio::_vegano</a></div><div class="ttdeci">bool _vegano</div><div class="ttdef"><b>Definição</b> <a href="../../d3/d7e/produto__alimenticio_8hpp_source.html#l00011">produto_alimenticio.hpp:11</a></div></div>
+<div class="ttc" id="aclass_produto_alimenticio_html_a1ffdde8b2be8f633c03018d6ae775157"><div class="ttname"><a href="../../d5/d43/class_produto_alimenticio.html#a1ffdde8b2be8f633c03018d6ae775157">ProdutoAlimenticio::~ProdutoAlimenticio</a></div><div class="ttdeci">~ProdutoAlimenticio()</div><div class="ttdef"><b>Definição</b> <a href="../../d4/d62/produto__alimenticio_8cpp_source.html#l00013">produto_alimenticio.cpp:13</a></div></div>
+<div class="ttc" id="aclass_produto_alimenticio_html_a3f68ad03ee1a9a014ee0e878599d3ecf"><div class="ttname"><a href="../../d5/d43/class_produto_alimenticio.html#a3f68ad03ee1a9a014ee0e878599d3ecf">ProdutoAlimenticio::_peso</a></div><div class="ttdeci">int _peso</div><div class="ttdef"><b>Definição</b> <a href="../../d3/d7e/produto__alimenticio_8hpp_source.html#l00012">produto_alimenticio.hpp:12</a></div></div>
+<div class="ttc" id="aclass_produto_alimenticio_html_a67042878d6e2c52c0a3efcb9913732f9"><div class="ttname"><a href="../../d5/d43/class_produto_alimenticio.html#a67042878d6e2c52c0a3efcb9913732f9">ProdutoAlimenticio::getVegano</a></div><div class="ttdeci">bool getVegano() const</div><div class="ttdef"><b>Definição</b> <a href="../../d4/d62/produto__alimenticio_8cpp_source.html#l00025">produto_alimenticio.cpp:25</a></div></div>
+<div class="ttc" id="aclass_produto_alimenticio_html_a7d665084f524a28c778a87c1d0ceacdf"><div class="ttname"><a href="../../d5/d43/class_produto_alimenticio.html#a7d665084f524a28c778a87c1d0ceacdf">ProdutoAlimenticio::_dataDeValidade</a></div><div class="ttdeci">std::string _dataDeValidade</div><div class="ttdef"><b>Definição</b> <a href="../../d3/d7e/produto__alimenticio_8hpp_source.html#l00013">produto_alimenticio.hpp:13</a></div></div>
+<div class="ttc" id="aclass_produto_alimenticio_html_a9d2ff92a8cf32b7b01fb590a9a21bc06"><div class="ttname"><a href="../../d5/d43/class_produto_alimenticio.html#a9d2ff92a8cf32b7b01fb590a9a21bc06">ProdutoAlimenticio::imprimirInformacoes</a></div><div class="ttdeci">void imprimirInformacoes() override</div><div class="ttdef"><b>Definição</b> <a href="../../d4/d62/produto__alimenticio_8cpp_source.html#l00015">produto_alimenticio.cpp:15</a></div></div>
+<div class="ttc" id="aclass_produto_alimenticio_html_aa4b559b6b262ba2cb33da85386780b04"><div class="ttname"><a href="../../d5/d43/class_produto_alimenticio.html#aa4b559b6b262ba2cb33da85386780b04">ProdutoAlimenticio::getDataValidade</a></div><div class="ttdeci">std::string getDataValidade() const</div><div class="ttdef"><b>Definição</b> <a href="../../d4/d62/produto__alimenticio_8cpp_source.html#l00033">produto_alimenticio.cpp:33</a></div></div>
+<div class="ttc" id="aclass_produto_alimenticio_html_ab9efcc6df1b20f48e5d5759f24665295"><div class="ttname"><a href="../../d5/d43/class_produto_alimenticio.html#ab9efcc6df1b20f48e5d5759f24665295">ProdutoAlimenticio::getPeso</a></div><div class="ttdeci">double getPeso() const</div><div class="ttdef"><b>Definição</b> <a href="../../d4/d62/produto__alimenticio_8cpp_source.html#l00029">produto_alimenticio.cpp:29</a></div></div>
+<div class="ttc" id="aclass_produto_alimenticio_html_adb7715a4cba7dc87fffbd31937992a5c"><div class="ttname"><a href="../../d5/d43/class_produto_alimenticio.html#adb7715a4cba7dc87fffbd31937992a5c">ProdutoAlimenticio::ProdutoAlimenticio</a></div><div class="ttdeci">ProdutoAlimenticio(const std::string &amp;nome, double preco, int quantidade, bool vegano, int peso, const std::string &amp;dataValidade)</div><div class="ttdef"><b>Definição</b> <a href="../../d4/d62/produto__alimenticio_8cpp_source.html#l00005">produto_alimenticio.cpp:5</a></div></div>
+<div class="ttc" id="aclass_produto_alimenticio_html_add7449c09dedc05196ee64ac417117ba"><div class="ttname"><a href="../../d5/d43/class_produto_alimenticio.html#add7449c09dedc05196ee64ac417117ba">ProdutoAlimenticio::criarProdutoAlimenticio</a></div><div class="ttdeci">static Produto * criarProdutoAlimenticio(std::string nome)</div><div class="ttdef"><b>Definição</b> <a href="../../d4/d62/produto__alimenticio_8cpp_source.html#l00037">produto_alimenticio.cpp:37</a></div></div>
+<div class="ttc" id="aclass_produto_html"><div class="ttname"><a href="../../de/db9/class_produto.html">Produto</a></div><div class="ttdef"><b>Definição</b> <a href="../../db/dc2/produto_8hpp_source.html#l00012">produto.hpp:12</a></div></div>
+<div class="ttc" id="aclass_produto_html_a498fe2facfaf80a7c04004b3db36d900"><div class="ttname"><a href="../../de/db9/class_produto.html#a498fe2facfaf80a7c04004b3db36d900">Produto::imprimirInformacoes</a></div><div class="ttdeci">virtual void imprimirInformacoes()</div><div class="ttdef"><b>Definição</b> <a href="../../d1/d04/produto_8cpp_source.html#l00019">produto.cpp:19</a></div></div>
+<div class="ttc" id="aproduto__alimenticio_8hpp_html_d9/dee/structpeso__invalido__e"><div class="ttname"><a href="../../d3/d7e/produto__alimenticio_8hpp.html#d9/dee/structpeso__invalido__e">peso_invalido_e</a></div><div class="ttdef"><b>Definição</b> <a href="../../d3/d7e/produto__alimenticio_8hpp_source.html#l00007">produto_alimenticio.hpp:7</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7
+</small></address>
+</body>
+</html>
