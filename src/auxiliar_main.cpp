@@ -85,7 +85,7 @@ void adicionar_consumidores(Sistema &sistema){
     Consumidor *Pedro = new Consumidor("Pedro", "diniz");
     Consumidor *yan = new Consumidor("yan", "aquino");
     Consumidor *caio = new Consumidor("caio", "santt");
-    Consumidor *rod = new Consumidor("arthur", "rod")
+    Consumidor *rod = new Consumidor("arthur", "rod");
 
     Arthur->adicionarSaldo(150.0);
     caio->adicionarSaldo(10000.0);

@@ -22,7 +22,7 @@ class Consumidor : public Conta {
     // Construtor de uma conta específica para um consumidor.
     Consumidor(const std::string &usuario, const std::string &senha);
 
-    //~Consumidor() override;
+    ~Consumidor() override;
 
     void adicionaProdutoCarrinho(Produto *produto, unsigned int quantidade);
     void removerProdutoCarrinho(Produto *produto, unsigned int quantidade);

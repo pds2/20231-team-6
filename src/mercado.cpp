@@ -63,6 +63,7 @@ void Mercado::removerCorredor(std::string categoria){
             if (it2->getTodosProdutos().size() != 0) throw std::invalid_argument\
             ("O corredor deve estar vazio para ser removido! Por favor, remova todos os seus produtos antes.");
             _corredores.erase(it);
+            delete it2;
             corredorExiste = 1;
             break;
         }

@@ -6,4 +6,4 @@
 
 Admin::Admin(const std::string& usuario, const std::string& senha) : Conta(usuario, senha){}
 
-//Admin::~Admin(){}
+Admin::~Admin(){}

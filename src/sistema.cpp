@@ -6,7 +6,7 @@
 
 #include "../include/sistema.hpp"
 
-Sistema::Sistema(){}; // Carrega todas as informacoes DO banco de dados
+Sistema::Sistema(){};
 
 void Sistema::paginaInicial() {
     while (true) {
@@ -28,7 +28,12 @@ void Sistema::paginaInicial() {
         }
 
         if (opcao == "Fechar Programa") {
-            // Chamar uma funcao para carregar todas as informacoes NO banco de dados
+            for (Corredor* c : _mercado.getCorredores()){
+                delete c;
+            }
+            for (Conta* c : _usuarios){
+                delete c;
+            }
             std::cout << "Programa finalizado com sucesso. Obrigado!" << std::endl;
             break;
         }

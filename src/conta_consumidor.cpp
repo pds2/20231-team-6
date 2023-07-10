@@ -10,7 +10,7 @@ Consumidor::Consumidor(const std::string &usuario, const std::string &senha)
     adicionarSaldo(500);
 }
 
-// Consumidor::~Consumidor(){}
+Consumidor::~Consumidor(){}
 
 void Consumidor::adicionaProdutoCarrinho(Produto *produto, unsigned int quantidade) {
     if (_carrinho.count(produto) > 0) {

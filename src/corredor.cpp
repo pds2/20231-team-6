@@ -5,6 +5,12 @@ Corredor::Corredor(std::string categoria) {
     _categoria = categoria;
 }
 
+Corredor::~Corredor(){
+    for (Produto* c : _produtos){
+        delete c;
+    }
+}
+
 void Corredor::adicionarNovoProduto(Produto *produto) {
     _produtos.push_back(produto);
 }
@@ -50,6 +56,7 @@ void Corredor::removerProduto(std::string nome){
         auto it2 = (*it);
         if(it2->getNome() == nome){
             _produtos.erase(it);
+            delete it2;
             produtoExiste = 1;
             break;
         }
