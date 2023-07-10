@@ -11,14 +11,10 @@ struct desconto_invalido_e {};
 
 class Produto {
   private:
-    static unsigned int _proximoId;
-
-    unsigned int _id;
+   
     std::string _nome;
     double _precoBase;
     unsigned int _quantidade;
-    double _precoComDesconto;
-    double _desconto;
 
   public:
     /*
@@ -35,18 +31,11 @@ class Produto {
      */
     virtual void imprimirInformacoes();
 
-    // Aplica um desconto ao produto alterando apenas preço com desconto.
-    void aplicarDesconto(double desconto);
-
     // Seta _desconto para 0 e _precoComDesconto para _precoBase.
-    void removerDesconto();
     void removerEstoque(unsigned int valor);
-    int getId() const;
     std::string getNome() const;
     unsigned int getQuantidade() const;
     double getPreco() const;
-    double getPrecoComDesconto() const;
-    double getDesconto() const;
 
     void adicionarEstoque(unsigned int qtd_adicionada);
 
