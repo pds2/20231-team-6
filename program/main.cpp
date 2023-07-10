@@ -7,7 +7,7 @@ int main() {
     Corredor *vestimentas = new Corredor("Vestimentas");
     Corredor *alimentos = new Corredor("Alimentos");
     Corredor *limpeza = new Corredor("Produtos de Limpeza e Higiene");
-    Corredor *infantil = new Corredor("a");
+    Corredor *infantil = new Corredor("Produtos Infantis e Brinquedos");
 
     Produto *pA1 = new ProdutoAlimenticio("Arroz", 30.0, 10, 1, 1000, "20/12/2023");
     Produto *pA2 = new ProdutoAlimenticio("Pacote De Feijao", 20.0, 10, 1, 500, "14/11/2023");
@@ -27,7 +27,15 @@ int main() {
     Produto *pL2 = new ProdutoLimpeza("Sabonete Liquido", 22.0, 10, "Lavanda", 500);
     Produto *pL3 = new ProdutoLimpeza("Detergente", 20.0, 10, "Sem Cheiro", 400);
     Produto *pL4 = new Produto("Conjunto Escovas de Dente (3 unidades)", 15, 10);
-    Produto *pL5 = new Produto("Sabonete Liquido", 40.0, 10);
+    Produto *pL5 = new ProdutoLimpeza("Pasta de Dente", 9.90, 10, "Menta", 120);
+    Produto *pL6 = new Produto("Fraldas P", 40.0, 10);
+    Produto *pL7 = new Produto("Fraldas M", 45.0, 10);
+    Produto *pL8 = new Produto("Fraldas G", 50.0, 10);
+
+    Produto *pI1 = new ProdutoInfantil("Pista Carrinho Hotwheels", 200.0, 10, "Para Todos", 8);
+    Produto *pI2 = new ProdutoInfantil("Bola de Futebol", 150.0, 20, "Para Todos", 4);
+    Produto *pI3 = new ProdutoInfantil("Boneca Barbie", 100.0, 10, "Para Todos", 8);
+    Produto *pI4 = new ProdutoInfantil("LEGO Star Wars", 1200.0, 10, "Para Todos", 10);
 
     alimentos->adicionarNovoProduto(pA1);
     alimentos->adicionarNovoProduto(pA2);
@@ -48,7 +56,14 @@ int main() {
     limpeza->adicionarNovoProduto(pL3);
     limpeza->adicionarNovoProduto(pL4);
     limpeza->adicionarNovoProduto(pL5);
+    limpeza->adicionarNovoProduto(pL6);
+    limpeza->adicionarNovoProduto(pL7);
+    limpeza->adicionarNovoProduto(pL8);
 
+    infantil->adicionarNovoProduto(pI1);
+    infantil->adicionarNovoProduto(pI2);
+    infantil->adicionarNovoProduto(pI3);
+    infantil->adicionarNovoProduto(pI4);
 
     m.adicionarCorredor(vestimentas);
     m.adicionarCorredor(alimentos);
