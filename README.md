@@ -9,7 +9,7 @@ O programa **Sistema De Mercado** tem como objetivo simular um sistema local de 
     1. [Como Cliente](#como-Cliente)
     2. [Como Administrador](#como-Administrador)
 4. [Pré-requisitos](#pré-requisitos)
-5. [Instruções para Uso](#instruções-para-uso)
+5. [Instruções de Execução](#instruções-de-execução)
 
 ## **Participantes**
 * [Arthur Rodrigues Chagas](https://github.com/arthurchagas1)
@@ -94,9 +94,11 @@ O programa **Sistema de Mercado** oferece diversas funcionalidades para consumid
 * GNU Make
 * Git
   
-## **Instruções para Uso**
+## **Instruções de Execução** 
 1. Clone este repositório localmente: `git clone https://github.com/pds2/20231-team-6.git`
 2. Navegue até o diretório raiz do projeto: `cd 20231-team-6`
-3. Compile o código utilizando o comando `make`
-4. Execute o programa: `./program/main`
-5. Siga as instruções fornecidas pelo programa para utilizá-lo.
+   **DAQUI PRA BAIXO EU ACHO QUE NÃO TA CERTO, TEM QUE CONFERIR E ARRUMAR**
+3. Compile o código utilizando o comando `make main`
+5. Compile os testes utilizando o comando `make tests` 
+6. Execute o programa: `./bin/main`
+7. Siga as instruções fornecidas pelo programa para utilizá-lo.
