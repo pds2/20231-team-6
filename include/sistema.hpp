@@ -10,6 +10,7 @@
 #include <typeinfo>
 #include <unistd.h>
 #include <vector>
+#include <iomanip>
 
 #include "auxiliares.hpp"
 #include "conta_admin.hpp"
@@ -123,6 +124,8 @@ class Sistema {
 
     void adicionarCorredor();
     void removerCorredor();
+    void removerConta();
+    void alterarSaldo();
 
     // OUTROS
 
@@ -141,6 +144,7 @@ class Sistema {
     // Coloquei pra testar o main
     void adicionarConta(Conta *c);
     void adicionarMercado(Mercado m);
+    Consumidor* getConsumidor(std::string nome);
 
     /*
      * @brief Função que usa do método MostrarOpcoes para escolher se o produto a ser adicionado

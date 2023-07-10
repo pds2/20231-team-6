@@ -1,6 +1,7 @@
 #include <cctype>
 #include <stdexcept>
 #include <string>
+#include <typeinfo>
 #include <vector>
 
 #include "../include/sistema.hpp"
@@ -417,6 +418,103 @@ void Sistema::paginaAdminEditarCorredores(){
     }
 }
 
+void Sistema::paginaAdminEditarUsuarios(){
+    limparTela();
+    std::string opcao = mostrarOpcoes("\tSELECIONE O QUE DESEJA EDITAR NOS USUARIOS", {"Alterar Saldo", "Remover Conta", "Voltar"}, 1);
+    if (opcao == "Remover Conta"){
+        removerConta();
+    }
+    if (opcao == "Alterar Saldo"){
+        alterarSaldo();
+    }
+}
+
+void Sistema::removerConta(){
+    std::vector<std::string> nomeContas;
+    for (Conta* c : _usuarios){
+        if (c->getUsuario() != _admin_logado->getUsuario()){
+            nomeContas.push_back(c->getUsuario());
+        }
+    }
+    nomeContas.push_back("Voltar");
+    std::string conta;
+    do{
+        limparTela();
+        conta = mostrarOpcoes("\tSELECIONE A CONTA QUE DESEJA REMOVER", nomeContas, 1);
+        if (conta != "Voltar"){
+            std::cout << "Tem certeza que deseja remover a conta " << conta << " do sistema?" << std::endl;
+            std::string confirmacao = mostrarOpcoes("\n", {"Confirmar", "Voltar"}, 0);
+            if (confirmacao == "Confirmar"){
+                for (auto it = _usuarios.begin(); it != _usuarios.end(); ++it){
+                    auto it2 = (*it);
+                    if (it2->getUsuario() == conta){
+                        _usuarios.erase(it);
+                        delete it2;
+                    }
+                }
+                std::cout << "A conta " << conta << " foi removida do sistema com sucesso!" << std::endl;
+                sleep(1);
+                conta = "Voltar";
+            }
+        }
+    } while (conta != "Voltar");
+}
+
+void Sistema::alterarSaldo(){
+    std::string escolha;
+    do{
+        limparTela();
+        std::set<std::string> nomeConsumidores;
+        std::cout << "\tLISTA DE CONSUMIDORES" << std::endl;
+        std::cout << "----------------------------" << std::endl;
+        for (Conta* c : _usuarios){
+            try {
+                Consumidor c1 = dynamic_cast<Consumidor &>(*c);
+                nomeConsumidores.insert(c1.getUsuario());
+                std::cout << "Usuario: " << c1.getUsuario() << std::endl;
+                std::cout << "Saldo: R$ " << std::fixed << std::setprecision(2) << c1.getSaldo() << std::endl;
+                std::cout << "----------------------------" << std::endl;
+
+            } catch (std::bad_cast &e) {}
+        }
+        escolha = preencherString("Digite o nome do usuario que deseja alterar o saldo (fique atento a letras maiúsculas!)");
+        if (nomeConsumidores.count(escolha) > 0){
+            std::string alterarSaldoEscolha = mostrarOpcoes("\n", {"Adicionar", "Remover"}, 0);
+            std::cout << "O usuario " << escolha << " tem saldo: R$ " << std::fixed << std::setprecision(2) << getConsumidor(escolha)->getSaldo() << std::endl;
+            double alteracaoSaldo = preencherDouble("Digite a quantidade de saldo que deseja alterar ou 0 para cancelar");
+            if (alterarSaldoEscolha == "Adicionar") getConsumidor(escolha)->adicionarSaldo(alteracaoSaldo);
+            else{
+                if (getConsumidor(escolha)->getSaldo() - alteracaoSaldo < 0) alteracaoSaldo = getConsumidor(escolha)->getSaldo();
+                getConsumidor(escolha)->removerSaldo(alteracaoSaldo);
+            }
+            std::cout << "O saldo de " << escolha << " foi alterado com sucesso! Seu novo saldo é de: R$" \
+            << std::fixed << std::setprecision(2) << getConsumidor(escolha)->getSaldo() << std::endl;
+            sleep(1);     
+        } 
+        else {
+            std::cout << "Usuario Invalido! Por favor, tente novamente." << std::endl;
+            escolha = mostrarOpcoes("\n", {"Tentar Novamente", "Voltar"}, 0);
+        }
+    } while (escolha == "Tentar Novamente");
+}
+
+Consumidor* Sistema::getConsumidor(std::string nome){
+    Conta* padrao;
+    for (Conta* c : _usuarios){
+        if (c->getUsuario() == nome){
+            padrao = c;
+        }
+    }
+    try{
+        Consumidor c1 = dynamic_cast<Consumidor &>((*padrao));
+        Consumidor* retorno = dynamic_cast<Consumidor*>(padrao);
+        return retorno;
+    }
+    catch(std::bad_cast &e){
+        throw std::invalid_argument("Essa conta nao pertence a um usuario ou nao existe!");
+    }
+}
+
 void Sistema::paginaAdminCriarConta(){
     std::string opcao;
 
@@ -580,7 +678,7 @@ std::string Sistema::mostrarOpcoes(std::string titulo, std::vector<std::string> 
     while (flag) {
         if (titulo == "\tUSUARIO LOGADO: ") {
             std::cout << titulo << _consumidor_logado->getUsuario();
-            std::cout << "\t\tSaldo: R$" << _consumidor_logado->getSaldo() << std::endl;
+            std::cout << "\t\tSaldo: R$" << std::fixed << std::setprecision(2) << _consumidor_logado->getSaldo() << std::endl;
         } else if (titulo == "\tADMINISTRADOR LOGADO: ")
             std::cout << titulo << _admin_logado->getUsuario() << std::endl;
         else if (titulo != "\n")

@@ -7,7 +7,7 @@
 
 Consumidor::Consumidor(const std::string &usuario, const std::string &senha)
     : Conta(usuario, senha) {
-    adicionarSaldo(100);
+    adicionarSaldo(500);
 }
 
 // Consumidor::~Consumidor(){}
@@ -48,11 +48,11 @@ void Consumidor::exibirCarrinho() {
 
         std::cout << "Produto: " << it->first->getNome() << std::endl;
         std::cout << "Quantidade: " << it->second << std::endl;
-        std::cout << "Preco: R$" << preco << std::endl;
+        std::cout << "Preco: R$" << std::fixed << std::setprecision(2) << preco << std::endl;
         std::cout << "----------------------------" << std::endl;
     }
-    std::cout << "Preco Total: R$" << getPrecoTotalCarrinho() << std::endl;
-    std::cout << "Seu Saldo: R$" << getSaldo() << std::endl;
+    std::cout << "Preco Total: R$" << std::fixed << std::setprecision(2) << getPrecoTotalCarrinho() << std::endl;
+    std::cout << "Seu Saldo: R$" << std::fixed << std::setprecision(2) << getSaldo() << std::endl;
 }
 
 void Consumidor::limparCarrinho() {
