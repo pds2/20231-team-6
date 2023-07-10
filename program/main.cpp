@@ -6,26 +6,54 @@ int main() {
 
     Corredor *vestimentas = new Corredor("Vestimentas");
     Corredor *alimentos = new Corredor("Alimentos");
+    Corredor *limpeza = new Corredor("Produtos de Limpeza e Higiene");
+    Corredor *infantil = new Corredor("")
 
-    Produto *p1 = new Produto("Arroz", 30.0, 10);
-    Produto *p2 = new Produto("Pacote De Feijao", 20.0, 10);
-    Produto *p3 = new Produto("Batata", 15.0, 5);
-    Produto *p4 = new Produto("Sapato", 105.0, 2);
-    Produto *p5 = new Produto("Camisa", 70.0, 3);
-    Produto *p6 = new Produto("Oculos", 30.0, 5);
-    Produto *p7 = new Produto("Short", 60.0, 3);
+    Produto *pA1 = new ProdutoAlimenticio("Arroz", 30.0, 10, 1, 1000, "20/12/2023");
+    Produto *pA2 = new ProdutoAlimenticio("Pacote De Feijao", 20.0, 10, 1, 500, "14/11/2023");
+    Produto *pA3 = new ProdutoAlimenticio("Batata", 15.0, 5, 1, 300, "09/10/2023");
+    Produto *pA4 = new ProdutoAlimenticio("Peito de Frango", 13.0, 5, 0, 150, "09/09/2023");
+    Produto *pA5 = new ProdutoAlimenticio("Pernil", 16.0, 9, 0, 120, "24/09/2023");
+    Produto *pA6 = new ProdutoAlimenticio("Pão", 8.90, 9, 1, 100, "24/09/2023");
+    Produto *pA7 = new ProdutoAlimenticio("Ovo", 2.0, 100, 0, 20, "24/09/2023");
+    Produto *pA8 = new ProdutoAlimenticio("Banana", 5.0, 9, 1, 40, "24/09/2023");
 
-    alimentos->adicionarNovoProduto(p1);
-    alimentos->adicionarNovoProduto(p2);
-    alimentos->adicionarNovoProduto(p3);
+    Produto *pV1 = new Produto("Sapato", 105.0, 2);
+    Produto *pV2 = new Produto("Camisa", 70.0, 3);
+    Produto *pV3 = new Produto("Oculos", 30.0, 5);
+    Produto *pV4 = new Produto("Short", 60.0, 3);
 
-    vestimentas->adicionarNovoProduto(p4);
-    vestimentas->adicionarNovoProduto(p5);
-    vestimentas->adicionarNovoProduto(p6);
-    vestimentas->adicionarNovoProduto(p7);
+    Produto *pL1 = new Produto("Vassoura", 40.0, 10);
+    Produto *pL2 = new ProdutoLimpeza("Sabonete Liquido", 22.0, 10, "Lavanda", 500);
+    Produto *pL3 = new ProdutoLimpeza("Detergente", 20.0, 10, "Sem Cheiro", 400);
+    Produto *pL4 = new Produto("Conjunto Escovas de Dente (3 unidades)", 15, 10);
+    Produto *pL5 = new Produto("Sabonete Liquido", 40.0, 10);
+
+    alimentos->adicionarNovoProduto(pA1);
+    alimentos->adicionarNovoProduto(pA2);
+    alimentos->adicionarNovoProduto(pA3);
+    alimentos->adicionarNovoProduto(pA4);
+    alimentos->adicionarNovoProduto(pA5);
+    alimentos->adicionarNovoProduto(pA6);
+    alimentos->adicionarNovoProduto(pA7);
+    alimentos->adicionarNovoProduto(pA8);
+
+    vestimentas->adicionarNovoProduto(pV1);
+    vestimentas->adicionarNovoProduto(pV2);
+    vestimentas->adicionarNovoProduto(pV3);
+    vestimentas->adicionarNovoProduto(pV4);
+
+    limpeza->adicionarNovoProduto(pL1);
+    limpeza->adicionarNovoProduto(pL2);
+    limpeza->adicionarNovoProduto(pL3);
+    limpeza->adicionarNovoProduto(pL4);
+    limpeza->adicionarNovoProduto(pL5);
+
 
     m.adicionarCorredor(vestimentas);
     m.adicionarCorredor(alimentos);
+    m.adicionarCorredor(limpeza);
+    m.adicionarCorredor(infantil);
 
     Consumidor *Arthur = new Consumidor("Arthur1", "diniz");
     Consumidor *Pedro = new Consumidor("Pedro", "diniz");
