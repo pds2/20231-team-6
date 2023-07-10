@@ -546,6 +546,10 @@ void Sistema::paginaAdminCriarConta(){
     } while (opcao != "Voltar");
 }
 
+void Sistema::adicionarCorredor(Corredor *corredor){
+    _mercado.adicionarCorredor(corredor);
+}
+
 void Sistema::adicionarCorredor(){
     limparTela();
     std::vector<std::string> corredores = _mercado.getTodasCategorias();
@@ -667,9 +671,9 @@ void Sistema::verificarSenhaCadastro(const std::string &senha, const std::string
     if (senha != senha_novamente) throw std::invalid_argument("As senhas nao coincidem!");
 }
 
-void Sistema::adicionarMercado(Mercado m) {
-    _mercado = m;
-}
+// void Sistema::adicionarMercado(Mercado m) {
+//     _mercado = m;
+// }
 
 std::string Sistema::mostrarOpcoes(std::string titulo, std::vector<std::string> opcoes, bool limpar) {
     unsigned int escolha;

@@ -123,6 +123,7 @@ class Sistema {
     void paginaAdminEditarUsuarios();
 
     void adicionarCorredor();
+    void adicionarCorredor(Corredor *corredor);
     void removerCorredor();
     void removerConta();
     void alterarSaldo();
@@ -143,7 +144,7 @@ class Sistema {
 
     // Coloquei pra testar o main
     void adicionarConta(Conta *c);
-    void adicionarMercado(Mercado m);
+    // void adicionarMercado(Mercado m);
     Consumidor* getConsumidor(std::string nome);
 
     /*
