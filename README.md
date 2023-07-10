@@ -39,54 +39,54 @@ O programa **Sistema de Mercado** oferece diversas funcionalidades para consumid
 
 ### **Como Cliente:**
 
-* Quero encontrar produtos de forma direta e fácil, para realizar minhas compras.**
+* Quero encontrar produtos de forma direta e fácil, para realizar minhas compras.
     * [CRITERIOS DE ACEITAÇÃO]
 
-      •O cliente deve estar cadastrado
+      • O cliente deve estar cadastrado
 
-      •Os produtos devem ter sido listados por um administrador
+      • Os produtos devem ter sido listados por um administrador
 
-      •O cliente deve ter saldo em conta
+      • O cliente deve ter saldo em conta
 * Quero ter acesso a uma página com todos os produtos separados por categorias, para encontrar novos produtos.
     * [CRITERIOS DE ACEITAÇÃO]
 
-      •O cliente deve estar logado para visualizar o mercado
+      • O cliente deve estar logado para visualizar o mercado
 
-      •A página que o cliente procura deve existir
+      • A página que o cliente procura deve existir
 
   •Os produtos devem estar cadastrados no mercado
 * Quero ter acesso aos produtos que eu já comprei anteriormente, para organizar minhas compras ou comprá-los novamente.
     * [CRITERIOS DE ACEITAÇÃO]
 
-      •O cliente tem que ter comprado algum produto anteriormente
+      • O cliente tem que ter comprado algum produto anteriormente
 
-      •O mercado deve ter o produto em estoque para que uma nova compra seja realizada
+      • O mercado deve ter o produto em estoque para que uma nova compra seja realizada
 * Quero ter a possibilidade de trocar de senha com facilidade e segurança, para evitar que minha conta seja acessada por pessoas mal intencionadas.
     * [CRITERIOS DE ACEITAÇÃO]
 
-      •O cliente deve conhecer a senha cadastrada anteriormente
+      • O cliente deve conhecer a senha cadastrada anteriormente
 
-      •O cliente deve ter sido registrado no passado
+      • O cliente deve ter sido registrado no passado
 
 ### **Como Administrador:**
 * Quero ter a possibilidade de editar a página de produtos com facilidade, para sempre manter o meu mercado atualizado.
     * [CRITERIOS DE ACEITAÇÃO]
 
-      •Deve existir um administrador com acesso ao mercado
+      • Deve existir um administrador com acesso ao mercado
 
-      •A página de produtos deve ter a opção de receber novos produtos ou de excluir produtos já existentes
+      • A página de produtos deve ter a opção de receber novos produtos ou de excluir produtos já existentes
 * Quero ter a possibilidade de criar novas contas administradoras com segurança, para disponibilizá-las para meus novos funcionários.
     * [CRITERIOS DE ACEITAÇÃO]
 
-      •O administrador deve estar logado
+      • O administrador deve estar logado
 
-      •O administrador deve ter acesso às contas dos funcionarios
+      • O administrador deve ter acesso às contas dos funcionarios
 * Quero ter acesso direto aos usuários do sistema, para remover pessoas indesejadas e alterar manualmente algumas informações dos clientes.
     * [CRITERIOS DE ACEITAÇÃO]
 
-      •O usuário a ser removido deve ter sido logado anteriormente no sistema
+      • O usuário a ser removido deve ter sido logado anteriormente no sistema
 
-      •As informações a serem alteradas devem estar presentes na definição do usuário
+      • As informações a serem alteradas devem estar presentes na definição do usuário
 
 ## **Pré-requisitos**
 * Sistema operacional Linux
