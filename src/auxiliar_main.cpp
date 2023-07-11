@@ -81,7 +81,7 @@ void adicionar_corredor_infantil(Sistema &sistema){
 }
 
 void adicionar_consumidores(Sistema &sistema){
-    Consumidor *arthur = new Consumidor("arthur", "diniz");
+    Consumidor *arthur = new Consumidor("arthur1", "diniz");
     Consumidor *yan = new Consumidor("yan", "aquino");
     Consumidor *caio = new Consumidor("caio", "santt");
     Consumidor *rod = new Consumidor("arthur", "rod");
