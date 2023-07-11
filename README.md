@@ -9,7 +9,7 @@ O programa **Sistema De Mercado** tem como objetivo simular um sistema local de 
     1. [Como Cliente](#como-Cliente)
     2. [Como Administrador](#como-Administrador)
 4. [Pré-requisitos](#pré-requisitos)
-5. [Instruções de Execução](#instruções-de-execução)
+5. [Instruções de Execução no terminal](#instruções-de-execução-no-terminal)
 
 ## **Participantes**
 * [Arthur Rodrigues Chagas](https://github.com/arthurchagas1)
