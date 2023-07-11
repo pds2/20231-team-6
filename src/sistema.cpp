@@ -371,7 +371,7 @@ void Sistema::paginaAdmin() {
         limparTela();
         std::string opcao = mostrarOpcoes(
             "\tADMINISTRADOR LOGADO: ",
-            {"Editar Produtos", "Edtiar Corredores", "Editar Usuarios", "Criar Conta Admin", "Deslogar"}, 1);
+            {"Editar Produtos", "Editar Corredores", "Editar Usuarios", "Criar Conta Admin", "Deslogar"}, 1);
 
         if (opcao == "Editar Produtos") {
             paginaAdminEditarProdutos();
