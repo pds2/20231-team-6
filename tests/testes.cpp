@@ -71,6 +71,7 @@ TEST_CASE("09 - Testando a Função getConsumidor do Sistema"){
     CHECK_NOTHROW(adicionar_admins(system));
     CHECK_THROWS_AS(system.getConsumidor("Arthur"), std::invalid_argument);
     CHECK_NOTHROW(system.getConsumidor("Arthur1"));
+    system.apagarSistema();
 }
 
 TEST_CASE("10 - Testando a Validade de Corredores do Sistema"){
@@ -80,4 +81,5 @@ TEST_CASE("10 - Testando a Validade de Corredores do Sistema"){
     CHECK(system.corredorValido("Produtos de Limpeza e Higiene") == 1);
     CHECK_NOTHROW(adicionar_corredor_limpeza(system));
     CHECK(system.corredorValido("Produtos de Limpeza e Higiene") == 0);
+    system.apagarSistema();
 }
