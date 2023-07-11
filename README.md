@@ -97,8 +97,7 @@ O programa **Sistema de Mercado** oferece diversas funcionalidades para consumid
 ## **Instruções de Execução** 
 1. Clone este repositório localmente: `git clone https://github.com/pds2/20231-team-6.git`
 2. Navegue até o diretório raiz do projeto: `cd 20231-team-6`
-* **DAQUI PRA BAIXO EU ACHO QUE NÃO TA CERTO, TEM QUE CONFERIR E ARRUMAR**
-3. Compile o código utilizando o comando `make`
-5. Compile e rode os testes utilizando o comando `make tests` 
-6. Execute o programa: `./bin/main`
-7. Siga as instruções fornecidas pelo programa para utilizá-lo.
+3. Para compilar e rodar os testes (tester.cpp) basta utilizar o comando: `make tests`
+4. Para compilar o código principal (main.cpp) utilize o comando: `make` 
+5. Execute o programa através do executável gerado: `./bin/main`
+6. Como usar: Siga as instruções fornecidas pelo programa para utilizá-lo intuitivamente.
