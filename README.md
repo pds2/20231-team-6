@@ -101,3 +101,4 @@ O programa **Sistema de Mercado** oferece diversas funcionalidades para consumid
 4. Para compilar o código principal (main.cpp) utilize o comando: `make` 
 5. Execute o programa através do executável gerado com o comando: `./bin/main`
 6. Como usar: Siga as instruções fornecidas pelo programa para utilizá-lo intuitivamente.
+7. Para apagar os executáveis e os arquivos objeto (arquivos.o) gerados, utilize o comando: `make clean`
