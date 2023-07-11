@@ -81,26 +81,24 @@ void adicionar_corredor_infantil(Sistema &sistema){
 }
 
 void adicionar_consumidores(Sistema &sistema){
-    Consumidor *Arthur = new Consumidor("Arthur1", "diniz");
-    Consumidor *Pedro = new Consumidor("Pedro", "diniz");
+    Consumidor *arthur = new Consumidor("arthur", "diniz");
     Consumidor *yan = new Consumidor("yan", "aquino");
     Consumidor *caio = new Consumidor("caio", "santt");
     Consumidor *rod = new Consumidor("arthur", "rod");
 
-    Arthur->adicionarSaldo(150.0);
+    arthur->adicionarSaldo(150.0);
     
     caio->adicionarSaldo(10000.0);
 
-    sistema.adicionarConta(Arthur);
-    sistema.adicionarConta(Pedro);
+    sistema.adicionarConta(arthur);
     sistema.adicionarConta(caio);
     sistema.adicionarConta(yan);
     sistema.adicionarConta(rod);
 }
 
 void adicionar_admins(Sistema &sistema){
-    Admin *adm = new Admin("Arthur", "diniz");
-    Admin *conta = new Admin("adm", "adm1");
+    Admin *adm = new Admin("teste", "teste");
+    Admin *conta = new Admin("adm", "adm123");
 
     sistema.adicionarConta(adm);
     sistema.adicionarConta(conta);

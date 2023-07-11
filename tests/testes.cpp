@@ -69,17 +69,28 @@ TEST_CASE("09 - Testando a Função getConsumidor do Sistema"){
     Sistema system;
     CHECK_NOTHROW(adicionar_consumidores(system));
     CHECK_NOTHROW(adicionar_admins(system));
-    CHECK_THROWS_AS(system.getConsumidor("Arthur"), std::invalid_argument);
-    CHECK_NOTHROW(system.getConsumidor("Arthur1"));
+    CHECK_THROWS_AS(system.getConsumidor("adm"), std::invalid_argument);
+    CHECK_NOTHROW(system.getConsumidor("arthur"));
     system.apagarSistema();
 }
 
-TEST_CASE("10 - Testando a Validade de Corredores do Sistema"){
+TEST_CASE("10 - Validadando Corredores do Sistema"){
     Sistema system;
     CHECK_NOTHROW(adicionar_corredor_alimentos(system));
     CHECK(system.corredorValido("Alimentos") == 0);
     CHECK(system.corredorValido("Produtos de Limpeza e Higiene") == 1);
     CHECK_NOTHROW(adicionar_corredor_limpeza(system));
     CHECK(system.corredorValido("Produtos de Limpeza e Higiene") == 0);
+    system.apagarSistema();
+}
+
+TEST_CASE("11 - Validadando Produtos do Sistema"){
+    Sistema system;
+    CHECK_NOTHROW(adicionar_corredor_alimentos(system));
+    CHECK(system.produtoValido("Arroz") == 0);
+    CHECK(system.produtoValido("Peito De Frango") == 0);
+    CHECK(system.produtoValido("Vassoura") == 1);
+    CHECK_NOTHROW(adicionar_corredor_limpeza(system));
+    CHECK(system.produtoValido("Vassoura") == 0);
     system.apagarSistema();
 }
