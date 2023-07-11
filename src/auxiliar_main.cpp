@@ -70,7 +70,7 @@ void adicionar_corredor_infantil(Sistema &sistema){
     Produto *pI1 = new ProdutoInfantil("Pista Carrinho Hotwheels", 200.0, 10, "Para Todos", 8);
     Produto *pI2 = new ProdutoInfantil("Bola de Futebol", 150.0, 20, "Para Todos", 4);
     Produto *pI3 = new ProdutoInfantil("Boneca Barbie", 100.0, 10, "Para Todos", 8);
-    Produto *pI4 = new ProdutoInfantil("LEGO Star Wars", 1200.0, 10, "Para Todos", 10);
+    Produto *pI4 = new ProdutoInfantil("Lego Star Wars", 1200.0, 10, "Para Todos", 10);
 
     infantil->adicionarNovoProduto(pI1);
     infantil->adicionarNovoProduto(pI2);
