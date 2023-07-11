@@ -377,7 +377,7 @@ void Sistema::paginaAdmin() {
             paginaAdminEditarProdutos();
         }
 
-        if (opcao == "Edtiar Corredores"){
+        if (opcao == "Editar Corredores"){
             paginaAdminEditarCorredores();
         }
 
