@@ -28,12 +28,7 @@ void Sistema::paginaInicial() {
         }
 
         if (opcao == "Fechar Programa") {
-            for (Corredor* c : _mercado.getCorredores()){
-                delete c;
-            }
-            for (Conta* c : _usuarios){
-                delete c;
-            }
+            apagarSistema();
             std::cout << "Programa finalizado com sucesso. Obrigado!" << std::endl;
             break;
         }
@@ -898,4 +893,13 @@ bool Sistema::produtoValido(std::string nome){
         valido = 1;
     }
     return valido;
+}
+
+void Sistema::apagarSistema(){
+    for (Corredor* c : _mercado.getCorredores()){
+        delete c;
+    }
+    for (Conta* c : _usuarios){
+        delete c;
+    }
 }

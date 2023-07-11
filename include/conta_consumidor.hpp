@@ -25,6 +25,7 @@ class Consumidor : public Conta {
     // Construtor de uma conta específica para um consumidor.
     Consumidor(const std::string &usuario, const std::string &senha);
 
+    // Destrutor de uma conta consumidor.
     ~Consumidor() override;
 
     // Funcao para adicionar uma quantidade de um produto ao carrinho do consumidor.

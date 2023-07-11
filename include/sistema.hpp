@@ -32,11 +32,11 @@ class Sistema {
     Admin *_admin_logado{nullptr};
 
   public:
-    /*
-     * Inicializa o sistema: puxa as todas as informações dos usuários e do
-     * mercado, que estão armazenadas no banco de dados, e carrega localmente.
-     */
+    // Construtor do sistema.
     Sistema();
+
+    // Apaga todas as informações do sistema.
+    void apagarSistema();
 
     /*
      * @brief Printa na tela todas as opções disponíveis para escolha do usuário,
@@ -112,23 +112,38 @@ class Sistema {
      * @brief São subpáginas da área verCarrinho: a primeira corresponde a um ambiente para o usuário
      * finalizar a compra. A segunda é a área onde o usuário pode remover produtos que não deseja mais
      * de seu carrinho.
-     * @throws Lança uma excessão caso o produto que o usuário deseja remover não esteja em seu carrinho
+     * @throws Lança uma exceção caso o produto que o usuário deseja remover não esteja em seu carrinho
      * ou caso ele tente remover uma quantidade inválida.
      */
     void paginaCheckout();
     void paginaRemoverProdutoCarrinho();
 
+
+    /*
+     * @brief Corresponde ao ambiente da página do administrador: permite ele a escolher entre
+     * editar produtos (onde pode reduzir o estoque ou excluir produtos), editar corredoreses (onde pode
+     * excluir corredores vazios ou adicionar novos) ou editar usuários (onde pode excluir contas indesejadas 
+     * ou alterar saldo de consumidores). Por fim, há também a opção de criar uma nova conta para algum 
+     * administrador novo ou deslogar do sistema.
+     */
     void paginaAdmin();
     void paginaAdminEditarProdutos();
     void paginaAdminEditarCorredores();
     void paginaAdminCriarConta();
     void paginaAdminEditarUsuarios();
 
+    /*
+     * @brief São subpáginas do Admin, utilizadas para auxiliar nas funções proporcionadas aos
+     * administradores.
+     */
     void adicionarCorredor();
-    void adicionarCorredor(Corredor *corredor);
     void removerCorredor();
     void removerConta();
     void alterarSaldo();
+    void adicionarProduto();
+    void removerProduto();
+    void remocaoProdutoFinal(std::string produto, std::string categoria);
+    std::string paginaProdutosAdmin(std::string opcao);
 
     // OUTROS
 
@@ -144,35 +159,31 @@ class Sistema {
      */
     void detalhesProduto(std::string nome);
 
-    // Coloquei pra testar o main
+    // Adiciona uma nova conta ao sistema.
     void adicionarConta(Conta *c);
-    // void adicionarMercado(Mercado m);
+    
+    // Adiciona um novo corredor ao mercado do sistema.
+    void adicionarCorredor(Corredor *corredor);
+
+    /*
+     * @brief Retorna o consumidor com o nome desejado.
+     * @throws Lança uma exceção caso o consumidor não exista.
+     */
     Consumidor* getConsumidor(std::string nome);
 
-    /*
-     * @brief Função que usa do método MostrarOpcoes para escolher se o produto a ser adicionado
-     * será genérico ou de algum tipo específico (classe base -Produto- ou derivada).
-     */
-    // std::string escolherTipo();
-
-    /*
-     * @brief Função que usa do método MostrarOpcoes para escolher a qual
-     * corredor o produto deverá ser adicionado.
-     */
-    // std::string escolherCorredor();
-
-    /*
-     * @brief Funcao que adiciona o produto do tipo designado ao corredor designado no sistema.
-     */
-    void adicionarProduto();
-    void removerProduto();
-    void remocaoProdutoFinal(std::string produto, std::string categoria);
-
+    // Cria um novo produto.
     Produto *criarProduto();
 
-    std::string paginaProdutosAdmin(std::string opcao);
-
+    /*
+     * @brief Retorna true se não houver nenhum outro produto com certo nome no sistema.
+     * Caso haja, retorna falso.
+     */
     bool produtoValido(std::string nome);
+
+    /*
+     * @brief Retorna true se não houver nenhum corredor com certa categoria no sistema.
+     * Caso haja, retorna falso.
+     */
     bool corredorValido(std::string categoria);
 };
 

@@ -12,6 +12,7 @@ class Admin : public Conta {
     // Construtor de uma conta específica para um admin.
     Admin(const std::string &usuario, const std::string &senha);
 
+    // Destrutor de uma cont aadmin.
     ~Admin() override;
 };
 
