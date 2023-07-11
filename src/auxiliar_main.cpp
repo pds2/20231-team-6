@@ -88,6 +88,7 @@ void adicionar_consumidores(Sistema &sistema){
     Consumidor *rod = new Consumidor("arthur", "rod");
 
     Arthur->adicionarSaldo(150.0);
+    
     caio->adicionarSaldo(10000.0);
 
     sistema.adicionarConta(Arthur);

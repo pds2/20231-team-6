@@ -7,6 +7,9 @@
 
 struct idade_invalida_e {};
 
+// Classe Produto Infantil que é uma subclasse de produto.
+// Representa um produto geralmente comercializado para crianças e tem mais atributos 
+// que um produto comum como idade e genero recomendados.
 class ProdutoInfantil : public Produto {
   private:
     std::string _genero;
@@ -28,6 +31,8 @@ class ProdutoInfantil : public Produto {
     std::string getGenero() const;
     unsigned int getIdade() const;
 
+    // Funcao static (independente de haver uma instancia da classe) que permite com que o usuario
+    // (admin) crie um produto infantil entrando com as informacoes necessarias.
     static Produto* criarProdutoInfantil(std::string nome);
 };
 

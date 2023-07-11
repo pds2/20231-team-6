@@ -7,6 +7,9 @@
 
 struct volume_invalido_e {};
 
+// Classe Produto Limpeza que é uma subclasse de produto.
+// Representa um produto de limpeza e tem mais atributos que um produto comum,
+// como seu aroma e um volume em mls.
 class ProdutoLimpeza : public Produto {
   private:
     std::string _aroma;
@@ -28,6 +31,8 @@ class ProdutoLimpeza : public Produto {
     std::string getAroma() const;
     unsigned int getVolume() const;
 
+    // Funcao static (independente de haver uma instancia da classe) que permite com que o usuario
+    // (admin) crie um produto de limpeza entrando com as informacoes necessarias.
     static Produto* criarProdutoLimpeza(std::string nome);
 };
 

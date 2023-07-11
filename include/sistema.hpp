@@ -22,6 +22,8 @@ class usuario_ja_existe_e {};
 class senha_incorreta_e {};
 class voltar_e {};
 
+// Classe Sistema. Armazena uma instancia da classe Mercado e um vector de usuarios.
+// É responsável pela manipulacao de dados tanto pela parte do consumidor tanto quanto do admin.
 class Sistema {
   private:
     Mercado _mercado;

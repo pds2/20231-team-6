@@ -3,7 +3,7 @@
 
 #include "sistema.hpp"
 
-// Arquivo com funcoes para inicializar o main.
+// Arquivo com funções para inicializar o main.
 
 // Adicionando corredores e usuarios ao sistema.
 void adicionar_corredor_alimentos(Sistema &sistema);

@@ -27,7 +27,6 @@ std::string mostrarOpcoesA(std::string titulo, std::vector<std::string> opcoes, 
                 throw std::invalid_argument("Escolha invalida!");
             }
             flag = false;
-
         } catch (std::invalid_argument &e) {
             std::cout << e.what() << std::endl;
             sleep(1);

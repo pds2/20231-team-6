@@ -27,8 +27,6 @@ unsigned int ProdutoInfantil::getIdade() const {
 }
 
 Produto* ProdutoInfantil::criarProdutoInfantil(std::string nome){
-    //std::string nome = preencherString("Nome");
-    //nome = stringPesquisa(nome);
     double preco = preencherDouble("Preço");
     unsigned int quantidade = preencherInt("Quantidade a ser adicionada no estoque");
     std::string genero = mostrarOpcoesA("O produto é recomendado para qual gênero?", \

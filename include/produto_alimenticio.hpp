@@ -6,11 +6,14 @@
 
 struct peso_invalido_e {};
 
+// Classe Produto Alimenticio que é uma subclasse de produto.
+// Representa um alimento e tem mais atributos que um produto comum,
+// como data de validade, preco e um verificador de que se o alimento é vegano ou não.
 class ProdutoAlimenticio : public Produto {
   private:
     bool _vegano;
     int _peso; // em gramas
-    std::string _dataDeValidade;
+    std::string _dataDeValidade; // no formato DD/MM/YYYY
 
   public:
     
@@ -29,6 +32,8 @@ class ProdutoAlimenticio : public Produto {
     double getPeso() const;
     std::string getDataValidade() const;
 
+    // Funcao static (independente de haver uma instancia da classe) que permite com que o usuario
+    // (admin) crie um produto alimenticio entrando com as informacoes necessarias.
     static Produto* criarProdutoAlimenticio(std::string nome);
 };
 

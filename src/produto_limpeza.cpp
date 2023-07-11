@@ -27,8 +27,6 @@ unsigned int ProdutoLimpeza::getVolume() const {
 }
 
 Produto* ProdutoLimpeza::criarProdutoLimpeza(std::string nome){
-    //std::string nome = preencherString("Nome");
-    //nome = stringPesquisa(nome);
     double preco = preencherDouble("Preço");
     unsigned int quantidade = preencherInt("Quantidade a ser adicionada no estoque");
     std::string aroma = preencherString("Aroma");

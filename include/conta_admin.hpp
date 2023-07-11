@@ -6,6 +6,7 @@
 
 #include "conta.hpp"
 
+// Classe admin que herda de Conta. Representa uma conta de adminstrador.
 class Admin : public Conta {
   public:
     // Construtor de uma conta específica para um admin.

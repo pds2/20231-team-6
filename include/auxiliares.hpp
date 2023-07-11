@@ -23,17 +23,17 @@ void limparTela();
 std::string mostrarOpcoesA(std::string titulo, std::vector<std::string> opcoes, bool limpar);
 
 /*
- * @brief Printa na tela o que o usuário deve preencher e retorna a informação preenchida.
+ * @brief Printa na tela qual informação o usuário deve preencher e retorna a informação preenchida.
  */
 std::string preencherString(std::string campo);
 
 /*
- * @brief Printa na tela o que o usuário deve preencher e retorna a informação preenchida.
+ * @brief Printa na tela qual informação o usuário deve preencher e retorna a informação preenchida.
  */
 int preencherInt(std::string campo);
 
 /*
- * @brief Printa na tela o que o usuário deve preencher e retorna a informação preenchida.
+ * @brief Printa na tela qual informação o usuário deve preencher e retorna a informação preenchida.
  */
 double preencherDouble(std::string campo);
 
