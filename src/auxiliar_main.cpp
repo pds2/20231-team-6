@@ -6,7 +6,7 @@ void adicionar_corredor_alimentos(Sistema &sistema){
     Produto *pA1 = new ProdutoAlimenticio("Arroz", 30.0, 10, 1, 1000, "20/12/2023");
     Produto *pA2 = new ProdutoAlimenticio("Pacote De Feijao", 20.0, 10, 1, 500, "14/11/2023");
     Produto *pA3 = new ProdutoAlimenticio("Batata", 15.0, 5, 1, 300, "09/10/2023");
-    Produto *pA4 = new ProdutoAlimenticio("Peito de Frango", 13.0, 5, 0, 150, "09/09/2023");
+    Produto *pA4 = new ProdutoAlimenticio("Peito De Frango", 13.0, 5, 0, 150, "09/09/2023");
     Produto *pA5 = new ProdutoAlimenticio("Pernil", 16.0, 9, 0, 120, "24/09/2023");
     Produto *pA6 = new ProdutoAlimenticio("Pão", 8.90, 9, 1, 100, "24/09/2023");
     Produto *pA7 = new ProdutoAlimenticio("Ovo", 2.0, 100, 0, 20, "24/09/2023");
@@ -46,8 +46,8 @@ void adicionar_corredor_limpeza(Sistema &sistema){
     Produto *pL1 = new Produto("Vassoura", 40.0, 10);
     Produto *pL2 = new ProdutoLimpeza("Sabonete Liquido", 22.0, 10, "Lavanda", 500);
     Produto *pL3 = new ProdutoLimpeza("Detergente", 20.0, 10, "Sem Cheiro", 400);
-    Produto *pL4 = new Produto("Conjunto Escovas de Dente (3 unidades)", 15, 10);
-    Produto *pL5 = new ProdutoLimpeza("Pasta de Dente", 9.90, 10, "Menta", 120);
+    Produto *pL4 = new Produto("Conjunto Escovas De Dente (3 unidades)", 15, 10);
+    Produto *pL5 = new ProdutoLimpeza("Pasta De Dente", 9.90, 10, "Menta", 120);
     Produto *pL6 = new Produto("Fraldas P", 40.0, 10);
     Produto *pL7 = new Produto("Fraldas M", 45.0, 10);
     Produto *pL8 = new Produto("Fraldas G", 50.0, 10);

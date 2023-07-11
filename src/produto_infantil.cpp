@@ -30,7 +30,7 @@ Produto* ProdutoInfantil::criarProdutoInfantil(std::string nome){
     double preco = preencherDouble("Preço");
     unsigned int quantidade = preencherInt("Quantidade a ser adicionada no estoque");
     std::string genero = mostrarOpcoesA("O produto é recomendado para qual gênero?", \
-                                        {"Masculino", "Feminino", "Ambos"}, 0);
+                                        {"Masculino", "Feminino", "Para Todos"}, 0);
     unsigned int idade = preencherInt("Idade Recomendada");
     Produto* novoProduto = new ProdutoInfantil(nome, preco, quantidade, genero, idade);
     return novoProduto;
