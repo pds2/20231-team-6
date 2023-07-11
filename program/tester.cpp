@@ -30,7 +30,7 @@ TEST_CASE("03 - Testando O Construtor da Classe ProdutoLimpeza") {
 
 TEST_CASE("04 - Testando O Construtor da Classe ProdutoInfantil") {
     ProdutoInfantil testeInfantil("infantil", 23, 4, "Para todos", 10);
-    CHECK(testeInfantil.getNome() == "limpeza");
+    CHECK(testeInfantil.getNome() == "infantil");
     CHECK(testeInfantil.getPreco() == 23);
     CHECK(testeInfantil.getQuantidade() == 4);
     CHECK(testeInfantil.getGenero() == "Para todos");
@@ -51,9 +51,10 @@ TEST_CASE("06 - Testando O Construtor da Classe Consumidor (: Conta)") {
 
 TEST_CASE("07 - Testando As Funcoes Relacionadas ao Saldo do Consumidor") {
     Consumidor testeConsumidor("usuario", "senha");
+    int saldo = testeConsumidor.getSaldo();
     testeConsumidor.adicionarSaldo(500);
-    testeConsumidor.removerSaldo(200)
-    CHECK(testeConsumidor.getSaldo() == (500-200));
+    testeConsumidor.removerSaldo(200);
+    CHECK(testeConsumidor.getSaldo() == (saldo+500-200));
 }
 
 TEST_CASE("08 - Testando As Funcoes Relacionadas ao Estoque de um Produto") {
